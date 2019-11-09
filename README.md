@@ -15,6 +15,7 @@ Compositor:		compton-tyrone
 Fonts:			monospace,  DejaVu, FontAwesome,siji
 Terminal:		rxvt-unicode
 Shell:			bash
+Theme:			wpgtk
 ```
 
 ## Install
