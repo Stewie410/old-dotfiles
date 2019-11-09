@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # autoscrot.sh
-# Author:	Alex Paarfus <stewie410@me.com>
+# Author:	Alex Paarfus <stewie410@gmail.com>
 # Date:		2019-01-11
 #
 # Takes a screenshot with scrot and generates a simple name for the file

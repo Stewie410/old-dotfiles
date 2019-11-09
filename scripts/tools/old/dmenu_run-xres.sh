@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # dmenu_run-xres.sh
-# Author:	Alex Paarfus <stewie410@me.com>
+# Author:	Alex Paarfus <stewie410@gmail.com>
 # Date:		2019-01-21
 #
 # A themed wrapper for dmenu_run

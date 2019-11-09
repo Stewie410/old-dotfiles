@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # network
-# Author:	Alex Paarfus <stewie410@me.com>
+# Author:	Alex Paarfus <stewie410@gmail.com>
 # Date:		2019-01-07
 #
 # Check for a network connection on both eth and wlp interfaces

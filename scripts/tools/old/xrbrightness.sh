@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # xrbrightness.sh
-# Author:	Alex Paarfus <stewie410@me.com>
+# Author:	Alex Paarfus <stewie410@gmail.com>
 # Date:		2019-02-03
 #
 # This is a workaround to adjust the gamma of eDP1 in lieu of xbacklight working

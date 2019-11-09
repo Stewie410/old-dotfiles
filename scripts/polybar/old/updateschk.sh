@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # updateschk.sh
-# Author:	Alex Paarfus <stewie410@me.com>
+# Author:	Alex Paarfus <stewie410@gmail.com>
 # Date:		2019-11-02
 #
 # Get the total number of available packages since last sync

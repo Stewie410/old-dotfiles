@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # ttc_toggle.sh
-# Author:	Alex Paarfus <stewie410@me.com>
+# Author:	Alex Paarfus <stewie410@gmail.com>
 # Date:		2019-02-19
 #
 # Toggle the tap-to-click functionality of the touchpad

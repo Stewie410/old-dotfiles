@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # adb_pull_files.sh
-# Author:	Alex Paarfus <stewie410@me.com>
+# Author:	Alex Paarfus <stewie410@gmail.com>
 # Date:		2019-01-26
 #
 # An automated-ish way for Foofy to pull files from his android device.

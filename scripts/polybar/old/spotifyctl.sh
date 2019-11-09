@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # spotifyctl.sh
-# Author:	Alex Paarfus <stewie410@me.com>
+# Author:	Alex Paarfus <stewie410@gmail.com>
 # Date:		2019-02-02
 # 
 # Pulls current Artist & Title from Spotify

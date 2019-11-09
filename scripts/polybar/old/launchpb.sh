@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # launchpb.sh
-# Author:	Alex Paarfus <stewie410@me.com>
+# Author:	Alex Paarfus <stewie410@gmail.com>
 # Date:		2019-01-06
 #
 # Starts/Restarts Polybar

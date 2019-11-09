@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # pavolume.sh
-# Author:	Alex Paarfus <stewie410@me.com>
+# Author:	Alex Paarfus <stewie410@gmail.com>
 # Date:		2019-01-11
 #
 # Grab the current volume level, with varying icons

@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # pactl.sh
-# Author:	Alex Paarfus <stewie410@me.com>
+# Author:	Alex Paarfus <stewie410@gmail.com>
 # Date:		2019-10-26
 #
 # A wrapper for pamixer to do normal things (inc, dec, mute) with notifications

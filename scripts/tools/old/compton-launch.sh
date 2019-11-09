@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # compton-launch.sh
-# Author:	Alex Paarfus <stewie410@me.com>
+# Author:	Alex Paarfus <stewie410@gmail.com>
 # Date:		2019-01-20
 #
 # Like polybar's launch script, but for compton
