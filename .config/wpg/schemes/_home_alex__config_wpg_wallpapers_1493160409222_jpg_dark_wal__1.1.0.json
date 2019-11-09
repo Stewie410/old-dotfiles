@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/alex/.config/wpg/wallpapers/1493160409222.jpg",
+    "alpha": "100",
+    "special": {
+        "background": "#0b1011",
+        "foreground": "#aabfa4",
+        "cursor": "#aabfa4"
+    },
+    "colors": {
+        "color0": "#0b1011",
+        "color1": "#323C43",
+        "color2": "#38494A",
+        "color3": "#3B6946",
+        "color4": "#4C4F50",
+        "color5": "#5D625E",
+        "color6": "#887D70",
+        "color7": "#aabfa4",
+        "color8": "#768572",
+        "color9": "#323C43",
+        "color10": "#38494A",
+        "color11": "#3B6946",
+        "color12": "#4C4F50",
+        "color13": "#5D625E",
+        "color14": "#887D70",
+        "color15": "#aabfa4"
+    }
+}

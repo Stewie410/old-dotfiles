@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/alex/.config/wpg/wallpapers/fVkrvuS_-_Imgur_4k.png",
+    "alpha": "100",
+
+    "special": {
+        "background": "#101219",
+        "foreground": "#fffdf6",
+        "cursor": "#fffdf6"
+    },
+    "colors": {
+        "color0": "#101219",
+        "color1": "#D7C4B5",
+        "color2": "#F8CDB2",
+        "color3": "#E4A68F",
+        "color4": "#F9DBC3",
+        "color5": "#FBB9A8",
+        "color6": "#D3D2D2",
+        "color7": "#f5ece5",
+        "color8": "#232737",
+        "color9": "#fff9cf",
+        "color10": "#ffefbb",
+        "color11": "#ffcca1",
+        "color12": "#fff8c6",
+        "color13": "#ffd2b3",
+        "color14": "#ffe4e4",
+        "color15": "#fffdf6"
+    }
+}

@@ -1,0 +1,104 @@
+# vim: ft=cfg
+#
+# dunstrc
+# Author:	Alex Paarfus <stewie410@me.com>
+# Date:		2019-01-19
+#
+# Based on the defaults, lukesmithxyz, and my preferences
+
+# ##------------------------------------##
+# #|		Global Settings		|#
+# ##------------------------------------##
+[global]
+	# Display Settings
+    	monitor = 0
+    	follow = none
+
+	# Appearance
+    	geometry = "300x5-30+20"	
+    	indicate_hidden = yes
+    	shrink = yes
+    	transparency = 0
+    	notification_height = 0
+    	separator_height = 2
+    	padding = 8
+    	horizontal_padding = 8
+    	frame_width = 3
+    	frame_color = "#aaaaaa"
+    	separator_color = frame
+    	sort = yes
+    	idle_threshold = 120
+    	title = Dunst
+    	class = Dunst
+
+	# Text Settings
+    	font = Monospace 10
+    	line_height = 0
+    	markup = full
+    	format = "<b>%s</b>\n%b"
+    	alignment = left
+    	show_age_threshold = 60
+    	word_wrap = yes
+    	ellipsize = middle
+    	ignore_newline = no
+    	stack_duplicates = true
+    	hide_duplicate_count = true
+    	show_indicators = yes
+
+    	# Icons
+    	icon_position = left
+    	max_icon_size = 32
+	icon_path = /usr/share/icons/Papirus-Dark/16x16/status:/usr/share/icons/Papirus-Dark/16x16/devices
+
+    	# History
+    	sticky_history = yes
+    	history_length = 20
+
+    	# Misc/Advanced
+    	dmenu = /usr/bin/dmenu -p dunst:
+    	browser = /usr/bin/firefox -new-tab
+    	always_run_script = true
+    	startup_notification = false
+    	force_xinerama = false
+
+# ##------------------------------------##
+# #|		Experimental		|#
+# ##------------------------------------##
+[experimental]
+    	per_monitor_dpi = false
+
+# ##------------------------------------##
+# #|		Shortcuts		|#
+# ##------------------------------------##
+[shortcuts]
+    	close = ctrl+space		# Close Notification
+    	close_all = ctrl+shift+space	# Close All Notifications
+    	history = ctrl+grave		# Show Last Notification
+    	context = ctrl+shift+period	# Context Menu
+
+# ##--------------------------------------------##
+# #|		Urgency Settings		|#
+# ##--------------------------------------------##
+# Low Urgency
+[urgency_low]
+    	background = "#222222"
+    	foreground = "#888888"
+    	timeout = 10
+
+# Normal/Medium Urgency
+[urgency_normal]
+    	background = "#285577"
+    	foreground = "#ffffff"
+    	timeout = 10
+
+# Critical Urgency
+[urgency_critical]
+    	background = "#900000"
+    	foreground = "#ffffff"
+    	frame_color = "#ff0000"
+    	timeout = 0
+
+# ##------------------------------------##
+# #|		Overrides		|#
+# ##------------------------------------##
+# Examples can be found in /usr/share/dunst/dunstrc

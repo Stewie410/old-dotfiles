@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/alex/.config/wpg/wallpapers/Polygon_Cloud_(Final).png",
+    "alpha": "100",
+
+    "special": {
+        "background": "#1d1d1d",
+        "foreground": "#ffffff",
+        "cursor": "#ffffff"
+    },
+    "colors": {
+        "color0": "#1d1d1d",
+        "color1": "#6f6166",
+        "color2": "#6c6d6c",
+        "color3": "#919291",
+        "color4": "#696a6d",
+        "color5": "#808080",
+        "color6": "#6b6d6e",
+        "color7": "#c6c6c6",
+        "color8": "#313131",
+        "color9": "#9d7080",
+        "color10": "#7e9b7e",
+        "color11": "#a9d0a9",
+        "color12": "#7a829b",
+        "color13": "#b69595",
+        "color14": "#7d929d",
+        "color15": "#ffffff"
+    }
+}

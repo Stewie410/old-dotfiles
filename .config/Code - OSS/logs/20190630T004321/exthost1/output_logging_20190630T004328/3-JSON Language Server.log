@@ -1,0 +1,5 @@
+[Error - 12:43:28 AM] Request textDocument/colorPresentation failed.
+Error: Connection got disposed.
+    at Object.dispose (/usr/lib/code/extensions/json-language-features/client/dist/jsonMain.js:1:16302)
+    at Object.dispose (/usr/lib/code/extensions/json-language-features/client/dist/jsonMain.js:1:66631)
+    at t.BaseLanguageClient.stop._connectionPromise.state.g.Stopping._onStop._onStop.resolveConnection.then.e.shutdown.then (/usr/lib/code/extensions/json-language-features/client/dist/jsonMain.js:1:63581)

@@ -1,0 +1,22 @@
+[2019-04-04 22:04:59.221] [exthost] [info] extension host started
+[2019-04-04 22:04:59.236] [exthost] [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch {"startup":true,"activationEvent":"*"}
+[2019-04-04 22:04:59.236] [exthost] [info] ExtensionService#loadCommonJSModule /usr/lib/code/extensions/debug-auto-launch/dist/extension
+[2019-04-04 22:04:59.238] [exthost] [info] ExtensionService#_doActivateExtension vscode.emmet {"startup":true,"activationEvent":"*"}
+[2019-04-04 22:04:59.238] [exthost] [info] ExtensionService#loadCommonJSModule /usr/lib/code/extensions/emmet/dist/extension
+[2019-04-04 22:04:59.249] [exthost] [info] ExtensionService#_doActivateExtension vscode.git {"startup":true,"activationEvent":"*"}
+[2019-04-04 22:04:59.249] [exthost] [info] ExtensionService#loadCommonJSModule /usr/lib/code/extensions/git/dist/main
+[2019-04-04 22:04:59.310] [exthost] [info] ExtensionService#_doActivateExtension vscode.merge-conflict {"startup":true,"activationEvent":"*"}
+[2019-04-04 22:04:59.310] [exthost] [info] ExtensionService#loadCommonJSModule /usr/lib/code/extensions/merge-conflict/dist/extension
+[2019-04-04 22:04:59.313] [exthost] [info] ExtensionService#_doActivateExtension Equinusocio.vsc-material-theme {"startup":true,"activationEvent":"*"}
+[2019-04-04 22:04:59.313] [exthost] [info] ExtensionService#loadCommonJSModule /home/alex/.vscode-oss/extensions/equinusocio.vsc-material-theme-2.8.2/out/src/material.theme.config
+[2019-04-04 22:04:59.317] [exthost] [info] ExtensionService#_doActivateExtension formulahendry.auto-close-tag {"startup":true,"activationEvent":"*"}
+[2019-04-04 22:04:59.317] [exthost] [info] ExtensionService#loadCommonJSModule /home/alex/.vscode-oss/extensions/formulahendry.auto-close-tag-0.5.6/out/src/extension
+[2019-04-04 22:04:59.318] [exthost] [info] ExtensionService#_doActivateExtension formulahendry.auto-rename-tag {"startup":true,"activationEvent":"*"}
+[2019-04-04 22:04:59.318] [exthost] [info] ExtensionService#loadCommonJSModule /home/alex/.vscode-oss/extensions/formulahendry.auto-rename-tag-0.0.15/out/src/extension
+[2019-04-04 22:04:59.319] [exthost] [info] ExtensionService#_doActivateExtension PKief.material-icon-theme {"startup":true,"activationEvent":"*"}
+[2019-04-04 22:04:59.319] [exthost] [info] ExtensionService#loadCommonJSModule /home/alex/.vscode-oss/extensions/pkief.material-icon-theme-3.7.0/dist/extension
+[2019-04-04 22:04:59.330] [exthost] [info] ExtensionService#_doActivateExtension ritwickdey.LiveServer {"startup":true,"activationEvent":"*"}
+[2019-04-04 22:04:59.330] [exthost] [info] ExtensionService#loadCommonJSModule /home/alex/.vscode-oss/extensions/ritwickdey.liveserver-5.5.1/out/src/extension
+[2019-04-04 22:04:59.480] [exthost] [info] ExtensionService#_doActivateExtension Zignd.html-css-class-completion {"startup":true,"activationEvent":"*"}
+[2019-04-04 22:04:59.480] [exthost] [info] ExtensionService#loadCommonJSModule /home/alex/.vscode-oss/extensions/zignd.html-css-class-completion-1.18.0/out/src/extension
+[2019-04-04 22:04:59.648] [exthost] [info] eager extensions activated

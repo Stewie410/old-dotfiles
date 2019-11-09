@@ -1,0 +1,105 @@
+#if __has_include(".extend.Xresources")
+#include ".extend.Xresources"
+#endif
+
+! ##------------------------------------##
+! #|		Font Settings		|#
+! ##------------------------------------##
+*.font:					xft:monospace:pixelsize=10
+
+Xft.dpi:				96
+Xft.antialias:				true
+Xft.autohint:				1
+Xft.hinting:				1
+Xft.hintstyle:				hintslight
+Xft.lcdfilter:				lcdlight
+Xft.rgba:				rgb
+
+
+! ##------------------------------------##
+! #|		Colorschemes		|#
+! ##------------------------------------##
+! wpgtk 
+*.foreground:				#e3dac9
+*.background:				#161616
+*.cursorColor:				#e3dac9
+*.color0:				#161616
+*.color1:				#a94744
+*.color2:				#608b4e
+*.color3:				#d69831
+*.color4:				#569cd6
+*.color5:				#b06386
+*.color6:				#218693
+*.color7:				#b0b0b0
+*.color8:				#3c3c3c
+*.color9:				#e09690
+*.color10:				#8fbf7f
+*.color11:				#f8bc41
+*.color12:				#9cdcfe
+*.color13:				#d2879b
+*.color14:				#77dfd8
+*.color15:				#f7f7f7
+
+! NewProggie
+!*.foreground:				#e3dac9
+!*.background:				#161616
+!*.cursorColor:				#e3dac9
+!*.color0:				#161616
+!*.color8:				#3c3c3c
+!*.color1:				#a94744
+!*.color9:				#e09690
+!*.color2:				#608b4e
+!*.color10:				#8fbf7f
+!*.color3:				#d69831
+!*.color11:				#f8bc41
+!*.color4:				#569cd6
+!*.color12:				#9cdcfe
+!*.color5:				#b06386
+!*.color13:				#d2879b
+!*.color6:				#218693
+!*.color14:				#77dfd8
+!*.color7:				#b0b0b0
+!*.color15:				#f7f7f7
+
+! Gruvbox
+!*.foreground:				#ffffff
+!*.background:				#000000
+!*.cursorColor:				#e3dac9
+!*.color0:				#1d2021
+!*.color1:				#cc241d
+!*.color2:				#98971a
+!*.color3:				#d79921
+!*.color4:				#458588
+!*.color5:				#b16286
+!*.color6:				#689d6a
+!*.color7:				#a89984
+!*.color8:				#928374
+!*.color9:				#fb4934
+!*.color10:				#b8bb26
+!*.color11:				#fabd2f
+!*.color12:				#83a598
+!*.color13:				#d3869b
+!*.color14:				#8ec07c
+!*.color15:				#ebdbb2
+
+! ##----------------------------##
+! #|		urxvt		|#
+! ##----------------------------##
+URxvt*termName:				rxvt-unicode
+URxvt.background:			[90]#161616
+URxvt.borderColor:			[90]#161616
+URxvt.depth:				32
+URxvt.scrollBar:			false
+URxvt.cursorBlink:			false
+URxvt.internalBorder:			1
+URxvt.font:				xft:monospace:pixelsize=16,\
+					xft:FontAwesome:pixelsize=10:antialias=true,\
+					xft:siji:pixelsize=10:antialias=true
+
+! ##----------------------------##
+! #|		st		|#
+! ##----------------------------##
+st.alpha:				0.9
+st.font:				Monospace-11;
+st.termname:				st-256color
+st.borderpx:				2

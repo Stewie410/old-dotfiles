@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/alex/.config/wpg/wallpapers/lub.png",
+    "alpha": "100",
+
+    "special": {
+        "background": "#1f181f",
+        "foreground": "#c7c5c7",
+        "cursor": "#c7c5c7"
+    },
+    "colors": {
+        "color0": "#1f181f",
+        "color1": "#522d68",
+        "color2": "#4e316d",
+        "color3": "#473a74",
+        "color4": "#58386d",
+        "color5": "#344c84",
+        "color6": "#2a578e",
+        "color7": "#c7c5c7",
+        "color8": "#575157",
+        "color9": "#522d68",
+        "color10": "#4e316d",
+        "color11": "#473a74",
+        "color12": "#58386d",
+        "color13": "#344c84",
+        "color14": "#2a578e",
+        "color15": "#c7c5c7"
+    }
+}

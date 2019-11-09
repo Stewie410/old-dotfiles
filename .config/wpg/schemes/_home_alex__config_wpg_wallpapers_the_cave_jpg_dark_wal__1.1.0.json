@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/alex/.config/wpg/wallpapers/the_cave.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#070A0B",
+        "foreground": "#ddfcff",
+        "cursor": "#ddfcff"
+    },
+    "colors": {
+        "color0": "#070A0B",
+        "color1": "#8C777B",
+        "color2": "#2F4B57",
+        "color3": "#344F6D",
+        "color4": "#38599C",
+        "color5": "#585865",
+        "color6": "#586B95",
+        "color7": "#a8c0d2",
+        "color8": "#19262a",
+        "color9": "#c68995",
+        "color10": "#346479",
+        "color11": "#396698",
+        "color12": "#3a6fd8",
+        "color13": "#66668f",
+        "color14": "#6385d1",
+        "color15": "#ddfcff"
+    }
+}

@@ -1,0 +1,22 @@
+[2019-02-15 17:19:37.189] [exthost] [info] extension host started
+[2019-02-15 17:19:37.195] [exthost] [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch {"startup":true,"activationEvent":"*"}
+[2019-02-15 17:19:37.195] [exthost] [info] ExtensionService#loadCommonJSModule /usr/lib/code/extensions/debug-auto-launch/dist/extension
+[2019-02-15 17:19:37.198] [exthost] [info] ExtensionService#_doActivateExtension vscode.emmet {"startup":true,"activationEvent":"*"}
+[2019-02-15 17:19:37.198] [exthost] [info] ExtensionService#loadCommonJSModule /usr/lib/code/extensions/emmet/dist/extension
+[2019-02-15 17:19:37.207] [exthost] [info] ExtensionService#_doActivateExtension vscode.git {"startup":true,"activationEvent":"*"}
+[2019-02-15 17:19:37.207] [exthost] [info] ExtensionService#loadCommonJSModule /usr/lib/code/extensions/git/dist/main
+[2019-02-15 17:19:37.265] [exthost] [info] ExtensionService#_doActivateExtension vscode.merge-conflict {"startup":true,"activationEvent":"*"}
+[2019-02-15 17:19:37.265] [exthost] [info] ExtensionService#loadCommonJSModule /usr/lib/code/extensions/merge-conflict/dist/extension
+[2019-02-15 17:19:37.269] [exthost] [info] ExtensionService#_doActivateExtension Equinusocio.vsc-material-theme {"startup":true,"activationEvent":"*"}
+[2019-02-15 17:19:37.269] [exthost] [info] ExtensionService#loadCommonJSModule /home/alex/.vscode-oss/extensions/equinusocio.vsc-material-theme-2.6.3/extensions/material.theme.config.js
+[2019-02-15 17:19:37.278] [exthost] [info] ExtensionService#_doActivateExtension formulahendry.auto-close-tag {"startup":true,"activationEvent":"*"}
+[2019-02-15 17:19:37.278] [exthost] [info] ExtensionService#loadCommonJSModule /home/alex/.vscode-oss/extensions/formulahendry.auto-close-tag-0.5.6/out/src/extension
+[2019-02-15 17:19:37.279] [exthost] [info] ExtensionService#_doActivateExtension gencer.html-slim-scss-css-class-completion {"startup":true,"activationEvent":"*"}
+[2019-02-15 17:19:37.279] [exthost] [info] ExtensionService#loadCommonJSModule /home/alex/.vscode-oss/extensions/gencer.html-slim-scss-css-class-completion-1.2.1/out/src/extension
+[2019-02-15 17:19:37.487] [exthost] [info] ExtensionService#_doActivateExtension PKief.material-icon-theme {"startup":true,"activationEvent":"*"}
+[2019-02-15 17:19:37.487] [exthost] [info] ExtensionService#loadCommonJSModule /home/alex/.vscode-oss/extensions/pkief.material-icon-theme-3.6.2/out/src/extension
+[2019-02-15 17:19:37.515] [exthost] [info] ExtensionService#_doActivateExtension ritwickdey.LiveServer {"startup":true,"activationEvent":"*"}
+[2019-02-15 17:19:37.515] [exthost] [info] ExtensionService#loadCommonJSModule /home/alex/.vscode-oss/extensions/ritwickdey.liveserver-5.3.1/out/src/extension
+[2019-02-15 17:19:37.793] [exthost] [info] ExtensionService#_doActivateExtension Zignd.html-css-class-completion {"startup":true,"activationEvent":"*"}
+[2019-02-15 17:19:37.793] [exthost] [info] ExtensionService#loadCommonJSModule /home/alex/.vscode-oss/extensions/zignd.html-css-class-completion-1.17.1/out/src/extension
+[2019-02-15 17:19:37.994] [exthost] [info] eager extensions activated

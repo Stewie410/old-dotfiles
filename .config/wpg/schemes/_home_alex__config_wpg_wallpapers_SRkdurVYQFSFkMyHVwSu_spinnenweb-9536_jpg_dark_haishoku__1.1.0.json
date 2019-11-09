@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/alex/.config/wpg/wallpapers/SRkdurVYQFSFkMyHVwSu_spinnenweb-9536.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#191919",
+        "foreground": "#ffffff",
+        "cursor": "#ffffff"
+    },
+    "colors": {
+        "color0": "#191919",
+        "color1": "#605349",
+        "color2": "#516043",
+        "color3": "#9aa477",
+        "color4": "#6a6e50",
+        "color5": "#b1ae91",
+        "color6": "#81806e",
+        "color7": "#c5c5c5",
+        "color8": "#2d2d2d",
+        "color9": "#876a53",
+        "color10": "#68874c",
+        "color11": "#d2e788",
+        "color12": "#929b5b",
+        "color13": "#faf3a7",
+        "color14": "#b7b47f",
+        "color15": "#ffffff"
+    }
+}

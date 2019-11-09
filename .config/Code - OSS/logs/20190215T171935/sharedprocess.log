@@ -1,0 +1,51 @@
+[2019-02-15 17:19:38.649] [sharedprocess] [info] main {"machineId":"29d990988e8064803937ba315708ed1a061491602e0513c1f524d0d5347e8af7"}
+[2019-02-15 17:19:38.685] [sharedprocess] [info] Scanned user extensions: 10
+[2019-02-15 17:19:38.721] [sharedprocess] [info] Scanned user extensions: 10
+[2019-02-15 17:19:38.725] [sharedprocess] [info] Scanned user extensions: 10
+[2019-02-15 17:19:38.729] [sharedprocess] [info] Scanned user extensions: 10
+[2019-02-15 17:19:38.749] [sharedprocess] [info] Scanned system extensions: 71
+[2019-02-15 17:19:38.749] [sharedprocess] [info] Scanned system extensions: 71
+[2019-02-15 17:19:40.053] [sharedprocess] [info] Installing extension: code-runner
+[2019-02-15 17:19:40.053] [sharedprocess] [info] Installing extension: html-slim-scss-css-class-completion
+[2019-02-15 17:19:40.053] [sharedprocess] [info] Installing extension: material-icon-theme
+[2019-02-15 17:19:40.053] [sharedprocess] [info] Installing extension: LiveServer
+[2019-02-15 17:19:40.054] [sharedprocess] [info] Installing extension: html-css-class-completion
+[2019-02-15 17:19:40.059] [sharedprocess] [info] Scanned user extensions: 10
+[2019-02-15 17:19:40.061] [sharedprocess] [info] Scanned user extensions: 10
+[2019-02-15 17:19:40.062] [sharedprocess] [info] Scanned user extensions: 10
+[2019-02-15 17:19:40.064] [sharedprocess] [info] Scanned user extensions: 10
+[2019-02-15 17:19:40.065] [sharedprocess] [info] Scanned user extensions: 10
+[2019-02-15 17:19:42.493] [sharedprocess] [info] Downloaded extension: material-icon-theme /tmp/22429eee-debb-409d-8c76-d63205a0997a
+[2019-02-15 17:19:42.837] [sharedprocess] [info] Extracted extension to /home/alex/.vscode-oss/extensions/.pkief.material-icon-theme-3.6.3: pkief.material-icon-theme-3.6.3
+[2019-02-15 17:19:42.837] [sharedprocess] [info] Renamed to /home/alex/.vscode-oss/extensions/pkief.material-icon-theme-3.6.3
+[2019-02-15 17:19:42.837] [sharedprocess] [info] Installation completed. pkief.material-icon-theme-3.6.3
+[2019-02-15 17:19:42.841] [sharedprocess] [info] Extensions installed successfully: pkief.material-icon-theme
+[2019-02-15 17:19:43.296] [sharedprocess] [info] Downloaded extension: code-runner /tmp/23cd3261-ddc0-44ab-9776-3df5a819a60e
+[2019-02-15 17:19:43.692] [sharedprocess] [info] Extracted extension to /home/alex/.vscode-oss/extensions/.formulahendry.code-runner-0.9.7: formulahendry.code-runner-0.9.7
+[2019-02-15 17:19:43.692] [sharedprocess] [info] Renamed to /home/alex/.vscode-oss/extensions/formulahendry.code-runner-0.9.7
+[2019-02-15 17:19:43.693] [sharedprocess] [info] Installation completed. formulahendry.code-runner-0.9.7
+[2019-02-15 17:19:43.697] [sharedprocess] [info] Extensions installed successfully: formulahendry.code-runner
+[2019-02-15 17:19:45.276] [sharedprocess] [info] Downloaded extension: LiveServer /tmp/7337b27c-5571-4015-aca6-c63ec4ee10c5
+[2019-02-15 17:19:46.140] [sharedprocess] [info] Extracted extension to /home/alex/.vscode-oss/extensions/.ritwickdey.liveserver-5.5.1: ritwickdey.liveserver-5.5.1
+[2019-02-15 17:19:46.140] [sharedprocess] [info] Renamed to /home/alex/.vscode-oss/extensions/ritwickdey.liveserver-5.5.1
+[2019-02-15 17:19:46.140] [sharedprocess] [info] Installation completed. ritwickdey.liveserver-5.5.1
+[2019-02-15 17:19:46.149] [sharedprocess] [info] Extensions installed successfully: ritwickdey.liveserver
+[2019-02-15 17:19:47.361] [sharedprocess] [info] Downloaded extension: html-slim-scss-css-class-completion /tmp/7235f8be-73b6-4015-9633-4f4d86dfbdcb
+[2019-02-15 17:19:47.473] [sharedprocess] [info] Downloaded extension: html-css-class-completion /tmp/390ba58b-6f94-4309-91af-4fd2b939b737
+[2019-02-15 17:19:48.681] [sharedprocess] [info] Extracted extension to /home/alex/.vscode-oss/extensions/.gencer.html-slim-scss-css-class-completion-1.5.12: gencer.html-slim-scss-css-class-completion-1.5.12
+[2019-02-15 17:19:48.681] [sharedprocess] [info] Renamed to /home/alex/.vscode-oss/extensions/gencer.html-slim-scss-css-class-completion-1.5.12
+[2019-02-15 17:19:48.686] [sharedprocess] [info] Installation completed. gencer.html-slim-scss-css-class-completion-1.5.12
+[2019-02-15 17:19:48.704] [sharedprocess] [info] Extensions installed successfully: gencer.html-slim-scss-css-class-completion
+[2019-02-15 17:19:49.032] [sharedprocess] [info] Extracted extension to /home/alex/.vscode-oss/extensions/.zignd.html-css-class-completion-1.18.0: zignd.html-css-class-completion-1.18.0
+[2019-02-15 17:19:49.032] [sharedprocess] [info] Renamed to /home/alex/.vscode-oss/extensions/zignd.html-css-class-completion-1.18.0
+[2019-02-15 17:19:49.033] [sharedprocess] [info] Installation completed. zignd.html-css-class-completion-1.18.0
+[2019-02-15 17:19:49.041] [sharedprocess] [info] Extensions installed successfully: zignd.html-css-class-completion
+[2019-02-15 17:20:18.651] [sharedprocess] [info] Starting to clean up unused language packs.
+[2019-02-15 17:24:38.737] [sharedprocess] [info] Scanned user extensions: 10
+[2019-02-15 17:29:13.635] [sharedprocess] [info] Scanned user extensions: 10
+[2019-02-15 17:29:13.639] [sharedprocess] [info] Scanned user extensions: 10
+[2019-02-15 17:29:13.640] [sharedprocess] [info] Scanned user extensions: 10
+[2019-02-15 17:29:13.642] [sharedprocess] [info] Scanned user extensions: 10
+[2019-02-15 17:29:13.674] [sharedprocess] [info] Scanned system extensions: 71
+[2019-02-15 17:29:13.676] [sharedprocess] [info] Scanned system extensions: 71
+[2019-02-15 17:29:13.678] [sharedprocess] [info] Scanned system extensions: 71

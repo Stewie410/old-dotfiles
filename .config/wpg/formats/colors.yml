@@ -1,0 +1,24 @@
+wallpaper: "/home/alex/.config/wpg/wallpapers/mSd9gbH.png"
+
+special:
+    background: "#121a21"
+    foreground: "#f8ffff"
+    cursor: "#f8ffff"
+
+colors:
+    color0: "#121a21"
+    color1: "#A36257"
+    color2: "#5B5F65"
+    color3: "#B79962"
+    color4: "#4C689A"
+    color5: "#88718F"
+    color6: "#6CADC6"
+    color7: "#cad1d5"
+    color8: "#233341"
+    color9: "#e47360"
+    color10: "#69798f"
+    color11: "#ffcc6d"
+    color12: "#5382d7"
+    color13: "#b982ca"
+    color14: "#78e9ff"
+    color15: "#f8ffff"

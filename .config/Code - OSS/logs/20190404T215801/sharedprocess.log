@@ -1,0 +1,165 @@
+[2019-04-04 21:58:04.584] [sharedprocess] [info] main {"machineId":"29d990988e8064803937ba315708ed1a061491602e0513c1f524d0d5347e8af7"}
+[2019-04-04 21:58:04.624] [sharedprocess] [info] Scanned user extensions: 0
+[2019-04-04 21:58:04.633] [sharedprocess] [info] Scanned user extensions: 0
+[2019-04-04 21:58:04.636] [sharedprocess] [info] Scanned user extensions: 0
+[2019-04-04 21:58:04.670] [sharedprocess] [info] Scanned system extensions: 72
+[2019-04-04 21:58:04.672] [sharedprocess] [info] Scanned system extensions: 72
+[2019-04-04 21:58:04.674] [sharedprocess] [info] Scanned system extensions: 72
+[2019-04-04 21:58:04.715] [sharedprocess] [info] Scanned user extensions: 0
+[2019-04-04 21:58:07.031] [sharedprocess] [info] Scanned user extensions: 0
+[2019-04-04 21:58:07.033] [sharedprocess] [info] Scanned user extensions: 0
+[2019-04-04 21:58:07.034] [sharedprocess] [info] Scanned user extensions: 0
+[2019-04-04 21:58:07.037] [sharedprocess] [info] Scanned user extensions: 0
+[2019-04-04 21:58:07.068] [sharedprocess] [info] Scanned system extensions: 72
+[2019-04-04 21:58:07.070] [sharedprocess] [info] Scanned system extensions: 72
+[2019-04-04 21:58:07.072] [sharedprocess] [info] Scanned system extensions: 72
+[2019-04-04 21:58:32.217] [sharedprocess] [info] Installing extension: mikael.angular-beastcode
+[2019-04-04 21:58:32.218] [sharedprocess] [info] Scanned user extensions: 0
+[2019-04-04 21:58:38.056] [sharedprocess] [info] Downloaded extension: mikael.angular-beastcode /tmp/6bf7f0dc-332d-400b-946d-0a612e8a2f48
+[2019-04-04 21:58:38.116] [sharedprocess] [info] Extracted extension to /home/alex/.vscode-oss/extensions/.mikael.angular-beastcode-7.2.6: mikael.angular-beastcode
+[2019-04-04 21:58:38.116] [sharedprocess] [info] Renamed to /home/alex/.vscode-oss/extensions/mikael.angular-beastcode-7.2.6
+[2019-04-04 21:58:38.117] [sharedprocess] [info] Installation completed. mikael.angular-beastcode
+[2019-04-04 21:58:38.139] [sharedprocess] [info] Extensions installed successfully: mikael.angular-beastcode
+[2019-04-04 21:58:44.592] [sharedprocess] [info] Starting to clean up unused language packs.
+[2019-04-04 21:58:44.678] [sharedprocess] [info] Installing extension: tobiasalthoff.atom-material-theme
+[2019-04-04 21:58:44.683] [sharedprocess] [info] Scanned user extensions: 1
+[2019-04-04 21:58:46.844] [sharedprocess] [info] Downloaded extension: tobiasalthoff.atom-material-theme /tmp/2282b59b-9d3d-4d60-be97-7fe622ce9950
+[2019-04-04 21:58:46.907] [sharedprocess] [info] Extracted extension to /home/alex/.vscode-oss/extensions/.tobiasalthoff.atom-material-theme-1.5.0: tobiasalthoff.atom-material-theme
+[2019-04-04 21:58:46.907] [sharedprocess] [info] Renamed to /home/alex/.vscode-oss/extensions/tobiasalthoff.atom-material-theme-1.5.0
+[2019-04-04 21:58:46.908] [sharedprocess] [info] Installation completed. tobiasalthoff.atom-material-theme
+[2019-04-04 21:58:46.915] [sharedprocess] [info] Extensions installed successfully: tobiasalthoff.atom-material-theme
+[2019-04-04 21:58:49.931] [sharedprocess] [info] Installing extension: equinusocio.vsc-material-theme
+[2019-04-04 21:58:49.933] [sharedprocess] [info] Scanned user extensions: 2
+[2019-04-04 21:58:50.303] [sharedprocess] [info] Downloaded extension: equinusocio.vsc-material-theme /tmp/febaeae0-c4e3-48ae-854d-61ef906fbd0f
+[2019-04-04 21:58:50.356] [sharedprocess] [info] Extracted extension to /home/alex/.vscode-oss/extensions/.equinusocio.vsc-material-theme-2.8.2: equinusocio.vsc-material-theme
+[2019-04-04 21:58:50.356] [sharedprocess] [info] Renamed to /home/alex/.vscode-oss/extensions/equinusocio.vsc-material-theme-2.8.2
+[2019-04-04 21:58:50.357] [sharedprocess] [info] Installation completed. equinusocio.vsc-material-theme
+[2019-04-04 21:58:50.375] [sharedprocess] [info] Extensions installed successfully: equinusocio.vsc-material-theme
+[2019-04-04 21:58:51.695] [sharedprocess] [info] Installing extension: pkief.material-icon-theme
+[2019-04-04 21:58:51.697] [sharedprocess] [info] Scanned user extensions: 3
+[2019-04-04 21:58:52.001] [sharedprocess] [info] Downloaded extension: pkief.material-icon-theme /tmp/53b73241-d423-460f-a326-4cdcfc76a62b
+[2019-04-04 21:58:52.348] [sharedprocess] [info] Extracted extension to /home/alex/.vscode-oss/extensions/.pkief.material-icon-theme-3.7.0: pkief.material-icon-theme
+[2019-04-04 21:58:52.348] [sharedprocess] [info] Renamed to /home/alex/.vscode-oss/extensions/pkief.material-icon-theme-3.7.0
+[2019-04-04 21:58:52.350] [sharedprocess] [info] Installation completed. pkief.material-icon-theme
+[2019-04-04 21:58:52.369] [sharedprocess] [info] Extensions installed successfully: pkief.material-icon-theme
+[2019-04-04 21:59:01.104] [sharedprocess] [info] Installing extension: formulahendry.auto-close-tag
+[2019-04-04 21:59:01.108] [sharedprocess] [info] Scanned user extensions: 4
+[2019-04-04 21:59:01.573] [sharedprocess] [info] Downloaded extension: formulahendry.auto-close-tag /tmp/f53730ee-83a0-4178-9e68-575f403971e4
+[2019-04-04 21:59:01.591] [sharedprocess] [info] Extracted extension to /home/alex/.vscode-oss/extensions/.formulahendry.auto-close-tag-0.5.6: formulahendry.auto-close-tag
+[2019-04-04 21:59:01.592] [sharedprocess] [info] Renamed to /home/alex/.vscode-oss/extensions/formulahendry.auto-close-tag-0.5.6
+[2019-04-04 21:59:01.592] [sharedprocess] [info] Installation completed. formulahendry.auto-close-tag
+[2019-04-04 21:59:01.610] [sharedprocess] [info] Extensions installed successfully: formulahendry.auto-close-tag
+[2019-04-04 21:59:10.040] [sharedprocess] [info] Installing extension: formulahendry.auto-rename-tag
+[2019-04-04 21:59:10.045] [sharedprocess] [info] Scanned user extensions: 5
+[2019-04-04 21:59:10.290] [sharedprocess] [info] Downloaded extension: formulahendry.auto-rename-tag /tmp/e2a69c2b-5023-46a7-b54b-52586bc0a72f
+[2019-04-04 21:59:10.301] [sharedprocess] [info] Extracted extension to /home/alex/.vscode-oss/extensions/.formulahendry.auto-rename-tag-0.0.15: formulahendry.auto-rename-tag
+[2019-04-04 21:59:10.301] [sharedprocess] [info] Renamed to /home/alex/.vscode-oss/extensions/formulahendry.auto-rename-tag-0.0.15
+[2019-04-04 21:59:10.301] [sharedprocess] [info] Installation completed. formulahendry.auto-rename-tag
+[2019-04-04 21:59:10.320] [sharedprocess] [info] Extensions installed successfully: formulahendry.auto-rename-tag
+[2019-04-04 21:59:31.150] [sharedprocess] [info] Installing extension: wesbos.theme-cobalt2
+[2019-04-04 21:59:31.153] [sharedprocess] [info] Scanned user extensions: 6
+[2019-04-04 21:59:31.771] [sharedprocess] [info] Downloaded extension: wesbos.theme-cobalt2 /tmp/da7debf6-23d1-4233-930f-b43d09d1776b
+[2019-04-04 21:59:31.807] [sharedprocess] [info] Extracted extension to /home/alex/.vscode-oss/extensions/.wesbos.theme-cobalt2-2.1.6: wesbos.theme-cobalt2
+[2019-04-04 21:59:31.807] [sharedprocess] [info] Renamed to /home/alex/.vscode-oss/extensions/wesbos.theme-cobalt2-2.1.6
+[2019-04-04 21:59:31.808] [sharedprocess] [info] Installation completed. wesbos.theme-cobalt2
+[2019-04-04 21:59:31.827] [sharedprocess] [info] Extensions installed successfully: wesbos.theme-cobalt2
+[2019-04-04 21:59:38.398] [sharedprocess] [info] Installing extension: formulahendry.code-runner
+[2019-04-04 21:59:38.401] [sharedprocess] [info] Scanned user extensions: 7
+[2019-04-04 21:59:39.743] [sharedprocess] [info] Downloaded extension: formulahendry.code-runner /tmp/381ba203-6e47-433e-9841-f758f51d0b30
+[2019-04-04 21:59:40.107] [sharedprocess] [info] Extracted extension to /home/alex/.vscode-oss/extensions/.formulahendry.code-runner-0.9.7: formulahendry.code-runner
+[2019-04-04 21:59:40.107] [sharedprocess] [info] Renamed to /home/alex/.vscode-oss/extensions/formulahendry.code-runner-0.9.7
+[2019-04-04 21:59:40.108] [sharedprocess] [info] Installation completed. formulahendry.code-runner
+[2019-04-04 21:59:40.127] [sharedprocess] [info] Extensions installed successfully: formulahendry.code-runner
+[2019-04-04 21:59:52.002] [sharedprocess] [info] Installing extension: medzhidov.font-awesome-codes-css
+[2019-04-04 21:59:52.004] [sharedprocess] [info] Scanned user extensions: 8
+[2019-04-04 21:59:52.887] [sharedprocess] [info] Downloaded extension: medzhidov.font-awesome-codes-css /tmp/5befd32b-bf79-4e67-8020-98be9a5732c8
+[2019-04-04 21:59:52.903] [sharedprocess] [info] Extracted extension to /home/alex/.vscode-oss/extensions/.medzhidov.font-awesome-codes-css-0.1.1: medzhidov.font-awesome-codes-css
+[2019-04-04 21:59:52.903] [sharedprocess] [info] Renamed to /home/alex/.vscode-oss/extensions/medzhidov.font-awesome-codes-css-0.1.1
+[2019-04-04 21:59:52.904] [sharedprocess] [info] Installation completed. medzhidov.font-awesome-codes-css
+[2019-04-04 21:59:52.912] [sharedprocess] [info] Extensions installed successfully: medzhidov.font-awesome-codes-css
+[2019-04-04 21:59:54.911] [sharedprocess] [info] Installing extension: medzhidov.font-awesome-codes-html
+[2019-04-04 21:59:54.918] [sharedprocess] [info] Scanned user extensions: 9
+[2019-04-04 21:59:55.368] [sharedprocess] [info] Downloaded extension: medzhidov.font-awesome-codes-html /tmp/7eeef26f-57b8-441d-9fbd-9822c04239ee
+[2019-04-04 21:59:55.379] [sharedprocess] [info] Extracted extension to /home/alex/.vscode-oss/extensions/.medzhidov.font-awesome-codes-html-0.0.7: medzhidov.font-awesome-codes-html
+[2019-04-04 21:59:55.379] [sharedprocess] [info] Renamed to /home/alex/.vscode-oss/extensions/medzhidov.font-awesome-codes-html-0.0.7
+[2019-04-04 21:59:55.379] [sharedprocess] [info] Installation completed. medzhidov.font-awesome-codes-html
+[2019-04-04 21:59:55.386] [sharedprocess] [info] Extensions installed successfully: medzhidov.font-awesome-codes-html
+[2019-04-04 22:00:04.583] [sharedprocess] [info] Installing extension: ecmel.vscode-html-css
+[2019-04-04 22:00:04.587] [sharedprocess] [info] Scanned user extensions: 10
+[2019-04-04 22:00:05.904] [sharedprocess] [info] Downloaded extension: ecmel.vscode-html-css /tmp/7370fe52-7b16-4a87-85c6-4c1e2b362383
+[2019-04-04 22:00:06.188] [sharedprocess] [info] Extracted extension to /home/alex/.vscode-oss/extensions/.ecmel.vscode-html-css-0.2.0: ecmel.vscode-html-css
+[2019-04-04 22:00:06.188] [sharedprocess] [info] Renamed to /home/alex/.vscode-oss/extensions/ecmel.vscode-html-css-0.2.0
+[2019-04-04 22:00:06.189] [sharedprocess] [info] Installation completed. ecmel.vscode-html-css
+[2019-04-04 22:00:06.208] [sharedprocess] [info] Extensions installed successfully: ecmel.vscode-html-css
+[2019-04-04 22:00:07.808] [sharedprocess] [info] Installing extension: zignd.html-css-class-completion
+[2019-04-04 22:00:07.812] [sharedprocess] [info] Scanned user extensions: 11
+[2019-04-04 22:00:10.672] [sharedprocess] [info] Installing extension: abusaidm.html-snippets
+[2019-04-04 22:00:10.676] [sharedprocess] [info] Scanned user extensions: 11
+[2019-04-04 22:00:11.652] [sharedprocess] [info] Downloaded extension: zignd.html-css-class-completion /tmp/b5313fa2-c47d-4c40-91a0-56ccdfa8a2e6
+[2019-04-04 22:00:12.971] [sharedprocess] [info] Extracted extension to /home/alex/.vscode-oss/extensions/.zignd.html-css-class-completion-1.18.0: zignd.html-css-class-completion
+[2019-04-04 22:00:12.971] [sharedprocess] [info] Renamed to /home/alex/.vscode-oss/extensions/zignd.html-css-class-completion-1.18.0
+[2019-04-04 22:00:12.972] [sharedprocess] [info] Installation completed. zignd.html-css-class-completion
+[2019-04-04 22:00:12.980] [sharedprocess] [info] Extensions installed successfully: zignd.html-css-class-completion
+[2019-04-04 22:00:15.925] [sharedprocess] [info] Downloaded extension: abusaidm.html-snippets /tmp/b8868247-6509-4647-b2b8-1f1b4203b2bb
+[2019-04-04 22:00:15.953] [sharedprocess] [info] Extracted extension to /home/alex/.vscode-oss/extensions/.abusaidm.html-snippets-0.2.1: abusaidm.html-snippets
+[2019-04-04 22:00:15.953] [sharedprocess] [info] Renamed to /home/alex/.vscode-oss/extensions/abusaidm.html-snippets-0.2.1
+[2019-04-04 22:00:15.955] [sharedprocess] [info] Installation completed. abusaidm.html-snippets
+[2019-04-04 22:00:15.963] [sharedprocess] [info] Extensions installed successfully: abusaidm.html-snippets
+[2019-04-04 22:00:31.340] [sharedprocess] [info] Installing extension: xabikos.javascriptsnippets
+[2019-04-04 22:00:31.346] [sharedprocess] [info] Scanned user extensions: 13
+[2019-04-04 22:00:31.824] [sharedprocess] [info] Downloaded extension: xabikos.javascriptsnippets /tmp/c5d0dd69-39ef-4dc5-aa03-c62123857dbf
+[2019-04-04 22:00:31.832] [sharedprocess] [info] Extracted extension to /home/alex/.vscode-oss/extensions/.xabikos.javascriptsnippets-1.7.2: xabikos.javascriptsnippets
+[2019-04-04 22:00:31.832] [sharedprocess] [info] Renamed to /home/alex/.vscode-oss/extensions/xabikos.javascriptsnippets-1.7.2
+[2019-04-04 22:00:31.832] [sharedprocess] [info] Installation completed. xabikos.javascriptsnippets
+[2019-04-04 22:00:31.842] [sharedprocess] [info] Extensions installed successfully: xabikos.javascriptsnippets
+[2019-04-04 22:00:35.949] [sharedprocess] [info] Installing extension: mgmcdermott.vscode-language-babel
+[2019-04-04 22:00:35.958] [sharedprocess] [info] Scanned user extensions: 14
+[2019-04-04 22:00:38.125] [sharedprocess] [info] Downloaded extension: mgmcdermott.vscode-language-babel /tmp/9a1545cd-6fcc-4b35-93ef-acc73058a391
+[2019-04-04 22:00:38.747] [sharedprocess] [info] Extracted extension to /home/alex/.vscode-oss/extensions/.mgmcdermott.vscode-language-babel-0.0.22: mgmcdermott.vscode-language-babel
+[2019-04-04 22:00:38.747] [sharedprocess] [info] Renamed to /home/alex/.vscode-oss/extensions/mgmcdermott.vscode-language-babel-0.0.22
+[2019-04-04 22:00:38.748] [sharedprocess] [info] Installation completed. mgmcdermott.vscode-language-babel
+[2019-04-04 22:00:38.757] [sharedprocess] [info] Extensions installed successfully: mgmcdermott.vscode-language-babel
+[2019-04-04 22:00:53.315] [sharedprocess] [info] Installing extension: james-yu.latex-workshop
+[2019-04-04 22:00:53.324] [sharedprocess] [info] Scanned user extensions: 15
+[2019-04-04 22:00:56.455] [sharedprocess] [info] Downloaded extension: james-yu.latex-workshop /tmp/7990e2b6-e994-4f1d-a159-b71f6b19287f
+[2019-04-04 22:00:58.116] [sharedprocess] [info] Extracted extension to /home/alex/.vscode-oss/extensions/.james-yu.latex-workshop-6.3.0: james-yu.latex-workshop
+[2019-04-04 22:00:58.116] [sharedprocess] [info] Renamed to /home/alex/.vscode-oss/extensions/james-yu.latex-workshop-6.3.0
+[2019-04-04 22:00:58.118] [sharedprocess] [info] Installation completed. james-yu.latex-workshop
+[2019-04-04 22:00:58.128] [sharedprocess] [info] Extensions installed successfully: james-yu.latex-workshop
+[2019-04-04 22:01:02.950] [sharedprocess] [info] Installing extension: ritwickdey.liveserver
+[2019-04-04 22:01:02.957] [sharedprocess] [info] Scanned user extensions: 16
+[2019-04-04 22:01:07.214] [sharedprocess] [info] Downloaded extension: ritwickdey.liveserver /tmp/a0be970c-e12d-4a18-903f-cbfafcb9a9ef
+[2019-04-04 22:01:08.052] [sharedprocess] [info] Extracted extension to /home/alex/.vscode-oss/extensions/.ritwickdey.liveserver-5.5.1: ritwickdey.liveserver
+[2019-04-04 22:01:08.053] [sharedprocess] [info] Renamed to /home/alex/.vscode-oss/extensions/ritwickdey.liveserver-5.5.1
+[2019-04-04 22:01:08.053] [sharedprocess] [info] Installation completed. ritwickdey.liveserver
+[2019-04-04 22:01:08.068] [sharedprocess] [info] Extensions installed successfully: ritwickdey.liveserver
+[2019-04-04 22:01:14.010] [sharedprocess] [info] Installing extension: christian-kohler.npm-intellisense
+[2019-04-04 22:01:14.020] [sharedprocess] [info] Scanned user extensions: 17
+[2019-04-04 22:01:14.609] [sharedprocess] [info] Downloaded extension: christian-kohler.npm-intellisense /tmp/da129356-bf71-4743-92e8-c2651b20f353
+[2019-04-04 22:01:14.643] [sharedprocess] [info] Extracted extension to /home/alex/.vscode-oss/extensions/.christian-kohler.npm-intellisense-1.3.0: christian-kohler.npm-intellisense
+[2019-04-04 22:01:14.643] [sharedprocess] [info] Renamed to /home/alex/.vscode-oss/extensions/christian-kohler.npm-intellisense-1.3.0
+[2019-04-04 22:01:14.643] [sharedprocess] [info] Installation completed. christian-kohler.npm-intellisense
+[2019-04-04 22:01:14.661] [sharedprocess] [info] Extensions installed successfully: christian-kohler.npm-intellisense
+[2019-04-04 22:01:15.600] [sharedprocess] [info] Installing extension: eg2.vscode-npm-script
+[2019-04-04 22:01:15.609] [sharedprocess] [info] Scanned user extensions: 18
+[2019-04-04 22:01:16.168] [sharedprocess] [info] Downloaded extension: eg2.vscode-npm-script /tmp/68cebd48-7c34-4076-bf33-5214197d6c86
+[2019-04-04 22:01:16.205] [sharedprocess] [info] Extracted extension to /home/alex/.vscode-oss/extensions/.eg2.vscode-npm-script-0.3.5: eg2.vscode-npm-script
+[2019-04-04 22:01:16.205] [sharedprocess] [info] Renamed to /home/alex/.vscode-oss/extensions/eg2.vscode-npm-script-0.3.5
+[2019-04-04 22:01:16.205] [sharedprocess] [info] Installation completed. eg2.vscode-npm-script
+[2019-04-04 22:01:16.223] [sharedprocess] [info] Extensions installed successfully: eg2.vscode-npm-script
+[2019-04-04 22:01:36.070] [sharedprocess] [info] Installing extension: whizkydee.material-palenight-theme
+[2019-04-04 22:01:36.082] [sharedprocess] [info] Scanned user extensions: 19
+[2019-04-04 22:01:36.321] [sharedprocess] [info] Downloaded extension: whizkydee.material-palenight-theme /tmp/c27726ae-0971-4678-aee3-6d4bb1059acc
+[2019-04-04 22:01:36.357] [sharedprocess] [info] Extracted extension to /home/alex/.vscode-oss/extensions/.whizkydee.material-palenight-theme-1.9.4: whizkydee.material-palenight-theme
+[2019-04-04 22:01:36.358] [sharedprocess] [info] Renamed to /home/alex/.vscode-oss/extensions/whizkydee.material-palenight-theme-1.9.4
+[2019-04-04 22:01:36.359] [sharedprocess] [info] Installation completed. whizkydee.material-palenight-theme
+[2019-04-04 22:01:36.370] [sharedprocess] [info] Extensions installed successfully: whizkydee.material-palenight-theme
+[2019-04-04 22:02:20.868] [sharedprocess] [info] Installing extension: jprestidge.theme-material-theme
+[2019-04-04 22:02:20.881] [sharedprocess] [info] Scanned user extensions: 20
+[2019-04-04 22:02:21.429] [sharedprocess] [info] Downloaded extension: jprestidge.theme-material-theme /tmp/597f1587-d5da-4610-9b8d-54d3df910209
+[2019-04-04 22:02:21.455] [sharedprocess] [info] Extracted extension to /home/alex/.vscode-oss/extensions/.jprestidge.theme-material-theme-1.0.1: jprestidge.theme-material-theme
+[2019-04-04 22:02:21.456] [sharedprocess] [info] Renamed to /home/alex/.vscode-oss/extensions/jprestidge.theme-material-theme-1.0.1
+[2019-04-04 22:02:21.456] [sharedprocess] [info] Installation completed. jprestidge.theme-material-theme
+[2019-04-04 22:02:21.475] [sharedprocess] [info] Extensions installed successfully: jprestidge.theme-material-theme
+[2019-04-04 22:03:04.729] [sharedprocess] [info] Scanned user extensions: 21
+[2019-04-04 22:03:19.228] [sharedprocess] [info] Scanned user extensions: 21

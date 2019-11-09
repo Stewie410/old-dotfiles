@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/alex/.config/wpg/wallpapers/Hexed_(Final).png",
+    "alpha": "100",
+
+    "special": {
+        "background": "#363a46",
+        "foreground": "#f3f8ff",
+        "cursor": "#f3f8ff"
+    },
+    "colors": {
+        "color0": "#363a46",
+        "color1": "#AA6D95",
+        "color2": "#A590B2",
+        "color3": "#9F94AC",
+        "color4": "#A47BA0",
+        "color5": "#C06D9B",
+        "color6": "#7D8393",
+        "color7": "#cacedd",
+        "color8": "#4b5162",
+        "color9": "#ef7bc7",
+        "color10": "#dba6fc",
+        "color11": "#ccabf4",
+        "color12": "#e78dde",
+        "color13": "#ff7acb",
+        "color14": "#90a2d0",
+        "color15": "#f3f8ff"
+    }
+}

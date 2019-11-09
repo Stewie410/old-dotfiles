@@ -1,0 +1,157 @@
+#!/bin/bash
+#
+# weather
+# Author:	Alex Paarfus
+# Date:		2019-01-07
+# 
+# Get our current weather conditions via OpenWeatherMap
+# Requires:
+#	OpenWeatherMap API Key
+#	weather-icons
+#	jq
+
+# Modified for use with i3blocks -- but not by much
+
+# Functions
+# Get appropriate Icon
+function getIcon() {
+	case $1 in
+		#01d) icon="";;		# Clear Day
+		#01n) icon="";;		# Clear Night
+		#02d) icon="";;		# Cloudy Day
+		#02n) icon="";;		# Cloudy Night
+		#03*) icon="";;		# Cloudy Neutral
+		#04*) icon="";;		# Cloudy Neutral
+		#09d) icon="";;		# Wind and Rain Day
+		#09n) icon="";;		# Wind and Rain Night
+		#10d) icon="";;		# Rain Day
+		#10n) icon="";;		# Rain Night
+		#11d) icon="";;		# Lightning Day
+		#11n) icon="";;		# Lightning Night
+		#13d) icon="";;		# Snow Day
+		#13n) icon="";;		# Snow Night
+		#50d) icon="";;		# Fog Day
+		#50n) icon="";;		# Fog Night
+		#*)  icon="";
+
+		01d) icon="";;		# Clear Day
+		01n) icon="";;		# Clear Night
+		02d) icon="";;		# Cloudy Day
+		02n) icon="";;		# Cloudy Night
+		03*) icon="";;		# Cloudy Neutral
+		04*) icon="";;		# Cloudy Neutral
+		09d) icon="";;		# Wind and Rain Day
+		09n) icon="";;		# Wind and Rain Night
+		10d) icon="";;		# Rain Day
+		10n) icon="";;		# Rain Night
+		11d) icon="";;		# Lightning Day
+		11n) icon="";;		# Lightning Night
+		13d) icon="";;		# Snow Day
+		13n) icon="";;		# Snow Night
+		50d) icon="";;		# Fog Day
+		50n) icon="";;		# Fog Night
+		*)  icon="";
+	esac
+	echo $icon
+}
+
+# Get Units Symbol
+function getUnitSymbol() {
+	str=""
+	if echo "$1" | grep -i "imperial" >/dev/null 2>&1; then str="F";
+	elif echo "$1" | grep -i "metric" >/dev/null 2>&1; then str="C"; fi
+	echo "$str"
+	unset str
+}
+
+# Get City (based on LAN IP) -- if on $homelan, return Current City -- else return ""
+function getCity() {
+	if ip r | grep "$homelan" >/dev/null 2>&1; then echo "Holden Beach";
+	else echo ""; fi
+}
+
+# Get Conditions
+function getWeather() {
+	output=""						# Output String
+	current=""						# Weather Current
+	forecast=""						# Weather Forecast
+	location=""						# GeoIP Location
+	key="75582c19fd1575286cc8e486712751f5"			# OpenWeatherMap API Key
+	api="https://api.openweathermap.org/data/2.5"		# OpenWeatherMap API Location
+	city="$(getCity)"					# Default City
+	symbol="°"						# Degree Symbol
+
+	# Get the current conditions, and a 1-day forecast
+	if [ -n "$city" ]; then
+		if [ "$city" -eq "$city" ] 2>/dev/null; then city="id=$city";
+		else city="q=$city"; fi
+		
+		# Get conditions in current and forecast
+		current=$(curl -sf "$api/weather?appid=$key&$city&units=$units")
+		forecast=$(curl -sf "$api/forecast?appid=$key&$city&units=$units&cnt=1")
+	else
+		# Get current GeoIP Location -- JSON
+		location=$(curl -sf "https://location.services.mozilla.com/v1/geolocate?key=geoclue")
+	
+		if [ -n "$location" ]; then
+			# If location is defined, grab the latitude and longitude
+			lat="$(echo "$location" | jq '.location.lat')"
+			lng="$(echo "$location" | jq '.location.lng')"
+	
+			# Grab conditions in current and forecast
+			current=$(curl -sf "$api/weather?appid=$key&lat=$lat&lon=$lng&units=$units")
+			forecast=$(curl -sf "$api/forecast?appid=$key&lat=$lat&lon=$lng&units=$units&cnt=1")
+	
+			# Clear Memory
+			unset lat lng
+		fi
+	fi
+	
+	# Display the current and forecasted conditions
+	if [ -n "$current" ] && [ -n "$forecast" ]; then
+		# Parse out current weather temperature and icon
+		ctemp=$(echo "$current" | jq ".main.temp" | cut -d "." -f 1)
+		cicon=$(echo "$current" | jq -r ".weather[0].icon")
+	
+		# Parse out forecast weather temperature and icon
+		ftemp=$(echo "$forecast" | jq ".list[].main.temp" | cut -d "." -f 1)
+		ficon=$(echo "$forecast" | jq -r ".list[].weather[0].icon")
+	
+		# Get the trend based on $ctemp and $ftemp
+		if [ "$ctemp" -gt "$ftemp" ]; then trend="";
+		elif [ "$ctemp" -lt "$ftemp" ]; then trend="";
+		else trend=""; fi
+	
+		# Print the Current and Forecasted conditions
+		unit="$(getUnitSymbol "$units")"
+		output="$(getIcon "$cicon") $ctemp$symbol$unit $trend   $(getIcon "$ficon") $ftemp$symbol$unit"
+	
+		# Clear memory
+		unset ctemp cicon ftemp ficon trend unit
+	fi
+
+	# Return our conditions
+	echo "$output"
+
+	# Clear memory
+	unset lat lng ctemp cicon ftemp ficon unit output current location forecast key api city symbol
+}
+
+# Vars
+homelan="10.10.1.0/24"					# Home LAN (CIDR)
+units="imperial"					# Units
+
+# Check for a network connection --> weather="conditions" || !weather=""
+if ip r | grep kernel >/dev/null 2>&1; then
+	# Handle mouse events
+	case $BLOCK_BUTTON in
+		1) getWeather ;;
+		#3) echo getWeather ;;
+	esac
+
+	# Report conditions
+	getWeather
+fi
+
+# Clear memory
+unset homelan units

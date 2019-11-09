@@ -1,0 +1,278 @@
+# i3wm Configuration
+# Author:	Alex Paarfus <stewie410@me.com>
+# Date:		2019-06-29
+#
+# Based on serveral different installs of i3wm, with some small changers for the XPS keyboard
+# Some settings here will use environment variables set in ~/.bashrc or similar
+# Colors will also be pulled from Xresources
+
+# Var definitions
+set $mod 				Mod1
+set $sup 				Mod4
+
+set $ws1				1
+set $ws2				2
+set $ws3				3
+set $ws4				4
+set $ws5				5
+set $ws6				6
+set $ws7				7
+set $ws8				8
+set $ws9				9
+set $ws10				10
+
+set $term				urxvt
+set $browser				firefox
+set $tbrowser				elinks
+set $gmail				thunderbird
+set $tmail				mutt
+set $scrot				source ~/scripts/tools/autoscrot.sh
+#set $locker				i3lock-fancy -- scrot
+set $locker				source ~/scripts/tools/lockSession.sh
+set $launch				source ~/scripts/tools/dmenu_run-xres.sh
+set $pactl				source ~/scripts/tools/pactl.sh
+
+set $igap				15
+set $ogap				0
+set $chgap				5
+
+set_from_resource $dblack		color0	#000000
+set_from_resource $black		color8	#000000
+set_from_resource $dred			color1	#000000
+set_from_resource $red			color9	#000000
+set_from_resource $dgreen		color2	#000000
+set_from_resource $green		color10	#000000
+set_from_resource $dyellow		color3	#000000
+set_from_resource $yellow		color11	#000000
+set_from_resource $dblue		color4	#000000
+set_from_resource $blue			color12	#000000
+set_from_resource $dmagenta		color5	#000000
+set_from_resource $magenta		color13	#000000
+set_from_resource $dcyan		color6	#000000
+set_from_resource $cyan			color14	#000000
+set_from_resource $dwhite		color7	#000000
+set_from_resource $white		color15	#000000
+set $transparent			#00000000
+
+set $mode_gaps				Gaps: (o)uter, (i)nner
+set $mode_gaps_outer			Outer: [jkd0] (local), Shift+[jkd0] (all)
+set $mode_gaps_inner			Inner: [jkd0] (local), Shift+[jkd0] (all)
+#set $mode_session			Session: (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+S)hutdown
+set $mode_session			Session: (l)ock, (e)xit, (s)uspend, (h)ibernate, (r)eboot, (Shift+S)hutdown
+set $mode_resize			Resize
+
+# Settings
+font 					pango:monospace 8
+floating_modifier 			$mod
+focus_follows_mouse 			no
+new_window				1pixel
+hide_edge_borders			smart
+
+gaps inner				$igap
+gaps outer				$ogap
+smart_gaps				on
+
+# Colorscheme
+#			Border		Background	Text		Indicator	Child_Border
+client.focused		$black		$black		$white		$black		$black
+client.unfocused	$transparent	$transparent	$dwhite		$transparent	$dblack
+client.focused_inactive	$transparent	$transparent	$dwhite		$transparent	$dblack
+client.urgent		$red		$red		$black		$dred		$dred
+client.background	$black
+
+# Force Enable/Disable floating
+for_window [class="Gufw.py"]		floating enable;
+for_window [class="Clamtk"]		floating enable;
+for_window [class="Keepassx2"]		floating enable;
+for_window [class="Pamac-manager"]	floating enable;
+for_window [class="Wpg"]		floating enable;
+for_window [class="flameshot"]		floating enable;
+for_window [class=^.*]			border pixel 1;
+
+for_window [class="firefox"]		move to workspace 2
+for_window [class="code-oss"]		move to workspace 5
+for_window [class="Keepassx2"]		move to workspace 6
+for_window [class="Clamtk"]		move to workspace 6
+for_window [class="Gufw.py"]		move to workspace 6
+for_window [class="Caprine"]		move to workspace 7
+for_window [class="Telegram"]		move to workspace 7
+for_window [class="discord"]		move to workspace 7
+for_window [class="Thunderbird"]	move to workspace 8
+for_window [class="Spotify"]		move to workspace 10
+
+# Keybindings
+bindsym $mod+h				focus left
+bindsym $mod+j				focus down
+bindsym $mod+k				focus up
+bindsym $mod+l				focus right
+
+bindsym $mod+Shift+h			move left
+bindsym $mod+Shift+j			move down
+bindsym $mod+Shift+k			move up
+bindsym $mod+Shift+l			move right
+
+bindsym $mod+backslash			split v
+bindsym $mod+Shift+backslash		split h
+bindsym $mod+F11			fullscreen toggle
+#bindsym $mod+s				layout stacking
+#bindsym $mod+t				layout tabbed
+#bindsym $mod+n				layout split
+
+bindsym $mod+space			focus mode_toggle
+bindsym $mod+Shift+space		floating toggle
+
+bindsym $mod+1				workspace 1
+bindsym $mod+2				workspace 2
+bindsym $mod+3				workspace 3
+bindsym $mod+4				workspace 4
+bindsym $mod+5				workspace 5
+bindsym $mod+6				workspace 6
+bindsym $mod+7				workspace 7
+bindsym $mod+8				workspace 8
+bindsym $mod+9				workspace 9
+bindsym $mod+0				workspace 10
+bindsym $mod+Tab			workspace back_and_forth
+
+bindsym $mod+Shift+1			move container to workspace 1
+bindsym $mod+Shift+2			move container to workspace 2
+bindsym $mod+Shift+3			move container to workspace 3
+bindsym $mod+Shift+4			move container to workspace 4
+bindsym $mod+Shift+5			move container to workspace 5
+bindsym $mod+Shift+6			move container to workspace 6
+bindsym $mod+Shift+7			move container to workspace 7
+bindsym $mod+Shift+8			move container to workspace 8
+bindsym $mod+Shift+9			move container to workspace 9
+bindsym $mod+Shift+0			move container to workspace 10 
+
+bindsym $sup+Return			scratchpad show
+bindsym $sup+Shift+Return		move scratchpad
+
+bindsym $mod+Shift+q			kill
+bindsym $mod+Shift+r			restart
+
+bindsym $mod+d				exec $launch
+bindsym $mod+Return			exec $term
+bindsym $mod+Shift+Return		exec $term -e tmux
+
+bindsym $mod+F2				exec $browser
+bindsym $mod+F3				exec $term -e ranger ~/
+bindsym $mod+F8				exec $gmail
+
+bindsym $mod+Shift+s			exec $scrot
+
+bindsym XF86AudioMute			exec $pactl --notify --polybar --toggle
+bindsym XF86AudioLowerVolume		exec $pactl --notify --polybar --increase 1
+bindsym XF86AudioRaiseVolume		exec $pactl --notify --polybar --decrease 1
+bindsym XF86AudioPrev			exec playerctl previous
+bindsym XF86AudioPlay			exec playerctl play-pause
+bindsym XF86AudioNext			exec playerctl next
+
+#bindsym XF86Search			
+bindsym XF86MonBrightnessDown		exec source ~/scripts/tools/xrbrightness.sh --decrease --amount "0.05"
+bindsym XF86MonBrightnessUp		exec source ~/scripts/tools/xrbrightness.sh --increase --amount "0.05"
+#bindsym XF86RFKill			
+
+bindsym $sup+Shift+r			mode "$mode_resize"
+bindsym $sup+Shift+s			mode "$mode_session"
+bindsym $sup+Shift+g			mode "$mode_gaps"
+
+# Mode Definitions
+mode "$mode_session" {
+	bindsym l 			mode "default", exec --no-startup-id $locker
+	bindsym s			mode "default", exec exec --no-startup-id systemctl suspend
+	#bindsym u 			exec --no-startup-id i3exit switch_user, mode "default"
+	bindsym e 			mode "default", exec i3-msg exit
+	bindsym h			mode "default", exec exec --no-startup-id systemctl hibernate
+	bindsym r 			mode "default", exec --no-startup-id reboot
+	bindsym Shift+s 		mode "default", exec --no-startup-id poweroff
+	bindsym Return			mode "default"
+	bindsym Escape			mode "default"
+}
+
+mode "$mode_resize" {
+	bindsym h			resize shrink width 4px or 4 ppt
+	bindsym j			resize grow height 4px or 4 ppt
+	bindsym k			resize shrink height 4px or 4 ppt
+	bindsym l			resize grow width 4px or 4 ppt
+	bindsym Shift+h			resize shrink width 8px or 8 ppt
+	bindsym Shift+j			resize grow height 8px or 8 ppt
+	bindsym Shift+k			resize shrink height 8px or 8 ppt
+	bindsym Shift+l			resize grow width 8px or 8 ppt
+	bindsym Return			mode "default"
+	bindsym Escape			mode "default"
+}
+
+mode "$mode_gaps" {
+	bindsym o			mode "$mode_gaps_outer"
+	bindsym i			mode "$mode_gaps_inner"
+	bindsym Return			mode "default"
+	bindsym Escape			mode "default"
+}
+
+mode "$mode_gaps_outer" {
+	bindsym j			gaps outer current minus 5
+	bindsym k			gaps outer current plus 5
+	bindsym d			gaps outer current set $ogap
+	bindsym 0			gaps outer current set 0
+	bindsym Shift+j			gaps outer all minus 5
+	bindsym Shift+k			gaps outer all plus 5
+	bindsym Shift+d			gaps outer all set $ogap
+	bindsym Shift+0			gaps outer all set 0
+	bindsym Return			mode "default"
+	bindsym Escape			mode "default"
+}
+
+mode "$mode_gaps_inner" {
+	bindsym j			gaps inner current minus 5
+	bindsym k			gaps inner current plus 5
+	bindsym d			gaps inner current set $igap
+	bindsym 0			gaps inner current set 0
+	bindsym Shift+j			gaps inner all minus 5
+	bindsym Shift+k			gaps inner all plus 5
+	bindsym Shift+d			gaps inner all set $igap
+	bindsym Shift+0			gaps inner all set 0
+	bindsym Return			mode "default"
+	bindsym Escape			mode "default"
+}
+
+
+# Autostarts
+#exec_always --no-startup-id source ~/.fehbg
+exec --no-startup-id hsetroot -solid #000000
+exec_always --no-startup-id source ~/.config/wpg/wp_init.sh
+exec_always --no-startup-id source ~/scripts/tools/compton-launch.sh
+exec_always --no-startup-id unclutter --jitter 50 &
+exec_always --no-startup-id source ~/scripts/polybar/launchpb.sh
+
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id xautolock -time 60 -detectsleep -locker $locker
+exec --no-startup-id dunst
+exec --no-startup-id ~/scripts/tools/ttc_toggle.sh -s 1
+#exec --no-startup-id mpd
+#exec --no-startup-id compton
+
+# i3-only Bars
+# i3Status (default)
+#bar {
+#	status_command i3status
+#}
+
+# i3Blocks
+#bar {
+#	font	pango:mono 10
+#	colors {
+#		background		$dblack
+#		statusline		$dwhite
+#		separator		$white
+#
+#		#			Border	BG	FG
+#		focused_workspace	$black	$black	$white
+#		active_workspace	$black	$black	$white
+#		inactive_workspace	$dblack	$dblack	$dwhite
+#		urgent_workspace	$dred	$dred	$white
+#	}
+#	status_command i3blocks
+#	position bottom
+#	mode dock
+#	modifier None
+#}

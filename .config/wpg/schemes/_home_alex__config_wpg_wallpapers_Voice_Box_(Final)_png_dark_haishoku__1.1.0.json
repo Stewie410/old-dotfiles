@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/alex/.config/wpg/wallpapers/Voice_Box_(Final).png",
+    "alpha": "100",
+
+    "special": {
+        "background": "#1b191b",
+        "foreground": "#c6c5c6",
+        "cursor": "#c6c5c6"
+    },
+    "colors": {
+        "color0": "#1b191b",
+        "color1": "#805482",
+        "color2": "#80775e",
+        "color3": "#847887",
+        "color4": "#a96ca5",
+        "color5": "#a2798a",
+        "color6": "#8b8b7e",
+        "color7": "#c6c5c6",
+        "color8": "#545254",
+        "color9": "#805482",
+        "color10": "#80775e",
+        "color11": "#847887",
+        "color12": "#a96ca5",
+        "color13": "#a2798a",
+        "color14": "#8b8b7e",
+        "color15": "#c6c5c6"
+    }
+}

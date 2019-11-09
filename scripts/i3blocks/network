@@ -1,0 +1,27 @@
+#!/bin/bash
+#
+# network
+# Author:	Alex Paarfus <stewie410@me.com>
+# Date:		2019-01-07
+#
+# Check for a network connection on both eth and wlp interfaces
+
+# Vars
+wicon=""							# Wifi Icon
+eicon=""							# Ethernet Icon
+wstat="$(cat /sys/class/net/wlp59s0/operstate 2>/dev/null)"	# Wifi Status
+estat="$(cat /sys/class/net/eth0/operstate 2>/dev/null)"	# Ethernet Status
+str=""								# Status
+
+# Handle Mouse Events
+case $BLOCK_BUTTON in
+	1)	$TERMINAL -e nmtui & disown ;;
+esac
+
+# Report Connection State
+echo "$wstat" | grep -i "up" >/dev/null && str="$wicon ";
+echo "$estat" | grep -i "up" >/dev/null && str="$str$eicon";
+echo "$str"
+
+# Clear Memory
+unset wicon eicon wstat estat str

@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/alex/.config/wpg/wallpapers/Jealousy_(Final).png",
+    "alpha": "100",
+
+    "special": {
+        "background": "#232d48",
+        "foreground": "#fbf9ff",
+        "cursor": "#fbf9ff"
+    },
+    "colors": {
+        "color0": "#232d48",
+        "color1": "#9CAEF4",
+        "color2": "#8C8EA9",
+        "color3": "#F39092",
+        "color4": "#779DD3",
+        "color5": "#E49CEC",
+        "color6": "#96C8FE",
+        "color7": "#e6e4ee",
+        "color8": "#334169",
+        "color9": "#adceff",
+        "color10": "#a1a7ef",
+        "color11": "#ffa2a5",
+        "color12": "#85c8ff",
+        "color13": "#ffb1ff",
+        "color14": "#a3fbff",
+        "color15": "#fbf9ff"
+    }
+}

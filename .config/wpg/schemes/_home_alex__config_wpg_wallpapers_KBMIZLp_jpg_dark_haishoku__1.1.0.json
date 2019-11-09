@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/alex/.config/wpg/wallpapers/KBMIZLp.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#17191a",
+        "foreground": "#ffffff",
+        "cursor": "#ffffff"
+    },
+    "colors": {
+        "color0": "#17191a",
+        "color1": "#6c4643",
+        "color2": "#053f83",
+        "color3": "#037dd3",
+        "color4": "#0256b5",
+        "color5": "#70cce5",
+        "color6": "#28bae4",
+        "color7": "#c5c5c5",
+        "color8": "#292d2f",
+        "color9": "#97514b",
+        "color10": "#0151af",
+        "color11": "#01a3ff",
+        "color12": "#016fec",
+        "color13": "#7bffff",
+        "color14": "#22fbff",
+        "color15": "#ffffff"
+    }
+}

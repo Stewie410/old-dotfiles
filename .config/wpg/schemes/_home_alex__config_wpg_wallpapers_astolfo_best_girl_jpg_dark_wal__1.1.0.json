@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/alex/.config/wpg/wallpapers/astolfo_best_girl.jpg",
+    "alpha": "100",
+
+    "special": {
+        "background": "#181239",
+        "foreground": "#ffedf4",
+        "cursor": "#ffedf4"
+    },
+    "colors": {
+        "color0": "#181239",
+        "color1": "#9C6690",
+        "color2": "#5F569F",
+        "color3": "#B09AAF",
+        "color4": "#58499F",
+        "color5": "#9F76BF",
+        "color6": "#94899B",
+        "color7": "#e5c7cd",
+        "color8": "#271d5f",
+        "color9": "#db73c4",
+        "color10": "#6f5fde",
+        "color11": "#fab2f6",
+        "color12": "#684fdd",
+        "color13": "#d185ff",
+        "color14": "#c49fdc",
+        "color15": "#ffedf4"
+    }
+}

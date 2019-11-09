@@ -1,0 +1,63 @@
+#!/bin/bash
+#
+# updates
+# Author:	Alex Paarfus
+# Date:		2019-01-07
+#
+# Get the total number of packages required to be updated
+# Based on both previous "archupdates.sh" script, and "updates.sh" from github.com/adi1080x/polybar-themes
+
+# Modified for i3Blocks
+
+# Functions
+# Notify Users
+function notifyUser() {
+	## TODO -- DEBUG ##
+	return 0
+	## TODO -- DEBUG ##
+	if hash notify-send &>/dev/null; then
+		if [ "$cnt" -ge "$crit" ]; then notify-send -u critical -i "$nicon" "$crit+ new packages";
+		elif [ "$cnt" -ge "$norm" ]; then notify-send -u normal -i "$nicon" "$norm+ New Packages";
+		elif [ "$cnt" -ge "$low" ]; then notify-send -u low -i "$nicon" "$low+ New Packages"; fi
+	fi
+}
+
+# Get Update Count
+function getCnt() {
+	count=0
+	# If we have a network connection...
+	if ip r | grep kernel >/dev/null 2>&1; then 
+		yay -Sy >/dev/null 2>&1
+		
+		# Get number of packages to upgrade
+		count=$(yay -Sup | wc -l)
+	fi
+
+	# Return the number of packages to upgrade
+	echo "$count"
+	unset count
+}
+
+# Vars
+bicon=""								# Bar Icon
+nicon="/usr/share/icons/Papirus/32x32/system-software-update"		# Notify Icon
+crit=100								# Critical Priority Count
+norm=50									# Normal Priority Count
+low=5									# Low Priority Count
+cnt=$(getCnt)								# Number of Available Packages
+
+# Handle Click Events
+case $BLOCK_BUTTON in
+	1)	pamac-manager & disown ;;
+esac
+
+# Update bar and notify user
+if [ "$cnt" -gt 0 ]; then 
+	notifyUser
+	echo "$bicon $cnt"
+else
+	echo ""
+fi
+
+# Cleanup memory
+unset bicon nicon crit norm low int cnt
