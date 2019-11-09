@@ -36,3 +36,5 @@ fi
 gdf checkout
 gdf config status.showUntrackedFiles no
 ```
+
+If any dotfiles already exist on your system, they'll be placed in `~/.dotfiles_backup`.
