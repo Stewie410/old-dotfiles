@@ -39,8 +39,8 @@ checkOpts() {
 	if [ -z "${_id_vendor}" ]; then printErr "null" "_id_vendor"; return 1; fi
 
 	# Check for existence of directories
-	mkdir --parents _path_dir_destination
-	mkdir --parents _path_dir_android
+	mkdir --parents "${_path_dir_destination}"
+	mkdir --parents "${_path_dir_android}"
 
 	# Check for existence of files
 	touch -a "${_path_file_usbini}"
