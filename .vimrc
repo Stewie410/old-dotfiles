@@ -12,17 +12,23 @@
 " ##----------------------------##
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'
-Plug 'junegunn/goyo.vim'
+"Plug 'junegunn/goyo.vim'
 Plug 'majutsushi/tagbar'
 Plug 'PotatoesMaster/i3-vim-syntax'
-Plug 'vimwiki/vimwiki'
-Plug 'chrisbra/csv.vim'
+"Plug 'vimwiki/vimwiki'
+"Plug 'chrisbra/csv.vim'
 Plug 'vim-syntastic/syntastic'
 Plug 'mhinz/vim-signify'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'lervag/vimtex'
 Plug 'deviantfero/wpgtk.vim'
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'ryanoasis/vim-devicons'
+Plug 'prettier/vim-prettier', {'do': 'yarn install'}
+Plug 'HerringtonDarkholme/yats.vim'
 call plug#end()
 
 
@@ -42,6 +48,12 @@ set mouse=r
 
 " Show partial command 
 set showcmd
+
+" Enable smart-tab
+set smarttab
+
+" Enable indenting
+set cindent
 
 " Enable autocompletion
 set wildmode=longest,list,full
@@ -99,6 +111,47 @@ let g:airline_right_alt_sep = '|'
 "let g:airline_notexists = ''
 "let g:airline_whitespace ''
 
+" NERDTree
+let g:NERDTreeGitStatusWithFlags=1
+let g:NERDTreeIgnore = [
+	\ '^node_modules$'
+	\ ]
+
+" CTRLP
+let g:ctrlp_user_command = [
+	\ '.git/',
+	\ 'git --git-dir=%s/.git ls-files -oc --exclude-standard'
+	\ ]
+
+" COC configuration
+let g:coc_global_extensions = [
+	\ 'coc-snippets',
+	\ 'coc-pairs',
+	\ 'coc-tsserver',
+	\ 'coc-eslint',
+	\ 'coc-prettier',
+	\ 'coc-json',
+	\ 'coc-highlight',
+	\ 'coc-emmet',
+	\ 'coc-git',
+	\ 'coc-vimlsp',
+	\ 'coc-markdownlint',
+	\ 'coc-yank',
+	\ 'coc-marketplace',
+	\ ]
+set hidden
+set nobackup
+set nowritebackup
+set cmdheight=2
+set updatetime=300
+set shortmess+=c
+set signcolumn=yes
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+" VIM-Prettier
+"let g:prettier#quickfix_enabled = 0
+"let g:prettier#quickfix_auto_focus = 0
+"let g:prettier#autoformat = 0
 
 " ##----------------------------##
 " #|		Keymaps		|#
@@ -143,6 +196,106 @@ noremap <C-l> <C-w>l
 "vnoremap <Space><Tab> <Esc>/<++><Enter>"_c4l
 "noremap <Space><Tab> <Esc>/<++><Enter>"_c4l
 
+" NERDTree Toggle
+nmap <C-n> :NERDTreeToggle<CR>
+
+" NERDTree Commenter Toggle
+vmap ++ <Plug>NERDCommenterToggle
+nmap ++ <Plug>NERDCommenterToggle
+
+" COC Use tab for trigger completion with characters ahead and navigate
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other
+" plugin(s)
+inoremap <silent><expr> <TAB>
+	\ pumvisible() ? "\<C-n>" :
+	\ <SID>check_back_space() ? "\<TAB>" :
+	\ coc#refresh()
+inoremap <expr><S-TAB> pumvisbible() ? "\<C-p>" : "\<C-h>"
+
+" Use Ctrl+Space to trigger completion
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use CarriageReturn to confirm completion, <C-g>u means break undo chain at
+" current position.
+" COC only does snippet and additional edit on confirm
+inoremap <exrp> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" Or use complete_info if your vim supports it, like:
+" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Use '[g' and ']g' to navigate COC diagonostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" COC GoTo's
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implentation)
+nmap <silent> gr <Plug>(coc-references)
+
+" COC: User 'K' t show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+" COC Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" COC Remap for 'format selected region'
+xmap <leader>f <Plug>(coc-format-selected)
+nmap <leader>f <Plug>(coc-format-selected)
+
+" COC Remap for doAction on [region/line]
+xmap <leader>a <Plug>(coc-codeaction-selected)
+xmap <leader>ac <Plug>(coc-codeaction)
+nmap <leader>a <Plug>(coc-codeaction-selected)
+
+" COC Fix autofix problem of current line
+nmap <leader>qf <Plug>(coc-fix-current)
+
+" COC mappings for function text object, requires document symbols feature of
+" languagserver
+xmap if <Plug>(coc-funcobj-i)
+xmap af <plug>(coc-funcobj-a)
+omap if <Plug>(coc-funcobj-i)
+omap af <plug>(coc-funcobj-a)
+
+" COC Use Ctrl+D for select selections ranges, needs server support, like:
+" 	coc-tsserver
+" 	coc-python
+nmap <silent> <C-d> <Plug>(coc-range-select)
+xmap <silent> <C-d> <Plug>(coc-range-select)
+
+" COC Lists
+nnoremap <silent> <space>a :<C-u>CocList diagnostics<cr>
+nnoremap <silent> <space>e :<C-u>CocList extensions<cr>
+nnoremap <silent> <space>c :<C-u>CocList commands<cr>
+nnoremap <silent> <space>o :<C-u>CocList outline<cr>
+nnoremap <silent> <space>s :<C-u>CocList -I symbols<cr>
+nnoremap <silent> <space>j :<C-u>CocNext<CR>
+nnoremap <silent> <space>k :<C-u>CocPrev<CR>
+nnoremap <silent> <space>p :<C-u>CocListResume<CR>
+
+" ##------------------------------------##
+" #|		Commands		|#
+" ##------------------------------------##
+" COC Use ':Format' to format current buffer
+command! -nargs=0 Format :call CocAction('format')
+
+" COC Use ':Fold' to fold current buffer
+command! -nargs=? Fold :call CocAction('fold', <f-args>)
+
+" COC Use ':OR' for organize import of current buffer
+command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.orgazineImport')
+
+" ##--------------------------------------------##
+" #|		Single Autocommands		|#
+" ##--------------------------------------------##
+" COC Highlight smbol under cusor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Highlight currently open buffer in NERDTree
+autocmd BufEnter * call SyncTree()
+
+" Highlighting for jsonc format
+autocmd FileType json syntax match Comment +\/\/.\+$+
 
 " ##--------------------------------------------##
 " #|		autocmd(-groups)		|#
@@ -169,6 +322,50 @@ augroup AutoXrdb
 	autocmd BufWritePost ~/.Xresources,~/.Xdefaults !xrdb %
 augroup END
 
+" COC Formatting
+augroup mygroup
+	autocmd!
+	
+	" Setup formatexpr specified filetype(s)
+	autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+
+	" Update signature help on jump placeholder
+	autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" ##------------------------------------##
+" #|		Functions		|#
+" ##------------------------------------##
+" Sync open file with NERDTree
+function! IsNERDTreeOpen()
+	return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
+
+" Call NERDTreeFind if (all):
+" 	NERDTree is active
+" 	Current window contains a writable file
+" 	Not in a vimdiff
+function! SyncTree()
+	if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !diff
+		NERDTreeFind
+		wincmd p
+	endif
+endfunction
+
+" COC Tab-navigation
+function! s:check_back_space() abort
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1] =~# '\s'
+endfunction
+
+" COC Show Documentation
+function! s:show_documentation()
+	if (index(['vim','help'], &filetype) >= 0)
+		execute 'h '.expand('<cword>')
+	else
+		call CocAction('doHover')
+	endif
+endfunction
 
 " ##------------------------------------##
 " #|		Snippets		|#
