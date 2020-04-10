@@ -2,17 +2,17 @@
 #
 # launchpb.sh
 # Author:	Alex Paarfus <stewie410@gmail.com>
-# Date:		2019-10-27
+# Date:		2020-04-10
 #
 # Starts & Restarts Polybar
 
 # Check for Polybar
-if ! command -v polybar >/dev/null 2>&1; then printf '%s\n' "Cannot locate polybar!"; return 1; fi
+command -v polybar >/dev/null || { notify-send --urgency="critical" --icon="!!!" "Failed to Launch Polybar" 2>/dev/null; exit 1; }
 
 # Kill polybar
 killall --quiet polybar
-while pgrep -x polybar >/dev/null 2>&1; do sleep 1; done
+while pidof polybar >/dev/null; do sleep 1; done
 
 # Launch Bar(s)
-polybar topbar &
+polybar --config="${HOME}/.config/polybar/config.ini" topbar &
 #ln -sf /tmp/polybar_mgqueue.$! /tmp/ipc-topbar
