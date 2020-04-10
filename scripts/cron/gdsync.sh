@@ -2,48 +2,22 @@
 #
 # gdsync.sh
 # Author:	Alex Paarfus <stewie410@gmail.com>
-# Date:		2019-06-22
+# Date:		2020-04-10
 #
 # Synchronize Google Drive if out of date
 
-# ##----------------------------##
-# #|		Traps		|#
-# ##----------------------------##
-trap usv EXIT
-
-# ##------------------------------------##
-# #|		Functions		|#
-# ##------------------------------------##
 # Clear Memory
-usv() { unset _loc _rem; }
+trap "unset loc rem" EXIT
 
-# Check if offline
-isOffline() { ping -c 1 "8.8.8.8" 2>&1 | grep --quiet --ignore-case "unreachable"; }
+# Return if offline
+ping -c 1 "8.8.8.8" |& grep --quiet --ignore "unreachable" && exit
 
-# Get number of differences
-getDiff() {
-	rclone check "${_rem}:" "${_loc}/" 2>&1 | \
-		sed --quiet '/Failed/p' | \
-		cut --fields=6 --delimiter=' '
-}
+# Define remote & local repositories
+loc="${HOME}/GDrive"
+rem="GDrive"
 
-# ##------------------------------------##
-# #|		Variables		|#
-# ##------------------------------------##
-_loc="${HOME}/GDrive"										# Path to local repo
-_rem="GDrive"											# "Path" to remove repo
+# Return if no changes
+rclone check "${rem}:" "${loc}/" |& grep --quiet " ERROR :" || exit
 
-# ##------------------------------------##
-# #|		Pre-Run Tasks		|#
-# ##------------------------------------##
-# Check for online status
-if isOffline; then exit 1; fi
-
-# Check if repo is already synchronized
-if [[ "$(getDiff)" == 0 ]]; then exit; fi
-
-# ##----------------------------##
-# #|		Run		|#
-# ##----------------------------##
-# Synchronize
-rclone --quiet sync "${_rem}:" "${_loc}/"
+# Sync Changes
+rclone --quiet sync "${rem}:" "${loc}/"
