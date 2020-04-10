@@ -1,36 +1,22 @@
 #!/bin/bash
 #
 # Author:	Alex Paarfus <stewie410@gmail.com>
-# Date:		2019-01-08
+# Date:		2020-04-10
 #
-# Grab our current Volume Level
+# Print current volume status
 # Requires:
-#	pulseaudio
-#	pamixer
-#	pulsemixer
+#	-pamixer
 
-# Vars
-vicon=""		# Volume Icon
-micon=""		# Mute Icon
-str=""			# Volume Status
+# Return if required commands not found
+command -v pamixer >/dev/null || exit 1
 
 # Handle Mouse Events
-case $BLOCK_BUTTON in
-	#1) pamixer --toggle-mute ;;
-	3) $TERMINAL -e pulsemixer & disown ;;
-	#4) pamixer --increase 1 ;;
-	#5) pamixer --decrease 1 ;;
+case "${BLOCK_BUTTON}" in
+	1 ) 	pamixer --toggle-mute;;
+	3 ) 	"${TERMINAL}" -e pulsemixer 2>/dev/null & disown; exit;;
+	4 ) 	pamixer --increase 1;;
+	5 ) 	pamixer --decrease 1;;
 esac
 
-# Get Volume Status
-if pamixer --get-mute >/dev/null 2>&1; then
-	str="$micon"
-else
-	str="$vicon $(pamixer --get-volume)"
-fi
-
-# Update Bar
-echo "$str"
-
-# Clear Memory
-unset vicon micon str
+# Get Status
+pamxixer --get-volume-human | sed 's/muted//;s/^/ /'

@@ -2,62 +2,28 @@
 #
 # updates
 # Author:	Alex Paarfus
-# Date:		2019-01-07
+# Date:		2020-04-10
 #
-# Get the total number of packages required to be updated
-# Based on both previous "archupdates.sh" script, and "updates.sh" from github.com/adi1080x/polybar-themes
+# Get the total number of available packages since last sync
+# Requires:
+# 	-yay
+# 	-checkupdates
 
-# Modified for i3Blocks
-
-# Functions
-# Notify Users
-function notifyUser() {
-	## TODO -- DEBUG ##
-	return 0
-	## TODO -- DEBUG ##
-	if hash notify-send &>/dev/null; then
-		if [ "$cnt" -ge "$crit" ]; then notify-send -u critical -i "$nicon" "$crit+ new packages";
-		elif [ "$cnt" -ge "$norm" ]; then notify-send -u normal -i "$nicon" "$norm+ New Packages";
-		elif [ "$cnt" -ge "$low" ]; then notify-send -u low -i "$nicon" "$low+ New Packages"; fi
-	fi
-}
-
-# Get Update Count
-function getCnt() {
-	count=0
-	# If we have a network connection...
-	if ip r | grep kernel >/dev/null 2>&1; then 
-		yay -Sy >/dev/null 2>&1
-		
-		# Get number of packages to upgrade
-		count=$(yay -Sup | wc -l)
-	fi
-
-	# Return the number of packages to upgrade
-	echo "$count"
-	unset count
-}
-
-# Vars
-bicon=""								# Bar Icon
-nicon="/usr/share/icons/Papirus/32x32/system-software-update"		# Notify Icon
-crit=100								# Critical Priority Count
-norm=50									# Normal Priority Count
-low=5									# Low Priority Count
-cnt=$(getCnt)								# Number of Available Packages
-
-# Handle Click Events
-case $BLOCK_BUTTON in
-	1)	pamac-manager & disown ;;
+# Handle Mouse Events
+case "${BLOCK_BUTTON}" in
+	1 ) 	pamac-manager & disown; exit;;
 esac
 
-# Update bar and notify user
-if [ "$cnt" -gt 0 ]; then 
-	notifyUser
-	echo "$bicon $cnt"
-else
-	echo ""
-fi
+# Return if no network connection
+ping -c 1 "8.8.8.8" |& grep --quiet --ignore-case "unreachable" && exit 1
 
-# Cleanup memory
-unset bicon nicon crit norm low int cnt
+# Return if required commands not present
+command -v checkupdates >/dev/null || exit 1
+command -v yay >/dev/null || exit 1
+
+# Print Available Updates
+{ checkupdates | cut --delimiter=" " --fields=1; yay --query --upgrades --foreign --aur --quiet; } | \
+	sort | \
+	uniq | \
+	wc --lines | \
+	awk '$1 > 0 { print " " $1 }'

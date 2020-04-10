@@ -2,26 +2,23 @@
 #
 # network
 # Author:	Alex Paarfus <stewie410@gmail.com>
-# Date:		2019-01-07
+# Date:		2020-04-10
 #
 # Check for a network connection on both eth and wlp interfaces
 
-# Vars
-wicon=""							# Wifi Icon
-eicon=""							# Ethernet Icon
-wstat="$(cat /sys/class/net/wlp59s0/operstate 2>/dev/null)"	# Wifi Status
-estat="$(cat /sys/class/net/eth0/operstate 2>/dev/null)"	# Ethernet Status
-str=""								# Status
+# Clear Memory
+trap "unset string" EXIT
 
 # Handle Mouse Events
-case $BLOCK_BUTTON in
-	1)	$TERMINAL -e nmtui & disown ;;
+case "${BLOCK_BUTTON}" in
+	1 ) 	"${TERMINAL}" -e nmtui & disown; exit;;
 esac
 
-# Report Connection State
-echo "$wstat" | grep -i "up" >/dev/null && str="$wicon ";
-echo "$estat" | grep -i "up" >/dev/null && str="$str$eicon";
-echo "$str"
+# Get Status
+declare string
+ip route |& sed --quiet '/^[0-9]/p' | grep --quiet --ignore-case "dev w" && string+=" "
+ip route |& sed --quiet '/^[0-9]/p' | grep --quiet --ignore-case "dev e" && string+=" "
+[ -s "/usr/lib/systemd/system/bluetooth.service" ] && systemctl --quiet is-active bluetooth && string+=" "
 
-# Clear Memory
-unset wicon eicon wstat estat str
+# Print Status
+[ -n "${string}" ] && printf '%s\n' "${string:-1}"

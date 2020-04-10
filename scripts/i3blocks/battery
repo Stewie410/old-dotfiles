@@ -1,80 +1,12 @@
 #!/bin/bash
 #
 # Author:	Alex Paarfus <stewie410@gmail.com>
-# Date:		2019-01-08
+# Date:		2020-04-20
 #
 # Displays the current state of the battery for i3Blocks
-# Requires:
-#	acpi
 
-# Functions
-# Notify User -- $1 == Priority ; $2 == Icon ; $3 == Message
-notifyUser() {
-	## TODO: DEBUG ##
-	return 0
-	## TODO: DEBUG ##
-	if hash notify-send &>/dev/null; then
-		case "$1" in
-			2)	notify-send -u critical -i "$2" "$3" ;;
-			1)	notify-send -u normal -i "$2" "$3" ;;
-			*)	notify-send -u low -i "$2" "$3" ;;
-		esac
-	fi
-}
-
-# Get Battery Icon
-getIcon() {
-	if [ "$1" -ge 97 ]; then echo "";
-	elif [ "$1" -ge 75 ]; then echo "";
-	elif [ "$1" -ge 50 ]; then echo "";
-	elif [ "$1" -ge 25 ]; then echo "";
-	else
-		echo "";
-	fi
-}
-
-# Vars
-battIcon=""			# Battery Icon (defined later)
-acIcon=""			# AC Adapter Icon
-warnIcon=""			# Warning Icon
-acpiB="$(acpi -b)"		# ACPI Battery Report
-battCharge=""			# Battery Charge (%)
-battState=""			# Battery State
-battRemain=""			# Battery Time Remaining
-strStatus=""			# Output String
-lastState="/tmp/prevBattState"	# Temp file to store the previous battery state
-
-# Grab our actual values from $acpiB
-battCharge="$(echo "$acpiB" | awk '{print $4}' | sed 's/,//;s/%//')"
-battState="$(echo "$acpiB" | awk '{print $3}' | sed 's/,//')"
-battRemain="$(echo "$acpiB" | awk '{print $5}')"
-battIcon="$(getIcon "$battCharge")"
-
-# Handle Clicks
-case $BLOCK_BUTTON in
-	1)	notifyUser "0" "$battIcon" "Time Remaining: $battRemain" ;;
-esac
-
-# Notify User of changes
-# If $battState is different than last time
-if [ -f "$lastState" ] && [[ "$(cat "$lastState")" != "$battState" ]]; then
-	notifyUser "1" "$(getIcon "50")" "Battery is $battState: $battCharge% Remaining"
-fi
-
-# If Battery is 0-15%
-if [ "$battCharge" -lt 25 ]; then
-	notifyUser "2" "$warnIcon" "Battery is Critically Low: $battCharge%, $battRemain Remaining!"
-fi
-
-# Form our String for the Bar
-strStatus="$battIcon $battCharge%"
-if echo "$battState" | grep  "^Charging" >/dev/null; then
-	strStatus="$strStatus $acIcon";
-fi
-
-# Send Status to Bar
-echo "$strStatus"
-
-# Write out current state to $lastState && Clear Memory
-echo "$battState" > "$lastState"
-unset battIcon acIcon warnIcon acpiB battCharge battState battRemain strStatus lastState
+# Get Status
+cat "/sys/class/power_supply/"{status,capacity} | \
+	xargs | \
+	sed 's/,//g;s/discharging//I;s/charging//I;s/not charging/X/I;s/unknown/?/I;s/ 0*/ /g;s/ :/ /g' | \
+	awk '$2 < 25 { $1 = " " $1} END { print $1,$2% "%"}'
