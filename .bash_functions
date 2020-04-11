@@ -6,16 +6,16 @@
 #
 # A collection of useful functions
 
-# ##--------------------------------------------##
-# #|		Process Management		|#
-# ##--------------------------------------------##
+# ##----------------------------------------------------##
+# #|			Process Management		|#
+# ##----------------------------------------------------##
 pps() { ps aux | grep "${@}" | grep --invert-match "grep"; }
 ppse() { px aux | grep --extended-regexp "${@}" | grep --invert-match "grep"; }
 
-# ##------------------------------------##
-# #|		Device Mounting		|#
-# ##------------------------------------##
-mountdev() {
+# ##----------------------------------------------------##
+# #|			Device Mounting			|#
+# ##----------------------------------------------------##
+dmenu_mount() {
 	# Return if dmenu already running
 	pgrep -x dmenu >/dev/null && return
 
@@ -48,8 +48,7 @@ mountdev() {
 		notify-send --urgency="normal" "Mount Failed: '${dev}' --> '${pnt}'" 2>/dev/null
 }
 
-# Unmount Device
-umountdev() {
+dmenu_umount() {
 	# Return if dmenu already running
 	pgrep -x dmenu >/dev/null || return
 
@@ -67,18 +66,48 @@ umountdev() {
 		notify-send --urgency="normal" "Unmount Failed: '${dev}'" 2>/dev/null
 }
 
-# ##------------------------------------##
-# #|		cURL Utilities		|#
-# ##------------------------------------##
-# Cheat.sh -- https://cheat.sh
+# ##----------------------------------------------------##
+# #|			Curl Utilities			|#
+# ##----------------------------------------------------##
 cheat() { curl --silent --fail "cheat.sh/${@}"; }
-
-# Dictionary
 dict() { curl --silent --fail "dict://dict.org/d:${@}"; }
 
-# ##------------------------------------##
-# #|		Git Functions		|#
-# ##------------------------------------##
+# ##----------------------------------------------------##
+# #|			Git Cloning			|#
+# ##----------------------------------------------------##
 # Clone Git(hub|lab) repository to current directory
 ghcl() { for i in "${@}"; do git clone "https://github.com/${i}.git"; done; }
 glcl() { for i in "${@}"; do git clone "https://gitlab.com/${i}.git"; done; }
+
+# ##----------------------------------------------------##
+# #| 			Archives 			|#
+# ##----------------------------------------------------##
+extract() {
+	# Return if no args passed
+	[ -n "${1}" ] || return
+
+	# Process all arguments
+	for i in "${@}"; do
+		# Declare local variables
+		local u a
+
+		# Determine Utility
+		case "${i}" in
+			*.tar.bz2 | *.tbz2 ) 	u="$(command -v tar)"; a="--extract --bzip2 --file=\"${i}\"";;
+			*.tar.gz | *.tgz ) 	u="$(command -v tar)"; a="--extract --gzip --file=\"${i}\"";;
+			*.bz2 ) 		u="$(command -v bunzip2)"; a="${i}";;
+			*.rar ) 		u="$(command -v unrar)"; a="${i}";;
+			*.gz ) 			u="$(command -v gunzip)"; a="${i}";;
+			*.tar ) 		u="$(command -v tar)"; a="--extract --file=\"${i}\"";;
+			*.zip ) 		u="$(command -v unzip)"; a="${i}";;
+			*.Z ) 			u="$(command -v uncompress)"; a="${i}";;
+			*.7z ) 			u="$(command -v 7z)"; a="x \"${i}\"";;
+		esac
+
+		# Return if utility not found
+		[ -n "${u}" ] || { printf 'Invalid File:\t%s\n' "${i}"; continue; }
+
+		# Extract File
+		exec "${u} ${a}"
+	done
+}
