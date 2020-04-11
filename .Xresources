@@ -9,82 +9,129 @@
 #include ".extend.Xresources"
 #endif
 
-! ##------------------------------------##
-! #|		Font Settings		|#
-! ##------------------------------------##
-*.font:					xft:monospace:pixelsize=10
-Xft.dpi:				96
-Xft.antialias:				true
-Xft.autohint:				1
-Xft.hinting:				1
-Xft.hintstyle:				hintslight
-Xft.lcdfilter:				lcdlight
-Xft.rgba:				rgb
+! ##----------------------------------------------------##
+! #|			Font Settings			|#
+! ##----------------------------------------------------##
+*.font:			xft:monospace:pixelsize=10
+Xft.dpi:		96
+Xft.antialias:		true
+Xft.autohint:		1
+Xft.hinting:		1
+Xft.hintstyle:		hintslight
+Xft.lcdfilter:		lcdlight
+Xft.rgba:		rgb
 
 
-! ##------------------------------------##
-! #|		Colorschemes		|#
-! ##------------------------------------##
-! wpgtk 
-*.foreground:				#e3dac9
-*.background:				#161616
-*.cursorColor:				#e3dac9
-*.color0:				#161616
-*.color1:				#a94744
-*.color2:				#608b4e
-*.color3:				#d69831
-*.color4:				#569cd6
-*.color5:				#b06386
-*.color6:				#218693
-*.color7:				#b0b0b0
-*.color8:				#3c3c3c
-*.color9:				#e09690
-*.color10:				#8fbf7f
-*.color11:				#f8bc41
-*.color12:				#9cdcfe
-*.color13:				#d2879b
-*.color14:				#77dfd8
-*.color15:				#f7f7f7
+! ##----------------------------------------------------##
+! #|		Colorscheme: WPGTK			|#
+! ##----------------------------------------------------##
+! urxvt
+URxvt*background: 	[90]#e3dac9
+URxvt*borderColor:	[90]#e3dac9
+URxvt*foreground: 	#161616
+URxvt*cursorColor: 	#161616
 
-! NewProggie
-!*.foreground:				#e3dac9
-!*.background:				#161616
-!*.cursorColor:				#e3dac9
-!*.color0:				#161616
-!*.color8:				#3c3c3c
-!*.color1:				#a94744
-!*.color9:				#e09690
-!*.color2:				#608b4e
-!*.color10:				#8fbf7f
-!*.color3:				#d69831
-!*.color11:				#f8bc41
-!*.color4:				#569cd6
-!*.color12:				#9cdcfe
-!*.color5:				#b06386
-!*.color13:				#d2879b
-!*.color6:				#218693
-!*.color14:				#77dfd8
-!*.color7:				#b0b0b0
-!*.color15:				#f7f7f7
+! xterm
+XTerm*background: 	[90]#e3dac9
+XTerm*borderColor:	[90]#e3dac9
+XTerm*foreground: 	#161616
+XTerm*cursorColor: 	#161616
+
+! black
+*.color0:		#161616
+*.color8:		#3c3c3c
+
+! red
+*.color1:		#a94744
+*.color9:		#e09690
+
+! green
+*.color2:		#608b4e
+*.color10:		#8fbf7f
+
+! yellow
+*.color3:		#d69831
+*.color11:		#f8bc41
+
+! blue
+*.color4:		#569cd6
+*.color12:		#9cdcfe
+
+! magenta
+*.color5:		#b06386
+*.color13:		#d2879b
+
+! cyan
+*.color6:		#218693
+*.color14:		#77dfd8
+
+! white
+*.color7:		#b0b0b0
+*.color15:		#f7f7f7
+
+! ##----------------------------------------------------##
+! #| 		Colorscheme: Dracula			|#
+! ##----------------------------------------------------##
+! urxvt
+!URxvt*background: 	[90]#292d3e
+!URxvt*borderColor:	[90]#292d3e
+!URxvt*foreground: 	#bbc5ff
+!URxvt*cursorColor: 	#bbc5ff
+
+! xterm
+!XTerm*background: 	[90]#292d3e
+!XTerm*borderColor:	[90]#292d3e
+!XTerm*foreground: 	#bbc5ff
+!XTerm*cursorColor: 	#bbc5ff
+
+! black
+!*.color0: 		#292d3e
+!*.color8: 		#f07178
+
+! red
+!*.color1: 		#f07178
+!*.color9: 		#ff8b92
+
+! green
+!*.color2: 		#c3e88d
+!*.color10: 		#ddffa7
+
+! yellow
+!*.color3: 		#ffcb6b
+!*.color11: 		#ffe585
+
+! blue
+!*.color4: 		#82aaff
+!*.color12: 		#9cc4ff
+
+! magenta
+!*.color5: 		#c792ea
+!*.color13: 		#e1acff
+
+! cyan
+!*.color6: 		#89ddff
+!*.color14: 		#a3f7ff
+
+! white
+!*.color7: 		#d0d0d0
+!*.color15: 		#ffffff
 
 ! ##----------------------------##
 ! #|		urxvt		|#
 ! ##----------------------------##
-URxvt*termName:				rxvt-unicode
-URxvt.background:			[90]#161616
-URxvt.borderColor:			[90]#161616
-URxvt.depth:				32
-URxvt.scrollBar:			false
-URxvt.cursorBlink:			false
-URxvt.internalBorder:			1
-URxvt.font:				xft:monospace:pixelsize=16,\
-					xft:FontAwesome:pixelsize=10:antialias=true,\
-					xft:siji:pixelsize=10:antialias=true
+URxvt*termName:		rxvt-unicode
+URxvt.depth:		32
+URxvt.scrollBar:	false
+URxvt.cursorBlink:	false
+URxvt.internalBorder:	1
+URxvt.font:		xft:monospace:pixelsize=16,\
+			xft:FontAwesome:pixelsize=10:antialias=true,\
+			xft:siji:pixelsize=10:antialias=true
 
 ! ##----------------------------##
 ! #|		st		|#
 ! ##----------------------------##
-st.alpha:				0.9
-st.font:				Monospace-11;
-st.termname:				st-256color
-st.borderpx:				2
+st.alpha:		0.9
+st.font:		Monospace-11;
+st.termname:		st-256color
+st.borderpx:		2
