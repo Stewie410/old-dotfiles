@@ -2,46 +2,36 @@
 #
 # xinitrc
 # Author:	Alex Paarfus <stewie410@gmail.com>
-# Date:		2019-11-09
+# Date:		2020-04-11
 #
 # Executed by startx (run your window manager from here)
 
-# ##------------------------------------##
-# #|		Variables		|#
-# ##------------------------------------##
-_resource_usr="${HOME}/.Xresources"
-_resource_sys="/etc/X11/xinit/.Xresources"
-_modmap_usr="${HOME}/.Xmodmap"
-_modmap_sys="/etc/X11/xinit/.Xmodmap"
-SESSION=${1:-xfce}
-
-# merge in defaults and keymaps
 # ##--------------------------------------------##
 # #|		Load X11 Sources		|#
 # ##--------------------------------------------##
-# Load Defaults
-if [ -s "${_resource_sys}" ]; then xrdb -merge "${_resource_sys}"; fi
-if [ -s "${_modmap_sys}" ]; then xmodmap "${_modmap_sys}"; fi
+# Load Xresources
+[ -s "/etc/X11/xinit/.Xresources" ] && xrdb -merge "/etc/X11/xinit/.Xresources"
+[ -s "${HOME}/.Xresources" ] && xrdb -merge "${HOME}/.Xresources"
 
-# Load User Configurations
-if [ -s "${_resource_usr}" ]; then xrdb -merge "${_resource_usr}"; fi
-if [ -s "${_modmap_usr}" ]; then xmodmap "${_modmap_usr}"; fi
+# Load Modmap
+[ -s "/etc/X11/xinit/.Xmodmap" ] && xmodmap "/etc/X11/xinit/.Xmodmap"
+[ -s "${HOME}/.Xmodmap" ] && xmodmap "${HOME}/.Xmodmap"
 
 # ##------------------------------------##
 # #|		X11 Autostart		|#
 # ##------------------------------------##
-if [ -d /etc/X11/xinit/xinitrc.d ] ; then
-    for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
-        [ -x "$f" ] && . "$f"
-    done
-    unset f
-fi
+[ -d "/etc/X11/xinit/xinitrc.d" ] && \
+	find "/etc/X11/xinit/xinitrc.d" -type f -name "*.sh" | xargs -I {} soruce "{}"
 
 # ##------------------------------------##
 # #|		X11 Session		|#
 # ##------------------------------------##
+SESSION=${1:-xfce}
 get_session(){
-	local dbus_args=(--sh-syntax --exit-with-session)
+	local dbus_args
+	dbus_args=(--sh-syntax --exit-with-session)
+
+	# Get Session Type
 	case "$SESSION" in
 		awesome) dbus_args+=(awesome) ;;
 		bspwm) dbus_args+=(bspwm-session) ;;
@@ -62,7 +52,12 @@ get_session(){
 		*) dbus_args+=("$SESSION") ;;
 	esac
 
+	# Return Session
 	echo "dbus-launch ${dbus_args[*]}"
 }
 
-exec $(get_session)
+exec "$(get_session)"
+
+# ##----------------------------------------------------##
+# #| 			Auto Start 			|#
+# ##----------------------------------------------------##
