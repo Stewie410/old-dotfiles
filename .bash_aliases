@@ -52,11 +52,10 @@ alias ubbt='sudo rfkill unblock bluetooth'
 alias ubwl='sudo rfkill unblock wifi'
 alias ubww='sudo rfkill unblock wwan'
 
-# Cloud-Utilties
-alias rcl='rclone'
-alias rclgchck='rclone check GDrive: ${HOME}/GDrive/'
-alias rclgpull='rclone sync GDrive: ${HOME}/GDrive/'
-alias rclgpush='rclone sync ${HOME}/GDrive/ GDrive:'
+# RClone
+alias rclcheck='rclne check'
+alias rclsync='rclone sync'
+alias rclcopy='rclone copy'
 
 # ##----------------------------##
 # #|		Scripts		|#
@@ -86,6 +85,15 @@ alias grm='git rm'
 # #|		Git Bare		|#
 # ##------------------------------------##
 alias gdf='git --git-dir=${HOME}/dotfiles --work-tree=$HOME'
+alias gdfa='gdf add'
+alias gdfc='gdf commit'
+alias gdfd='gdf diff --color'
+alias gdfl='gdf log --pretty=oneline'
+alias gdfs='gdf status'
+alias gdfmv='gdf mv'
+alias gdfps='gdf push'
+alias gdfpl='gdf pull'
+alias gdfrm='gdf rm -r --cache'
 
 # ##----------------------------##
 # #|		chmod		|#
