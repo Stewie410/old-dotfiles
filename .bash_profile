@@ -2,9 +2,9 @@
 #
 # bash_profile
 # Author:	Alex Paarfus <stewie410@gmail.com>
-# Date:		2019-11-09
+# Date:		2020-04-11
 #
 # Definition of this bash profile
 
-# Source the ~/.bashrc file
-if [ -s "${HOME}/.bashrc" ]; then source "${HOME}/.bashrc"; fi
+# Get Profile Data from bashrc
+[ -s "${HOME}/.bashrc" ] && source "${HOME}/.bashrc"

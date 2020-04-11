@@ -1,15 +1,17 @@
-# i3wm Configuration
+# i3-gaps Configuration
 # Author:	Alex Paarfus <stewie410@me.com>
-# Date:		2019-06-29
+# Date:		2020-04-11
 #
-# Based on serveral different installs of i3wm, with some small changers for the XPS keyboard
-# Some settings here will use environment variables set in ~/.bashrc or similar
-# Colors will also be pulled from Xresources
+# i3-gaps configuration
 
-# Var definitions
+# ##----------------------------------------------------##
+# #| 			Variables 			|#
+# ##----------------------------------------------------##
+# Modifiers
 set $mod 				Mod1
 set $sup 				Mod4
 
+# Workspaces
 set $ws1				1
 set $ws2				2
 set $ws3				3
@@ -21,6 +23,7 @@ set $ws8				8
 set $ws9				9
 set $ws10				10
 
+# Applications
 set $term				urxvt
 set $browser				firefox
 set $tbrowser				elinks
@@ -32,10 +35,12 @@ set $locker				source ~/scripts/tools/lockSession.sh
 set $launch				source ~/scripts/tools/dmenu_run-xres.sh
 set $pactl				source ~/scripts/tools/pactl.sh
 
-set $igap				15
+# Gaps
+set $igap				4
 set $ogap				0
 set $chgap				5
 
+# Colorscheme
 set_from_resource $dblack		color0	#000000
 set_from_resource $black		color8	#000000
 set_from_resource $dred			color1	#000000
@@ -54,73 +59,120 @@ set_from_resource $dwhite		color7	#000000
 set_from_resource $white		color15	#000000
 set $transparent			#00000000
 
+# Modes
 set $mode_gaps				Gaps: (o)uter, (i)nner
 set $mode_gaps_outer			Outer: [jkd0] (local), Shift+[jkd0] (all)
 set $mode_gaps_inner			Inner: [jkd0] (local), Shift+[jkd0] (all)
 #set $mode_session			Session: (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+S)hutdown
 set $mode_session			Session: (l)ock, (e)xit, (s)uspend, (h)ibernate, (r)eboot, (Shift+S)hutdown
 set $mode_resize			Resize
+set $mode_quiet 			Quiet
 
-# Settings
+# ##----------------------------------------------------##
+# #| 			Settings 			|#
+# ##----------------------------------------------------##
+# Font
 font 					pango:monospace 8
+
+# Floating Keybind
 floating_modifier 			$mod
+
+# Focus
 focus_follows_mouse 			no
+
+# Borders
 new_window				1pixel
 hide_edge_borders			smart
 
+# Gaps
 gaps inner				$igap
 gaps outer				$ogap
 smart_gaps				on
 
-# Colorscheme
-#			Border		Background	Text		Indicator	Child_Border
+# ##----------------------------------------------------##
+# #| 			Colorscheme 			|#
+# ##----------------------------------------------------##
+#			| Border	| Background	| Text		| Indicator	| Child_Border
+# ----------------------|---------------|---------------|---------------|---------------|-------------
 client.focused		$black		$black		$white		$black		$black
 client.unfocused	$transparent	$transparent	$dwhite		$transparent	$dblack
 client.focused_inactive	$transparent	$transparent	$dwhite		$transparent	$dblack
 client.urgent		$red		$red		$black		$dred		$dred
 client.background	$black
 
-# Force Enable/Disable floating
+# ##----------------------------------------------------##
+# #| 			Always Float 			|#
+# ##----------------------------------------------------##
 for_window [class="Gufw.py"]		floating enable;
 for_window [class="Clamtk"]		floating enable;
 for_window [class="Keepassx2"]		floating enable;
 for_window [class="Pamac-manager"]	floating enable;
 for_window [class="Wpg"]		floating enable;
 for_window [class="flameshot"]		floating enable;
+
+# ##----------------------------------------------------##
+# #| 			Window Border 			|#
+# ##----------------------------------------------------##
 for_window [class=^.*]			border pixel 1;
 
+# ##----------------------------------------------------##
+# #| 		Windows to Specific Workspaces 		|#
+# ##----------------------------------------------------##
+# 2 -- Full-Fat Web Browsers
 for_window [class="firefox"]		move to workspace 2
+
+# 5 -- Development
 for_window [class="code-oss"]		move to workspace 5
+
+# 6 -- Security
 for_window [class="Keepassx2"]		move to workspace 6
 for_window [class="Clamtk"]		move to workspace 6
 for_window [class="Gufw.py"]		move to workspace 6
+
+# 7 -- Communication
 for_window [class="Caprine"]		move to workspace 7
 for_window [class="Telegram"]		move to workspace 7
 for_window [class="discord"]		move to workspace 7
+for_window [class="Rocket.Chat"]	move to workspace 7
+
+# 8 -- Email
 for_window [class="Thunderbird"]	move to workspace 8
+
+# 10 -- Media
 for_window [class="Spotify"]		move to workspace 10
 
-# Keybindings
+# ##----------------------------------------------------##
+# #| 			Keybinds 			|#
+# ##----------------------------------------------------##
+# Move Focus
 bindsym $mod+h				focus left
 bindsym $mod+j				focus down
 bindsym $mod+k				focus up
 bindsym $mod+l				focus right
 
+# Move Window in Workspace
 bindsym $mod+Shift+h			move left
 bindsym $mod+Shift+j			move down
 bindsym $mod+Shift+k			move up
 bindsym $mod+Shift+l			move right
 
+# Splitting
 bindsym $mod+backslash			split v
 bindsym $mod+Shift+backslash		split h
+
+# Fullscreen
 bindsym $mod+F11			fullscreen toggle
+
+# Layouts
 #bindsym $mod+s				layout stacking
 #bindsym $mod+t				layout tabbed
 #bindsym $mod+n				layout split
 
+# Floating
 bindsym $mod+space			focus mode_toggle
 bindsym $mod+Shift+space		floating toggle
 
+# Display Workspace
 bindsym $mod+1				workspace 1
 bindsym $mod+2				workspace 2
 bindsym $mod+3				workspace 3
@@ -133,6 +185,10 @@ bindsym $mod+9				workspace 9
 bindsym $mod+0				workspace 10
 bindsym $mod+Tab			workspace back_and_forth
 
+# i3-quiet Mode
+#bindsym $sup+q 				exec ~/scripts/i3-quiet/quiet-cmd.py switch
+
+# Move Window to Workspace
 bindsym $mod+Shift+1			move container to workspace 1
 bindsym $mod+Shift+2			move container to workspace 2
 bindsym $mod+Shift+3			move container to workspace 3
@@ -144,39 +200,59 @@ bindsym $mod+Shift+8			move container to workspace 8
 bindsym $mod+Shift+9			move container to workspace 9
 bindsym $mod+Shift+0			move container to workspace 10 
 
+# Scratchpad
 bindsym $sup+Return			scratchpad show
 bindsym $sup+Shift+Return		move scratchpad
 
+# Kill focused window
 bindsym $mod+Shift+q			kill
+
+# Restart i3
 bindsym $mod+Shift+r			restart
 
+# Launch Terminal
 bindsym $mod+d				exec $launch
 bindsym $mod+Return			exec $term
 bindsym $mod+Shift+Return		exec $term -e tmux
 
+# Launch web browser
 bindsym $mod+F2				exec $browser
+
+# Launch File Manager
 bindsym $mod+F3				exec $term -e ranger ~/
+
+# Launch Email Client
 bindsym $mod+F8				exec $gmail
 
+# Take Screenshot
 bindsym $mod+Shift+s			exec $scrot
 
-bindsym XF86AudioMute			exec $pactl --notify --polybar --toggle
-bindsym XF86AudioLowerVolume		exec $pactl --notify --polybar --increase 1
-bindsym XF86AudioRaiseVolume		exec $pactl --notify --polybar --decrease 1
+# Media Keys
+bindsym XF86AudioMute 			exec pamixer --toggle-mute
+bindsym XF86AudioLowerVolume 		exec pamixer --decrease 1
+bindsym XF86AudioRaiseVolume 		exec pamixer --increase 1
 bindsym XF86AudioPrev			exec playerctl previous
 bindsym XF86AudioPlay			exec playerctl play-pause
 bindsym XF86AudioNext			exec playerctl next
 
+# Brightness Control
+bindsym XF86MonBrightnessDown 		exec ~/scripts/tools/xbrightness.sh --decrease 5
+bindsym XF86MonBrightnessUp 		exec ~/scripts/tools/xbrightness.sh --increase 5
+
+# Unused FN keys
 #bindsym XF86Search			
-bindsym XF86MonBrightnessDown		exec source ~/scripts/tools/xrbrightness.sh --decrease --amount "0.05"
-bindsym XF86MonBrightnessUp		exec source ~/scripts/tools/xrbrightness.sh --increase --amount "0.05"
 #bindsym XF86RFKill			
 
+# Mode Selection
 bindsym $sup+Shift+r			mode "$mode_resize"
 bindsym $sup+Shift+s			mode "$mode_session"
 bindsym $sup+Shift+g			mode "$mode_gaps"
+#bindsym $sup+Shift+q 			mode "$mode_quiet"
 
-# Mode Definitions
+# ##----------------------------------------------------##
+# #| 			Mode Definitions 		|#
+# ##----------------------------------------------------##
+# Sessions
 mode "$mode_session" {
 	bindsym l 			mode "default", exec --no-startup-id $locker
 	bindsym s			mode "default", exec exec --no-startup-id systemctl suspend
@@ -189,6 +265,7 @@ mode "$mode_session" {
 	bindsym Escape			mode "default"
 }
 
+# Resize
 mode "$mode_resize" {
 	bindsym h			resize shrink width 4px or 4 ppt
 	bindsym j			resize grow height 4px or 4 ppt
@@ -202,6 +279,7 @@ mode "$mode_resize" {
 	bindsym Escape			mode "default"
 }
 
+# Resize Gaps
 mode "$mode_gaps" {
 	bindsym o			mode "$mode_gaps_outer"
 	bindsym i			mode "$mode_gaps_inner"
@@ -209,6 +287,7 @@ mode "$mode_gaps" {
 	bindsym Escape			mode "default"
 }
 
+# Resize Outer Gaps
 mode "$mode_gaps_outer" {
 	bindsym j			gaps outer current minus 5
 	bindsym k			gaps outer current plus 5
@@ -222,6 +301,7 @@ mode "$mode_gaps_outer" {
 	bindsym Escape			mode "default"
 }
 
+# Resize Inner Gaps
 mode "$mode_gaps_inner" {
 	bindsym j			gaps inner current minus 5
 	bindsym k			gaps inner current plus 5
@@ -235,29 +315,66 @@ mode "$mode_gaps_inner" {
 	bindsym Escape			mode "default"
 }
 
+# i3-quiet
+mode "$mode_quiet" {
+	bindsym q 			exec ~/scripts/i3-quiet/quiet-cmd.py toggle ; mode "default"
+	bindsym s 			exec ~/scripts/i3-quiet/quiet-cmd.py resize small
+	bindsym m 			exec ~/scripts/i3-quiet/quiet-cmd.py resize medium
+	bindsym l 			exec ~/scripts/i3-quiet/quiet-cmd.py resize largs
+	bindsym Esacpe 			mode "default"
+	bindsym Return 			mode "default"
+} 
 
-# Autostarts
+# ##----------------------------------------------------##
+# #| 			Autostart 			|#
+# ##----------------------------------------------------##
+# Set Wallpaper with feh
 #exec_always --no-startup-id source ~/.fehbg
-exec --no-startup-id hsetroot -solid #000000
-exec_always --no-startup-id source ~/.config/wpg/wp_init.sh
-exec_always --no-startup-id source ~/scripts/tools/compton-launch.sh
-exec_always --no-startup-id unclutter --jitter 50 &
-exec_always --no-startup-id source ~/scripts/polybar/launchpb.sh
 
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id xautolock -time 60 -detectsleep -locker $locker
-exec --no-startup-id dunst
-exec --no-startup-id ~/scripts/tools/ttc_toggle.sh -s 1
-#exec --no-startup-id mpd
+# Set Wallpaper as solid color
+exec --no-startup-id hsetroot -solid #000000
+
+# Set Wallpaper & Theme with wpg
+exec_always --no-startup-id ~/.config/wpg/wp_init.sh
+
+# Compton
+exec_always --no-startup-id ~/scripts/tools/compton-launch.sh
 #exec --no-startup-id compton
 
-# i3-only Bars
+# unclutter
+exec_always --no-startup-id unclutter --jitter 50 &
+
+# Polybar
+exec_always --no-startup-id ~/scripts/polybar/launchpb.sh
+#exec_always --no-startup-id ~/scripts/i3-quiet/quiet-toggle-bar.py --kill
+
+# Authentication Policy Kit
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+# Automatic Session Lock
+exec --no-startup-id xautolock -time 60 -detectsleep -locker $locker
+
+# Desktop Notifications
+exec --no-startup-id dunst
+
+# Multimedia
+#exec --no-startup-id mpd
+
+# KDE Conenct
+exec --no-startup-id kdeconnectd
+exec --no-startup-id kdeconnect-indicator
+
+# ##----------------------------------------------------##
+# #| 			i3Status Bar 			|#
+# ##----------------------------------------------------##
 # i3Status (default)
 #bar {
 #	status_command i3status
 #}
 
-# i3Blocks
+# ##----------------------------------------------------##
+# #| 			i3Blocks Bar 			|#
+# ##----------------------------------------------------##
 #bar {
 #	font	pango:mono 10
 #	colors {

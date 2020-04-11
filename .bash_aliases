@@ -21,11 +21,26 @@ alias llah='ls -l --almost-all --human-readable'
 alias llaz='ls -l --almost-all --context'
 alias llahz='ls -l --almost-all --human-readable --context'
 
+# exa -- may replace ls eventually
+alias exa='exa --color=automatic --group-directories-first --classify'
+alias exaa='exa --all'
+alias exal='exa --long'
+alias exat='exa --tree'
+alias exala='exa --all --long'
+alias exata='exa --all --tree'
+
 # dir
 alias dir='dir --color=auto'
 
 # grep
 alias grep='grep --color=auto'
+
+# Confirm before overwriting file
+alias mv="mv --interactive"
+alias cp="cp --interactive"
+
+# Confirm before removing file
+alias rm="rm --interactive"
 
 # ##----------------------------##
 # #|		Tools		|#
@@ -56,6 +71,9 @@ alias ubww='sudo rfkill unblock wwan'
 alias rclcheck='rclne check'
 alias rclsync='rclone sync'
 alias rclcopy='rclone copy'
+
+# Termbin
+#alias tb='nc termbin.com 9999'
 
 # ##----------------------------##
 # #|		Scripts		|#
