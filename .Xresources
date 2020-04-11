@@ -26,16 +26,16 @@ Xft.rgba:		rgb
 ! #|		Colorscheme: WPGTK			|#
 ! ##----------------------------------------------------##
 ! urxvt
-URxvt*background: 	[90]#e3dac9
-URxvt*borderColor:	[90]#e3dac9
-URxvt*foreground: 	#161616
-URxvt*cursorColor: 	#161616
+URxvt*background: 	[90]#161616
+URxvt*borderColor:	[90]#161616
+URxvt*foreground: 	#e3dac9
+URxvt*cursorColor: 	#e3dac9
 
 ! xterm
-XTerm*background: 	[90]#e3dac9
-XTerm*borderColor:	[90]#e3dac9
-XTerm*foreground: 	#161616
-XTerm*cursorColor: 	#161616
+XTerm*background: 	[90]#161616
+XTerm*borderColor:	[90]#161616
+XTerm*foreground: 	#e3dac9
+XTerm*cursorColor: 	#e3dac9
 
 ! black
 *.color0:		#161616
