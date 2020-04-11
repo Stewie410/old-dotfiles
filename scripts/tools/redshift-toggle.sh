@@ -2,23 +2,17 @@
 #
 # redshift-toggle.sh
 # Author:	Alex Paarfus <stewie410@gmail.com>
-# Date:		2019-11-03
+# Date:		2020-04-11
 #
 # Toggles Redshift
 # Usage:	redshift-toggle.sh [location]
 
+# Check requiered packages
+command -v redshift >/dev/null || { printf '%s\n' "Cannot find Redshift!"; exit 1; }
+
 # Kill Redshift if running
-if pgrep --exact "redshift"; then killall --quiet "redshift"; exit; fi
+pgrep --exact "redshift" && { killall --quiet "redshift"; exit; }
 
-# If location passed
-if [ -n "${1}" ]; then
-	if ! [[ "${1}" =~ ^[+-]?[0-9.]+:[+-]?[0-9.]+$ ]]; then
-		printf '%s\n' "ERROR: Requires Lat:Lon for location input"
-		exit 1
-	fi
-	redshift -l "${1}" & disown
-	exit
-fi
-
-# Guess location by default
+# Start Redshift
+[ -n "${1}" ] && { redshift -l "${1}" & disown; exit; }
 redshift -l "geoclue2" & disown
