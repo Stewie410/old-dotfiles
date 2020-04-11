@@ -2,24 +2,24 @@
 #
 # bash_aliases
 # Author:	Alex Paarfus <stewie410@gmail.com>
-# Date:		2019-11-09
+# Date:		2020-04-11
 #
-# 
+# Handy Aliases
 
 # ##------------------------------------##
 # #|		Filesystem		|#
 # ##------------------------------------##
 # ls
 alias l='ls'
-alias ls='ls --group-directories-first --color=auto'
+alias ls='ls --group-directories-first --color=auto --classify'
 alias la='ls --all'
 alias ll='ls -l'
 alias lz='ls --context'
-alias lla='ls -l --all'
+alias lla='ls -l --almost-all'
 alias llh='ls -l --human-readable'
-alias llah='ls -l --all --human-readable'
-alias llaz='ls -l --all --context'
-alias llahz='ls -l --all --human-readable --context'
+alias llah='ls -l --almost-all --human-readable'
+alias llaz='ls -l --almost-all --context'
+alias llahz='ls -l --almost-all --human-readable --context'
 
 # dir
 alias dir='dir --color=auto'
