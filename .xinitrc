@@ -2,30 +2,33 @@
 #
 # xinitrc
 # Author:	Alex Paarfus <stewie410@gmail.com>
-# Date:		2020-04-11
+# Date:		2020-04-12
 #
 # Executed by startx (run your window manager from here)
 
-# ##--------------------------------------------##
-# #|		Load X11 Sources		|#
-# ##--------------------------------------------##
+# ##----------------------------------------------------##
+# #|		        Load X11 Sources		            |#
+# ##----------------------------------------------------##
 # Load Xresources
-[ -s "/etc/X11/xinit/.Xresources" ] && xrdb -merge "/etc/X11/xinit/.Xresources"
+xinitd="/etc/X11/xinit"
+[ -s "${xinitd}/.Xresources" ] && xrdb -merge "${xinitd}/.Xresources"
 [ -s "${HOME}/.Xresources" ] && xrdb -merge "${HOME}/.Xresources"
 
 # Load Modmap
-[ -s "/etc/X11/xinit/.Xmodmap" ] && xmodmap "/etc/X11/xinit/.Xmodmap"
+[ -s "${xinitd}/.Xmodmap" ] && xmodmap "${xinitd}/.Xmodmap"
 [ -s "${HOME}/.Xmodmap" ] && xmodmap "${HOME}/.Xmodmap"
+unset xinitd
 
-# ##------------------------------------##
-# #|		X11 Autostart		|#
-# ##------------------------------------##
-[ -d "/etc/X11/xinit/xinitrc.d" ] && \
-	find "/etc/X11/xinit/xinitrc.d" -type f -name "*.sh" | xargs -I {} soruce "{}"
+# ##----------------------------------------------------##
+# #|		            X11 Autostart		            |#
+# ##----------------------------------------------------##
+xinitrcd="/etc/X11/xinit/xnitrc.d"
+[ -d "${xinitrcd}" ] && find "${xinitrcd}" -type f -name "*.sh" -print0 | xargs --null -I {} source "{}"
+unset xinitrcd
 
-# ##------------------------------------##
-# #|		X11 Session		|#
-# ##------------------------------------##
+# ##----------------------------------------------------##
+# #|		            X11 Session		                |#
+# ##----------------------------------------------------##
 SESSION=${1:-xfce}
 get_session(){
 	local dbus_args
@@ -53,11 +56,29 @@ get_session(){
 	esac
 
 	# Return Session
-	echo "dbus-launch ${dbus_args[*]}"
+	dbus-launch "${dbus_args[*]}"
 }
 
-exec "$(get_session)"
+#exec "$(get_session)"
+get_session
 
 # ##----------------------------------------------------##
-# #| 			Auto Start 			|#
+# #| 			        Auto Start 			            |#
 # ##----------------------------------------------------##
+if [[ "${SESSION,,}" =~ xfce ]]; then 
+    # Set Wallpaper & Theme
+    #~/.fehbg &
+    #~/.config/wpg/wp_init.sh
+    hsetroot -solid "#000000" &
+    nitrogen --restore &
+    "${HOME}/scripts/compton-launch.sh" &
+    "${HOME}/scripts/polybar/launchpb.sh" &
+    "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1" &
+    unclutter --jitter 50 &
+    xautolock -time 60 -detectsleep -locker "${HOME}/scripts/tools/lockSession.sh" &
+    dunst &
+fi
+
+# KDE Connect
+kdeconnectd &
+kdeconnect-indicator &
