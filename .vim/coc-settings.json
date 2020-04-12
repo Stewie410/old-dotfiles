@@ -1,0 +1,23 @@
+{
+	// Langservers
+	"languageserver": {
+		// Bash
+		"bash": {
+			"command": "bash-language-server",
+			"args": ["start"],
+			"filetypes": ["sh"],
+			"ignoredRootPaths": ["~"]
+		},
+		//C/C++/Objective-C
+		"ccls": {
+			"command": "ccls",
+			"filetypes": ["c", "cpp", "objc", "objcpp"],
+			"rootPatterns": [".ccls", "compile_commands.json", ".vim/", ".git/", ".hg/"],
+			"initializationOptions": {
+				"cache": {
+					"directory": "/tmp/ccls"
+				}
+			}
+		}
+	}
+}
