@@ -344,40 +344,20 @@ mode "$mode_quiet" {
 # ##----------------------------------------------------##
 # #| 			            Autostart 		        	|#
 # ##----------------------------------------------------##
-# Set Wallpaper with feh
 #exec_always --no-startup-id source ~/.fehbg
-
-# Set Wallpaper and/or theme
-#exec --no-startup-id hsetroot -solid #000000
-#exec --no-startup-id nitrogen --restore
 #exec_always --no-startup-id ~/.config/wpg/wp_init.sh
-
-# Compton
-#exec_always --no-startup-id ~/scripts/tools/compton-launch.sh
-#exec --no-startup-id compton
-
-# unclutter
-#exec_always --no-startup-id unclutter --jitter 50 &
-
-# Polybar
-#exec_always --no-startup-id ~/scripts/polybar/launchpb.sh
+exec --no-startup-id hsetroot -solid #000000
+exec --no-startup-id nitrogen --restore
+exec_always --no-startup-id ~/scripts/tools/compton-launch.sh
+exec_always --no-startup-id unclutter --jitter 50 &
+exec_always --no-startup-id ~/scripts/polybar/launchpb.sh
 #exec_always --no-startup-id ~/scripts/i3-quiet/quiet-toggle-bar.py --kill
-
-# Authentication Policy Kit
-#exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-
-# Automatic Session Lock
-#exec --no-startup-id xautolock -time 60 -detectsleep -locker $locker
-
-# Desktop Notifications
-#exec --no-startup-id dunst
-
-# Multimedia
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id xautolock -time 60 -detectsleep -locker $locker
+exec --no-startup-id dunst
 #exec --no-startup-id mpd
-
-# KDE Conenct
-#exec --no-startup-id kdeconnectd
-#exec --no-startup-id kdeconnect-indicator
+exec --no-startup-id kdeconnectd
+exec --no-startup-id kdeconnect-indicator
 
 # ##----------------------------------------------------##
 # #| 			        i3Status Bar 			        |#

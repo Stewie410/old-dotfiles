@@ -65,20 +65,20 @@ get_session
 # ##----------------------------------------------------##
 # #| 			        Auto Start 			            |#
 # ##----------------------------------------------------##
-if [[ "${SESSION,,}" =~ xfce ]]; then 
-    # Set Wallpaper & Theme
-    #~/.fehbg &
-    #~/.config/wpg/wp_init.sh
-    hsetroot -solid "#000000" &
-    nitrogen --restore &
-    "${HOME}/scripts/compton-launch.sh" &
-    "${HOME}/scripts/polybar/launchpb.sh" &
-    "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1" &
-    unclutter --jitter 50 &
-    xautolock -time 60 -detectsleep -locker "${HOME}/scripts/tools/lockSession.sh" &
-    dunst &
-fi
-
-# KDE Connect
-kdeconnectd &
-kdeconnect-indicator &
+#if ! [[ "${SESSION,,}" =~ xfce ]]; then 
+#    # Set Wallpaper & Theme
+#    #~/.fehbg &
+#    #~/.config/wpg/wp_init.sh
+#    hsetroot -solid "#000000" &
+#    nitrogen --restore &
+#    "${HOME}/scripts/compton-launch.sh" &
+#    "${HOME}/scripts/polybar/launchpb.sh" &
+#    "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1" &
+#    unclutter --jitter 50 &
+#    xautolock -time 60 -detectsleep -locker "${HOME}/scripts/tools/lockSession.sh" &
+#    dunst &
+#fi
+#
+## KDE Connect
+#kdeconnectd &
+#kdeconnect-indicator &
