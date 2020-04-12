@@ -2,13 +2,13 @@
 #
 # bash_aliases
 # Author:	Alex Paarfus <stewie410@gmail.com>
-# Date:		2020-04-11
+# Date:		2020-04-12
 #
 # Handy Aliases
 
-# ##------------------------------------##
-# #|		Filesystem		|#
-# ##------------------------------------##
+# ##----------------------------------------------------##
+# #|		                Filesystem		            |#
+# ##----------------------------------------------------##
 # ls
 alias l='ls'
 alias ls='ls --group-directories-first --color=auto --classify'
@@ -42,9 +42,9 @@ alias cp="cp --interactive"
 # Confirm before removing file
 alias rm="rm --interactive"
 
-# ##----------------------------##
-# #|		Tools		|#
-# ##----------------------------##
+# ##----------------------------------------------------##
+# #|		                Tools		                |#
+# ##----------------------------------------------------##
 # Common tools
 alias cprop='xprop | grep --ignore-case "class"'
 
@@ -55,7 +55,7 @@ alias lr='sudo $(history -p \!\!)'
 
 # "Pretty" tools
 alias nf='clear && neofetch'
-alias nfi='neofetch --w3m --source $(cat ${HOME}/.cache/wal/wal)'
+alias nfi='clear && neofetch --w3m --source "$(grep "file" "${HOME}/.config/nitrogen/bg-saved.cfg" | cut --fields="2-" --delimiter="=")"'
 
 # Oneshot Curl Utils
 alias ipinfo='curl --silent --fail ipinfo.io/json'
@@ -75,16 +75,17 @@ alias rclcopy='rclone copy'
 # Termbin
 #alias tb='nc termbin.com 9999'
 
-# ##----------------------------##
-# #|		Scripts		|#
-# ##----------------------------##
+# ##----------------------------------------------------##
+# #|		                Scripts		                |#
+# ##----------------------------------------------------##
 alias rst='${HOME}/scripts/tools/redshift-toggle.sh'
 alias ttc='${HOME}/scripts/tools/ttc_toggle.sh --state 1'
 alias gds='${HOME}/scripts/cron/gdsync.sh'
 
-# ##----------------------------##
-# #|		Git		|#
-# ##----------------------------##
+# ##----------------------------------------------------##
+# #|		                Git		                    |#
+# ##----------------------------------------------------##
+# Regular git
 alias git='git --no-pager'
 alias ga='git add'
 alias gb='git branch --all --color'
@@ -99,9 +100,7 @@ alias gmv='git mv'
 alias gps='git push'
 alias grm='git rm'
 
-# ##------------------------------------##
-# #|		Git Bare		|#
-# ##------------------------------------##
+# Git Bare -- Dotfiles
 alias gdf='git --git-dir=${HOME}/dotfiles --work-tree=$HOME'
 alias gdfa='gdf add'
 alias gdfc='gdf commit'
@@ -113,9 +112,9 @@ alias gdfps='gdf push'
 alias gdfpl='gdf pull'
 alias gdfrm='gdf rm -r --cache'
 
-# ##----------------------------##
-# #|		chmod		|#
-# ##----------------------------##
+# ##----------------------------------------------------##
+# #|		                chmod		                |#
+# ##----------------------------------------------------##
 alias 000='chmod 000'
 alias 600='chmod 600'
 alias 644='chmod 644'
@@ -123,9 +122,9 @@ alias 700='chmod 700'
 alias 750='chmod 750'
 alias 755='chmod 755'
 
-# ##--------------------------------------------##
-# #|		Package Management		|#
-# ##--------------------------------------------##
+# ##----------------------------------------------------##
+# #|		            Package Management		        |#
+# ##----------------------------------------------------##
 # pacman
 alias pacman='sudo pacman'
 alias psyu='pacman -Syu'
