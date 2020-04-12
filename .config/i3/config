@@ -1,88 +1,105 @@
 # i3-gaps Configuration
-# Author:	Alex Paarfus <stewie410@me.com>
-# Date:		2020-04-11
+# Author:   Alex Paarfus <stewie410@me.com>
+# Date:     2020-04-11
 #
 # i3-gaps configuration
 
 # ##----------------------------------------------------##
-# #| 			Variables 			|#
+# #|                        Variables                   |#
 # ##----------------------------------------------------##
 # Modifiers
-set $mod 				Mod1
-set $sup 				Mod4
+set $mod                Mod1
+set $sup                Mod4
 
 # Workspaces
-set $ws1				1
-set $ws2				2
-set $ws3				3
-set $ws4				4
-set $ws5				5
-set $ws6				6
-set $ws7				7
-set $ws8				8
-set $ws9				9
-set $ws10				10
+set $ws1                1
+set $ws2                2
+set $ws3                3
+set $ws4                4
+set $ws5                5
+set $ws6                6
+set $ws7                7
+set $ws8                8
+set $ws9                9
+set $ws10               10
 
 # Applications
-set $term				urxvt
-set $browser				firefox
-set $tbrowser				elinks
-set $gmail				thunderbird
-set $tmail				mutt
-set $scrot				source ~/scripts/tools/autoscrot.sh
-#set $locker				i3lock-fancy -- scrot
-set $locker				source ~/scripts/tools/lockSession.sh
-set $launch				source ~/scripts/tools/dmenu_run-xres.sh
-set $pactl				source ~/scripts/tools/pactl.sh
+set $term               urxvt
+set $browser            firefox
+set $tbrowser           elinks
+set $gmail              thunderbird
+set $tmail              mutt
+set $scrot              ~/scripts/tools/autoscrot.sh
+#set $locker            i3lock-fancy -- scrot
+set $locker             ~/scripts/tools/lockSession.sh
+set $launch             ~/scripts/tools/dmenu_run-xres.sh
+set $pactl              ~/scripts/tools/pactl.sh
 
 # Gaps
-set $igap				4
-set $ogap				0
-set $chgap				5
+set $igap               4
+set $ogap               0
+set $chgap              5
 
 # Colorscheme
-set_from_resource $dblack		color0	#000000
-set_from_resource $black		color8	#000000
-set_from_resource $dred			color1	#000000
-set_from_resource $red			color9	#000000
-set_from_resource $dgreen		color2	#000000
-set_from_resource $green		color10	#000000
-set_from_resource $dyellow		color3	#000000
-set_from_resource $yellow		color11	#000000
-set_from_resource $dblue		color4	#000000
-set_from_resource $blue			color12	#000000
-set_from_resource $dmagenta		color5	#000000
-set_from_resource $magenta		color13	#000000
-set_from_resource $dcyan		color6	#000000
-set_from_resource $cyan			color14	#000000
-set_from_resource $dwhite		color7	#000000
-set_from_resource $white		color15	#000000
-set $transparent			#00000000
+set_from_resource $dblack       *.color0	#000000
+set_from_resource $black		*.color8	#000000
+set_from_resource $dred			*.color1	#000000
+set_from_resource $red			*.color9	#000000
+set_from_resource $dgreen		*.color2	#000000
+set_from_resource $green		*.color10	#000000
+set_from_resource $dyellow		*.color3	#000000
+set_from_resource $yellow		*.color11	#000000
+set_from_resource $dblue		*.color4	#000000
+set_from_resource $blue			*.color12	#000000
+set_from_resource $dmagenta		*.color5	#000000
+set_from_resource $magenta		*.color13	#000000
+set_from_resource $dcyan		*.color6	#000000
+set_from_resource $cyan			*.color14	#000000
+set_from_resource $dwhite		*.color7	#000000
+set_from_resource $white		*.color15	#000000
+
+set_from_resource $black        i3wm.color0     #292d3e
+set_from_resource $dgray        i3wm.color8     #434758
+set_from_resource $dred         i3wm.color1     #f07178
+set_from_resource $red          i3wm.color9     #ff8b92
+set_from_resource $dgreen       i3wm.color2     #c3e88d
+set_from_resource $green        i3wm.color10    #ddffa7
+set_from_resource $dyellow      i3wm.color3     #ffcb6b
+set_from_resource $yellow       i3wm.color11    #ffe585
+set_from_resource $dblue        i3wm.color4     #82aaff
+set_from_resource $blue         i3wm.color12    #9cc4ff
+set_from_resource $dmagenta     i3wm.color5     #c792ea
+set_from_resource $magenta      i3wm.color13    #e1acff
+set_from_resource $dcyan        i3wm.color6     #89ddff
+set_from_resource $cyan         i3wm.color14    #a3f7ff
+set_from_resource $gray         i3wm.color7     #d0d0d0
+set_from_resource $white        i3wm.color15    #ffffff
+set $trans	        		                    #00000000
 
 # Modes
-set $mode_gaps				Gaps: (o)uter, (i)nner
+set $mode_gaps				    Gaps: (o)uter, (i)nner
 set $mode_gaps_outer			Outer: [jkd0] (local), Shift+[jkd0] (all)
 set $mode_gaps_inner			Inner: [jkd0] (local), Shift+[jkd0] (all)
-#set $mode_session			Session: (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+S)hutdown
-set $mode_session			Session: (l)ock, (e)xit, (s)uspend, (h)ibernate, (r)eboot, (Shift+S)hutdown
-set $mode_resize			Resize
-set $mode_quiet 			Quiet
+#set $mode_session			    Session: (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+S)hutdown
+set $mode_session			    Session: (l)ock, (e)xit, (s)uspend, (h)ibernate, (r)eboot, (Shift+S)hutdown
+set $mode_resize			    Resize
+set $mode_quiet 			    Quiet
 
 # ##----------------------------------------------------##
-# #| 			Settings 			|#
+# #| 			            Settings 			        |#
 # ##----------------------------------------------------##
 # Font
 font 					pango:monospace 8
 
 # Floating Keybind
-floating_modifier 			$mod
+floating_modifier 		$mod
 
 # Focus
-focus_follows_mouse 			no
+focus_follows_mouse 	no
 
 # Borders
 new_window				1pixel
-hide_edge_borders			smart
+hide_edge_borders		smart
 
 # Gaps
 gaps inner				$igap
@@ -90,33 +107,32 @@ gaps outer				$ogap
 smart_gaps				on
 
 # ##----------------------------------------------------##
-# #| 			Colorscheme 			|#
+# #| 			        Colorscheme 		        	|#
 # ##----------------------------------------------------##
-#			| Border	| Background	| Text		| Indicator	| Child_Border
-# ----------------------|---------------|---------------|---------------|---------------|-------------
-client.focused		$black		$black		$white		$black		$black
-client.unfocused	$transparent	$transparent	$dwhite		$transparent	$dblack
-client.focused_inactive	$transparent	$transparent	$dwhite		$transparent	$dblack
-client.urgent		$red		$red		$black		$dred		$dred
-client.background	$black
+#			            Border	BG	    FG		Indic.	Child Border
+client.focused          $cyan   $black  $white  $black  $cyan
+client.unfocused        $trans  $trans  $gray   $trans  $trans
+client.focused_inactive $trans  $trans  $gray   $trans  $trans
+client.urgent           $red    $red    $black  $dred   $red
+client.background       $black
 
 # ##----------------------------------------------------##
-# #| 			Always Float 			|#
+# #| 			            Always Float 			    |#
 # ##----------------------------------------------------##
 for_window [class="Gufw.py"]		floating enable;
-for_window [class="Clamtk"]		floating enable;
+for_window [class="Clamtk"]		    floating enable;
 for_window [class="Keepassx2"]		floating enable;
 for_window [class="Pamac-manager"]	floating enable;
-for_window [class="Wpg"]		floating enable;
+for_window [class="Wpg"]		    floating enable;
 for_window [class="flameshot"]		floating enable;
 
 # ##----------------------------------------------------##
-# #| 			Window Border 			|#
+# #| 			        Window Border 	        		|#
 # ##----------------------------------------------------##
-for_window [class=^.*]			border pixel 1;
+for_window [class=^.*]			    border pixel 1;
 
 # ##----------------------------------------------------##
-# #| 		Windows to Specific Workspaces 		|#
+# #| 		    Windows to Specific Workspaces 		    |#
 # ##----------------------------------------------------##
 # 2 -- Full-Fat Web Browsers
 for_window [class="firefox"]		move to workspace 2
@@ -126,7 +142,7 @@ for_window [class="code-oss"]		move to workspace 5
 
 # 6 -- Security
 for_window [class="Keepassx2"]		move to workspace 6
-for_window [class="Clamtk"]		move to workspace 6
+for_window [class="Clamtk"]		    move to workspace 6
 for_window [class="Gufw.py"]		move to workspace 6
 
 # 7 -- Communication
@@ -142,13 +158,13 @@ for_window [class="Thunderbird"]	move to workspace 8
 for_window [class="Spotify"]		move to workspace 10
 
 # ##----------------------------------------------------##
-# #| 			Keybinds 			|#
+# #| 			            Keybinds 			        |#
 # ##----------------------------------------------------##
 # Move Focus
-bindsym $mod+h				focus left
-bindsym $mod+j				focus down
-bindsym $mod+k				focus up
-bindsym $mod+l				focus right
+bindsym $mod+h				    focus left
+bindsym $mod+j				    focus down
+bindsym $mod+k				    focus up
+bindsym $mod+l				    focus right
 
 # Move Window in Workspace
 bindsym $mod+Shift+h			move left
@@ -158,32 +174,32 @@ bindsym $mod+Shift+l			move right
 
 # Splitting
 bindsym $mod+backslash			split v
-bindsym $mod+Shift+backslash		split h
+bindsym $mod+Shift+backslash	split h
 
 # Fullscreen
-bindsym $mod+F11			fullscreen toggle
+bindsym $mod+F11			    fullscreen toggle
 
 # Layouts
-#bindsym $mod+s				layout stacking
-#bindsym $mod+t				layout tabbed
-#bindsym $mod+n				layout split
+#bindsym $mod+s				    layout stacking
+#bindsym $mod+t				    layout tabbed
+#bindsym $mod+n				    layout split
 
 # Floating
-bindsym $mod+space			focus mode_toggle
+bindsym $mod+space			    focus mode_toggle
 bindsym $mod+Shift+space		floating toggle
 
 # Display Workspace
-bindsym $mod+1				workspace 1
-bindsym $mod+2				workspace 2
-bindsym $mod+3				workspace 3
-bindsym $mod+4				workspace 4
-bindsym $mod+5				workspace 5
-bindsym $mod+6				workspace 6
-bindsym $mod+7				workspace 7
-bindsym $mod+8				workspace 8
-bindsym $mod+9				workspace 9
-bindsym $mod+0				workspace 10
-bindsym $mod+Tab			workspace back_and_forth
+bindsym $mod+1				    workspace 1
+bindsym $mod+2				    workspace 2
+bindsym $mod+3				    workspace 3
+bindsym $mod+4				    workspace 4
+bindsym $mod+5				    workspace 5
+bindsym $mod+6				    workspace 6
+bindsym $mod+7				    workspace 7
+bindsym $mod+8				    workspace 8
+bindsym $mod+9				    workspace 9
+bindsym $mod+0				    workspace 10
+bindsym $mod+Tab			    workspace back_and_forth
 
 # i3-quiet Mode
 #bindsym $sup+q 				exec ~/scripts/i3-quiet/quiet-cmd.py switch
@@ -201,7 +217,7 @@ bindsym $mod+Shift+9			move container to workspace 9
 bindsym $mod+Shift+0			move container to workspace 10 
 
 # Scratchpad
-bindsym $sup+Return			scratchpad show
+bindsym $sup+Return			    scratchpad show
 bindsym $sup+Shift+Return		move scratchpad
 
 # Kill focused window
@@ -211,33 +227,33 @@ bindsym $mod+Shift+q			kill
 bindsym $mod+Shift+r			restart
 
 # Launch Terminal
-bindsym $mod+d				exec $launch
-bindsym $mod+Return			exec $term
+bindsym $mod+d				    exec $launch
+bindsym $mod+Return			    exec $term
 bindsym $mod+Shift+Return		exec $term -e tmux
 
 # Launch web browser
-bindsym $mod+F2				exec $browser
+bindsym $mod+F2				    exec $browser
 
 # Launch File Manager
-bindsym $mod+F3				exec $term -e ranger ~/
+bindsym $mod+F3				    exec $term -e ranger ~/
 
 # Launch Email Client
-bindsym $mod+F8				exec $gmail
+bindsym $mod+F8				    exec $gmail
 
 # Take Screenshot
 bindsym $mod+Shift+s			exec $scrot
 
 # Media Keys
 bindsym XF86AudioMute 			exec pamixer --toggle-mute
-bindsym XF86AudioLowerVolume 		exec pamixer --decrease 1
-bindsym XF86AudioRaiseVolume 		exec pamixer --increase 1
+bindsym XF86AudioLowerVolume	exec pamixer --decrease 1
+bindsym XF86AudioRaiseVolume 	exec pamixer --increase 1
 bindsym XF86AudioPrev			exec playerctl previous
 bindsym XF86AudioPlay			exec playerctl play-pause
 bindsym XF86AudioNext			exec playerctl next
 
 # Brightness Control
-bindsym XF86MonBrightnessDown 		exec ~/scripts/tools/xbrightness.sh --decrease 5
-bindsym XF86MonBrightnessUp 		exec ~/scripts/tools/xbrightness.sh --increase 5
+bindsym XF86MonBrightnessDown 	exec ~/scripts/tools/xbrightness.sh --decrease 5
+bindsym XF86MonBrightnessUp 	exec ~/scripts/tools/xbrightness.sh --increase 5
 
 # Unused FN keys
 #bindsym XF86Search			
@@ -260,9 +276,9 @@ mode "$mode_session" {
 	bindsym e 			mode "default", exec i3-msg exit
 	bindsym h			mode "default", exec exec --no-startup-id systemctl hibernate
 	bindsym r 			mode "default", exec --no-startup-id reboot
-	bindsym Shift+s 		mode "default", exec --no-startup-id poweroff
-	bindsym Return			mode "default"
-	bindsym Escape			mode "default"
+	bindsym Shift+s 	mode "default", exec --no-startup-id poweroff
+	bindsym Return		mode "default"
+	bindsym Escape		mode "default"
 }
 
 # Resize
@@ -271,20 +287,20 @@ mode "$mode_resize" {
 	bindsym j			resize grow height 4px or 4 ppt
 	bindsym k			resize shrink height 4px or 4 ppt
 	bindsym l			resize grow width 4px or 4 ppt
-	bindsym Shift+h			resize shrink width 8px or 8 ppt
-	bindsym Shift+j			resize grow height 8px or 8 ppt
-	bindsym Shift+k			resize shrink height 8px or 8 ppt
-	bindsym Shift+l			resize grow width 8px or 8 ppt
-	bindsym Return			mode "default"
-	bindsym Escape			mode "default"
+	bindsym Shift+h		resize shrink width 8px or 8 ppt
+	bindsym Shift+j		resize grow height 8px or 8 ppt
+	bindsym Shift+k		resize shrink height 8px or 8 ppt
+	bindsym Shift+l		resize grow width 8px or 8 ppt
+	bindsym Return		mode "default"
+	bindsym Escape		mode "default"
 }
 
 # Resize Gaps
 mode "$mode_gaps" {
 	bindsym o			mode "$mode_gaps_outer"
 	bindsym i			mode "$mode_gaps_inner"
-	bindsym Return			mode "default"
-	bindsym Escape			mode "default"
+	bindsym Return		mode "default"
+	bindsym Escape		mode "default"
 }
 
 # Resize Outer Gaps
@@ -293,12 +309,12 @@ mode "$mode_gaps_outer" {
 	bindsym k			gaps outer current plus 5
 	bindsym d			gaps outer current set $ogap
 	bindsym 0			gaps outer current set 0
-	bindsym Shift+j			gaps outer all minus 5
-	bindsym Shift+k			gaps outer all plus 5
-	bindsym Shift+d			gaps outer all set $ogap
-	bindsym Shift+0			gaps outer all set 0
-	bindsym Return			mode "default"
-	bindsym Escape			mode "default"
+	bindsym Shift+j		gaps outer all minus 5
+	bindsym Shift+k		gaps outer all plus 5
+	bindsym Shift+d		gaps outer all set $ogap
+	bindsym Shift+0		gaps outer all set 0
+	bindsym Return		mode "default"
+	bindsym Escape		mode "default"
 }
 
 # Resize Inner Gaps
@@ -307,12 +323,12 @@ mode "$mode_gaps_inner" {
 	bindsym k			gaps inner current plus 5
 	bindsym d			gaps inner current set $igap
 	bindsym 0			gaps inner current set 0
-	bindsym Shift+j			gaps inner all minus 5
-	bindsym Shift+k			gaps inner all plus 5
-	bindsym Shift+d			gaps inner all set $igap
-	bindsym Shift+0			gaps inner all set 0
-	bindsym Return			mode "default"
-	bindsym Escape			mode "default"
+	bindsym Shift+j		gaps inner all minus 5
+	bindsym Shift+k		gaps inner all plus 5
+	bindsym Shift+d		gaps inner all set $igap
+	bindsym Shift+0		gaps inner all set 0
+	bindsym Return		mode "default"
+	bindsym Escape		mode "default"
 }
 
 # i3-quiet
@@ -321,12 +337,12 @@ mode "$mode_quiet" {
 	bindsym s 			exec ~/scripts/i3-quiet/quiet-cmd.py resize small
 	bindsym m 			exec ~/scripts/i3-quiet/quiet-cmd.py resize medium
 	bindsym l 			exec ~/scripts/i3-quiet/quiet-cmd.py resize largs
-	bindsym Esacpe 			mode "default"
-	bindsym Return 			mode "default"
+	bindsym Esacpe 		mode "default"
+	bindsym Return 		mode "default"
 } 
 
 # ##----------------------------------------------------##
-# #| 			Autostart 			|#
+# #| 			            Autostart 		        	|#
 # ##----------------------------------------------------##
 # Set Wallpaper with feh
 #exec_always --no-startup-id source ~/.fehbg
@@ -365,7 +381,7 @@ exec --no-startup-id kdeconnectd
 exec --no-startup-id kdeconnect-indicator
 
 # ##----------------------------------------------------##
-# #| 			i3Status Bar 			|#
+# #| 			        i3Status Bar 			        |#
 # ##----------------------------------------------------##
 # i3Status (default)
 #bar {
@@ -373,7 +389,7 @@ exec --no-startup-id kdeconnect-indicator
 #}
 
 # ##----------------------------------------------------##
-# #| 			i3Blocks Bar 			|#
+# #| 			        i3Blocks Bar 	        		|#
 # ##----------------------------------------------------##
 #bar {
 #	font	pango:mono 10
