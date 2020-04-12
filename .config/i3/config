@@ -347,11 +347,10 @@ mode "$mode_quiet" {
 # Set Wallpaper with feh
 #exec_always --no-startup-id source ~/.fehbg
 
-# Set Wallpaper as solid color
+# Set Wallpaper and/or theme
 exec --no-startup-id hsetroot -solid #000000
-
-# Set Wallpaper & Theme with wpg
-exec_always --no-startup-id ~/.config/wpg/wp_init.sh
+exec --no-startup-id nitrogen --restore
+#exec_always --no-startup-id ~/.config/wpg/wp_init.sh
 
 # Compton
 exec_always --no-startup-id ~/scripts/tools/compton-launch.sh
