@@ -1,6 +1,5 @@
 # i3-gaps Configuration
 # Author:   Alex Paarfus <stewie410@me.com>
-# Date:     2020-04-11
 #
 # i3-gaps configuration
 
@@ -38,7 +37,7 @@ set $pactl              ~/scripts/tools/pactl.sh
 # Gaps
 set $igap               4
 set $ogap               0
-set $chgap              5
+set $chgap              4
 
 # Colorscheme
 set_from_resource $dblack       *.color0	#000000
@@ -214,7 +213,7 @@ bindsym $mod+Shift+6			move container to workspace 6
 bindsym $mod+Shift+7			move container to workspace 7
 bindsym $mod+Shift+8			move container to workspace 8
 bindsym $mod+Shift+9			move container to workspace 9
-bindsym $mod+Shift+0			move container to workspace 10 
+bindsym $mod+Shift+0			move container to workspace 10
 
 # Scratchpad
 bindsym $sup+Return			    scratchpad show
@@ -256,8 +255,8 @@ bindsym XF86MonBrightnessDown 	exec ~/scripts/tools/xbrightness.sh --decrease 5
 bindsym XF86MonBrightnessUp 	exec ~/scripts/tools/xbrightness.sh --increase 5
 
 # Unused FN keys
-#bindsym XF86Search			
-#bindsym XF86RFKill			
+#bindsym XF86Search
+#bindsym XF86RFKill
 
 # Mode Selection
 bindsym $sup+Shift+r			mode "$mode_resize"
@@ -339,7 +338,7 @@ mode "$mode_quiet" {
 	bindsym l 			exec ~/scripts/i3-quiet/quiet-cmd.py resize largs
 	bindsym Esacpe 		mode "default"
 	bindsym Return 		mode "default"
-} 
+}
 
 # ##----------------------------------------------------##
 # #| 			            Autostart 		        	|#
