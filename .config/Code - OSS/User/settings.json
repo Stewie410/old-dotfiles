@@ -1,0 +1,151 @@
+{
+    // Theme
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorTheme": "Dracula",
+
+    // Editor
+    "editor.fontFamily": "'Fira Code Light', 'Hasklig', 'DejaVu Sans Mono', 'Droid Sans Mono', 'Droid Sans Fallback', 'monospace'",
+    "editor.fontLigatures": true,
+    "terminal.integrated.fontSize": 12,
+    "editor.fontSize": 13,
+    "editor.formatOnSave": true,
+    "editor.insertSpaces": false,
+
+    // Zoom
+    "window.zoomLevel": 0,
+
+    // Intellicode
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+
+    // Updates
+    "update.showReleaseNotes": false,
+
+    // Prettier
+    "prettier.useTabs": true,
+    "prettier.printWidth": 120,
+    "prettier.tabWidth": 4,
+    "prettier.jsxSingleQuote": false,
+    "prettier.trailingComma": "none",
+    "prettier.bracketSpacing": false,
+    "prettier.bracesSpacing": false,
+    "prettier.arrowParens": true,
+    "prettier.arrayExpand": true,
+    "prettier.spaceBeforeFunctionParen": false,
+    "prettier.semi": true,
+    "prettier.jsonEnable": [
+        "json"
+    ],
+    "prettier.javascriptEnable": [
+        "javascript",
+        "javascriptreact"
+    ],
+    "prettier.typescriptEnable": [
+        "typescript",
+        "typescriptreact"
+    ],
+    "prettier.cssEnable": [
+        "css",
+        "less",
+        "scss",
+        "postcss"
+    ],
+    
+    // LaTeX
+    "latex-workshop.view.pdf.viewer": "external",
+    "latex-workshop.latex.recipes":[
+        {
+            "name": "latexmk 🔃",
+            "tools": [
+                "latexmk"
+            ]
+        },
+        {
+            "name": "latexmk (latexmkrc)",
+            "tools": [
+                "latexmk_rconly"
+            ]
+        },
+        {
+            "name": "latexmk (lualatex)",
+            "tools": [
+                "lualatexmk"
+            ]
+        },
+        {
+            "name": "pdflatex ➞ bibtex ➞ pdflatex × 2",
+            "tools": [
+                "pdflatex",
+                "bibtex",
+                "pdflatex",
+                "pdflatex"
+            ]
+        },
+        {
+            "name": "xelatex -> biber -> makeglossaries -> xelatex",
+            "tools": [
+                "xelatex",
+                "biber",
+                "makeglossaries",
+                "xelatex"
+            ]
+        },
+        {
+            "name": "pdflatex -> bibtex -> pdflatex -> pdflatex",
+            "tools": [
+                "pdflatex",
+                "bibtex",
+                "pdflatex",
+                "pdflatex"
+            ]
+        },
+        {
+            "name": "Compile Rnw files",
+            "tools": [
+                "rnw2pdf"
+            ]
+        }
+    ],
+    "latex-workshop.latex.tools": [
+        {
+            "name": "latexmk",
+            "command": "latexmk",
+            "args": [
+                "-xelatex",
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOCFILE%"
+            ]
+        },
+        {
+            "name": "xelatex",
+            "command": "xelatex",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "%DOCFILE%"
+            ]
+        },
+        {
+            "name": "biber",
+            "command": "bibber",
+            "args": [
+                "%DOCFILE%"
+            ]
+        }
+    ],
+    "latex-workshop.latex.autoBuild.run": "never",
+    "latext-workshop.bibtex-format.tab": "tab",
+
+    // Git
+    "git.path": "/usr/bin/git",
+    
+    // Python
+    "python.insidersChannel": "weekly",
+    "python.jediEnabled": false,
+
+    // Vue & Vetur
+    "vetur.format.options.useTabs": true,
+    
+}
