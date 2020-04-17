@@ -1,12 +1,18 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # Author:	Alex Paarfus <stewie410@gmail.com>
-# Date:		2020-04-20
 #
-# Displays the current state of the battery for i3Blocks
+# Displays the current state & capacity of all batteries (multi-line)
 
-# Get Status
-cat "/sys/class/power_supply/"{status,capacity} | \
-	xargs | \
-	sed 's/,//g;s/discharging//I;s/charging//I;s/not charging/X/I;s/unknown/?/I;s/ 0*/ /g;s/ :/ /g' | \
-	awk '$2 < 25 { $1 = " " $1} END { print $1,$2% "%"}'
+# Ensure vars are always unset
+trap "unset d c s" EXIT
+
+# Iterate over device files
+find "/sys/class/power_supply" -mindepth 1 -maxdepth 1 -wholename "*BAT*" -exec readlink --canonicalize {} \; | while read -r d; do
+    # Get Capacity & Status
+    c="$(cat "${d}/capacity")"
+    s="$(sed 's/discharging//I;s/not charging/X/I;s/charging//I;s/unknown/?/I;s/full//I' "${d}/status")"
+
+    # Display Status
+	printf '%s\n' "${s} ${c}" | awk '$2 < 15 { $1 = " " $1} END { print $1,$2 "%"}'
+done
