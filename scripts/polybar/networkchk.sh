@@ -2,23 +2,50 @@
 #
 # networkchk.sh
 # Author: 	Alex Paarfus <stewie410@gmail.com>
-# Date: 	2020-04-10
-# 
-# Check status of network connections: wifi, ethernet & bluetooth
+#
+# Retrieve network/radio status & control bluetooth
 
-# Clear Memory
+# Show Help
+show_help() {
+    cat << EOF
+Retrieve network/radio status & control bluetooth
+
+USAGE: networkchk.sh [options]
+
+Options:
+    -h, --help          Show this help message
+    -b, --bluetooth     Toggle bluetooth status, if available
+EOF
+}
+
+# Declare Variables
+declare string
 trap "unset string" EXIT
 
 # Handle Arguments
-[[ "${@}" =~ -(h|-help) ]] && { printf '%s\n' "networkchk.sh [-b|--bluetooth]"; exit; }
-[[ "${@}" =~ -(bt?|bluetooth) ]] && [ -s "/usr/lib/systemd/system/bluetooth.service" ] && \
-	{ systemctl is-active --quiet bluetooth && systemctl stop bluetooth || systemctl start bluetooth; exit; }
+if command -v getopt >/dev/null; then
+    OPTS="$(getopt --options hb --long-options help,bluetooth --name "networkchk.sh" -- "${@}")"
+    eval set -- "${OPTS}"
+    while true; do
+        case "${1}" in
+            -b | --bluetooth )
+                [ ! -s "/usr/lib/systemd/system/bluetooth.service" ] && exit 1
+                systemctl is-active --quiet bluetooth && { systemctl stop bluetooth; exit; }
+                systemctl start bluetooth
+                exit
+                ;;
+            * ) show_help; exit;;
+        esac
+    done
+fi
 
-# Get Status String
-declare string
-ip route |& sed --quiet '/^[0-9]/p' | grep --quiet --ignore-case "dev w" && string+=" "
-ip route |& sed --quiet '/^[0-9]/p' | grep --quiet --ignore-case "dev e" && string+=" "
-[ -s "/usr/lib/systemd/system/bluetooth.service" ] && systemctl --quiet is-active bluetooth && string+=" "
+# Get Status
+for i in $(ip route |& awk '/^[0-9]/ {print $3}'); do
+    [[ "${i,,}" =~ ^w ]] && { string+=" "; continue; }
+    [[ "${i,,}" =~ ^e ]] && { string+=" "; continue; }
+    [[ "${i,,}" =~ ^t ]] && { string+=" "; continue; }
+done
+[ -s "/usr/lib/systemd/system/bluetooth.service" ] && { systemctl --quiet is-active bluetooth && string+=" "; }
 
 # Print Status
-[ -n "${string}" ] && printf '%s\n' "${string:-1}"
+printf '%s\n' "${string:-1}"

@@ -1,12 +1,12 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # network
 # Author:	Alex Paarfus <stewie410@gmail.com>
-# Date:		2020-04-10
 #
-# Check for a network connection on both eth and wlp interfaces
+# Retrieve network & radio device status
 
-# Clear Memory
+# Declare variabels
+declare string
 trap "unset string" EXIT
 
 # Handle Mouse Events
@@ -15,10 +15,12 @@ case "${BLOCK_BUTTON}" in
 esac
 
 # Get Status
-declare string
-ip route |& sed --quiet '/^[0-9]/p' | grep --quiet --ignore-case "dev w" && string+=" "
-ip route |& sed --quiet '/^[0-9]/p' | grep --quiet --ignore-case "dev e" && string+=" "
-[ -s "/usr/lib/systemd/system/bluetooth.service" ] && systemctl --quiet is-active bluetooth && string+=" "
+for i in $(ip route |& awk '/^[0-9]/ {print $3}'); do
+    [[ "${i,,}" =~ ^w ]] && { string+=" "; continue; }
+    [[ "${i,,}" =~ ^e ]] && { string+=" "; continue; }
+    [[ "${i,,}" =~ ^t ]] && { string+=" "; continue; }
+done
+[ -s "/usr/lib/systemd/system/bluetooth.service" ] && { systemctl --quiet is-active bluetooth && string+=" "; }
 
 # Print Status
-[ -n "${string}" ] && printf '%s\n' "${string:-1}"
+printf '%s\n' "${string:-1}"
