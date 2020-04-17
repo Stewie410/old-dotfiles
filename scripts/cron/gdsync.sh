@@ -2,21 +2,16 @@
 #
 # gdsync.sh
 # Author:	Alex Paarfus <stewie410@gmail.com>
-# Date:		2020-04-10
 #
 # Synchronize Google Drive if out of date
 
-# Clear Memory
-trap "unset loc rem" EXIT
-
-# Return if offline
-ping -c 1 "8.8.8.8" |& grep --quiet --ignore "unreachable" && exit
-
-# Define remote & local repositories
+# Variables
 loc="${HOME}/GDrive"
 rem="GDrive"
+trap "unset loc rem" EXIT
 
-# Return if no changes
+# Perform sync if online && local is out of date
+ping -c 1 8.8.8.8 |& grep --quiet --ignore-case "unreachable" && exit
 rclone check "${rem}:" "${loc}/" |& grep --quiet " ERROR :" || exit
 
 # Sync Changes
