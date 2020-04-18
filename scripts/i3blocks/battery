@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 #
+# battery
 # Author:	Alex Paarfus <stewie410@gmail.com>
 #
 # Displays the current state & capacity of all batteries (multi-line)

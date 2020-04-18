@@ -1,11 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
+# volume
 # Author:	Alex Paarfus <stewie410@gmail.com>
-# Date:		2020-04-10
 #
-# Print current volume status
-# Requires:
-#	-pamixer
+# Get volume stat && control volume
 
 # Return if required commands not found
 command -v pamixer >/dev/null || exit 1
@@ -14,8 +12,6 @@ command -v pamixer >/dev/null || exit 1
 case "${BLOCK_BUTTON}" in
 	1 ) 	pamixer --toggle-mute;;
 	3 ) 	"${TERMINAL}" -e pulsemixer 2>/dev/null & disown; exit;;
-	4 ) 	pamixer --increase 1;;
-	5 ) 	pamixer --decrease 1;;
 esac
 
 # Get Status

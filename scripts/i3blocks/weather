@@ -1,9 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # weather
 # Author:	Alex Paarfus
-# Date:		2020-04-10
-# 
+#
 # Get the weather right now
 
 # Return if offline

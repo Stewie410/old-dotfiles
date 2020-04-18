@@ -135,6 +135,7 @@ for_window [class=^.*]			    border pixel 1;
 # ##----------------------------------------------------##
 # 2 -- Full-Fat Web Browsers
 for_window [class="firefox"]		move to workspace 2
+for_window [class="brave-browser" ] move to workspace 2
 
 # 5 -- Development
 for_window [class="code-oss"]		move to workspace 5
