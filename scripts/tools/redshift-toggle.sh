@@ -1,18 +1,17 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 #
 # redshift-toggle.sh
 # Author:	Alex Paarfus <stewie410@gmail.com>
-# Date:		2020-04-11
 #
 # Toggles Redshift
 # Usage:	redshift-toggle.sh [location]
 
 # Check requiered packages
-command -v redshift >/dev/null || { printf '%s\n' "Cannot find Redshift!"; exit 1; }
+command -v redshift >/dev/null || exit 1
 
 # Kill Redshift if running
-pgrep --exact "redshift" && { killall --quiet "redshift"; exit; }
+killall --quiet redshift
+while pidof redshift >/dev/null; do sleep 1; done
 
 # Start Redshift
-[ -n "${1}" ] && { redshift -l "${1}" & disown; exit; }
-redshift -l "geoclue2" & disown
+redshift -l "${1:-geoclue2}" & disown

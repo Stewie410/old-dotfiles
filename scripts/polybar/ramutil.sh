@@ -6,4 +6,6 @@
 # Report current ram utilization
 
 # Get used RAM percentage
-printf '%s\n' " $(free | awk '/^Mem/ {printf "%0.0f", $2/$3}')%"
+free | \
+    awk '/^Mem/ {printf "%0.0f\n", $2/$3}' | \
+    xargs -I {} printf '%s\n' " {}%"

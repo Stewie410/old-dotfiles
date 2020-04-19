@@ -2,7 +2,6 @@
 #
 # bash_aliases
 # Author:	Alex Paarfus <stewie410@gmail.com>
-# Date:		2020-04-12
 #
 # Handy Aliases
 
@@ -22,12 +21,12 @@ alias llaz='ls -l --almost-all --context'
 alias llahz='ls -l --almost-all --human-readable --context'
 
 # exa -- may replace ls eventually
-alias exa='exa --color=automatic --group-directories-first --classify'
-alias exaa='exa --all'
-alias exal='exa --long'
-alias exat='exa --tree'
-alias exala='exa --all --long'
-alias exata='exa --all --tree'
+alias lx='exa --color=automatic --group-directories-first --classify'
+alias lxa='exa --all'
+alias lxl='exa --long'
+alias lxt='exa --tree'
+alias lxla='exa --all --long'
+alias lxta='exa --all --tree'
 
 # dir
 alias dir='dir --color=auto'
@@ -74,6 +73,18 @@ alias rclcopy='rclone copy'
 
 # Termbin
 #alias tb='nc termbin.com 9999'
+
+# Suspend & Hibernate
+alias suspend='systemctl suspend'
+alias hibernate='systemctl hibernate'
+
+# ##----------------------------------------------------##
+# #|                        Session                     |#
+# ##----------------------------------------------------##
+alias suspend='systemctl suspend'
+alias hibernate='systemctl hibernate'
+alias lock_session="${HOME}/scripts/tools/lockSession.sh"
+alias session_exit='i3-msg exit'
 
 # ##----------------------------------------------------##
 # #|		                Scripts		                |#

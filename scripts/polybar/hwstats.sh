@@ -1,23 +1,38 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 #
 # hwstats.sh
 # Author:	Alex Paarfus <stewie410@gmail.com>
-# Date:		2020-04-10
 #
-# Reports Current:
-#	-Average CPU Temperature
-#	-CPU Frequency
-#	-RAM Utilization
-# Requires:
-#	-lm_sensors
-#	-cpupower
+# Reports various hardware stats
 
-# Return if commands missing
-command -v sensors >/dev/null || exit 1
-command -v cpupower >/dev/null || exit 1
+# Declare Variables
+declare str
+trap "unset str" EXIT
 
-# Get Stats
-{ sensors --no-adapter; cpupower frequency-info --freq --human; free; } | \
-	sed --quiet '/^Core\|Mem/p;/current/p' | \
-	awk '/^Core/ { CORE += 1; SUM += $3} /current/ {FREQ = $4$5} /^Mem/ {MEM = $2/$3}
-		END {printf "%s %0.0f%s | %s | %0.0f%%\n", "", SUM/CORE, "°C", FREQ, MEM}'
+# CPU Temperature
+if command -v sensors >/dev/null; then
+    str+=" "
+    str+="$(sensors --no-adapter | \
+        awk '/^Core/ {cnt += 1; sum += $3} END {printf "%0.0f\n", sum/cnt}')"
+    str+="°C | "
+fi
+
+# CPU Frequency
+if command -v cpupower >/dev/null; then
+    str+=" "
+    str+="$(cpupower frequency-info --freq --human | \
+        awk '/current/ {print $4$5}')"
+    str+=" | "
+fi
+
+# RAM Utilization
+str+=" $(free | \
+    awk '/^Mem/ {printf "%0.0f\n", $2/$3}')% | "
+
+# Disk Utilization
+#str+=" $(df --human-readable --local |& \
+#    sed '/^[^\/]/d;/boot/d' | \
+#    awk '{printf "%s %s ", $NF, $(NF-1)} END {print ""}') | "
+
+# Display Status
+printf '%b\n' "${str::-3}"

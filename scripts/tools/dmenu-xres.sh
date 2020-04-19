@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 #
 # dmenu-xres.sh
 # Author:	Alex Paarfus <stewie410@gmail.com>

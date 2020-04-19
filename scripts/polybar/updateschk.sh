@@ -8,19 +8,18 @@
 #	-yay
 # 	-checkupdates
 
-# Return if no network connection
+# Exit on error
 ping -c 1 "8.8.8.8" |& grep --quiet --ignore-case "unreachable" && exit 1
-
-# Return if required commands not present
 command -v checkupdates >/dev/null || exit 1
 command -v yay >/dev/null || exit 1
 
 # Print if pacman/yay currently running
-( pgrep -x pacman || pgrep -x yay) >/dev/null && { printf '%s\n' "Updating..."; exit; }
+( pidof pacman || pidof yay ) >/dev/null && exit
 
 # Print Available Updates
-{ checkupdates | cut --delimiter=" " --fields=1; yay --query --upgrades --foreign --aur --quiet; } | \
-	sort | \
-	uniq | \
-	wc --lines | \
+{ checkupdates | awk '{print $1}'; \
+    yay --query --upgrades --foreign --aur --quiet; } | \
+    sort | \
+    uniq | \
+    wc --lines | \
 	awk '$1 > 0 { print " " $1 }'

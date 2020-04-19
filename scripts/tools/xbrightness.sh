@@ -1,13 +1,9 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 #
 # xbrightness.sh
 # Author: 	Alex Paarfus <stewie410@gmail.com>
-# Date: 	2020-04-11
 #
 # Wrapper for brightnessctl
-# Requires:
-# 	-brightnessctl
-# 	-getopt
 
 # ##----------------------------##
 # #| 		Traps 		|#

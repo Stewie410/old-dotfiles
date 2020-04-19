@@ -2,30 +2,34 @@
 #
 # .bashrc
 # Author: 	Alex Paarfus <stewie410@gmail.com>
-# Date: 	2020-04-11
+#
+# Bash configuration
 
 # ##----------------------------------------------------##
-# #| 		Non-Interactive Shell 			|#
+# #| 		        Non-Interactive Shell 		    	|#
 # ##----------------------------------------------------##
 # Return on a non-interactive shell
 [[ $- == *i* ]] || return
 
 # ##----------------------------------------------------##
-# #| 		Additional Sources 			|#
+# #| 		        Additional Sources 			        |#
 # ##----------------------------------------------------##
 [ -s "${HOME}/.bash_aliases" ] && source "${HOME}/.bash_aliases"
 [ -s "${HOME}/.bash_functions" ] && source "${HOME}/.bash_functions"
 [ -s "${HOME}/.bash_bookmarks" ] && source "${HOME}/.bash_bookmarks"
 
 # ##----------------------------------------------------##
-# #| 			Variables 			|#
+# #| 			        Variables 			            |#
 # ##----------------------------------------------------##
 # Define Prompts
 #PS1='[\u@\h \W]\$ '
 PS1='\w $ '
 
 # Define Path
-PATH="${PATH}:/opt/wine-osu/bin:$(find "${HOME}/scripts" -mindepth 1 -type d | xargs | sed 's/ /:/g')"
+PATH="${PATH}:/opt/wine-osu/bin"
+PATH="${PATH}:$(find "${HOME}/scripts" -mindepth 1 -type d | \
+    { tr '\n' ":"; echo; } | \
+    sed 's/:$//')"
 
 # Define Applications
 EDITOR="$(command -v vim)"
@@ -40,10 +44,10 @@ SUDO_ASKPASS="${HOME}/scripts/tools/dmenupass"
 WINEPREFIX="${HOME}/.wine_osu"
 WINEARCH="win32"
 
-# vim as man pager
-#MANPAGER="$(command -v sh) -c \"col --no-backspaces | vim --not-a-term --cmd 'set ft=man ts=8 nomod nolist noma' -\""
-MANPAGER="less"
-
+# XDG
+XDG_CONFIG_HOME="${HOME}/.config"
+XDG_CACHE_HOME="${HOME}/.cache"
+XDG_DATA_HOME="${HOME}/.local/share"
 
 # History
 HISTCONTROL="ignoreboth"
@@ -51,53 +55,45 @@ HISTFILESIZE="1000000"
 HISTSIZE="1000000"
 
 # ##----------------------------------------------------##
-# #| 		Less & Man Colors 			|#
+# #| 		            Less & Man  			        |#
 # ##----------------------------------------------------##
-# Enable
-LESS="-R"
+# Pager to use for manpages
+MANPAGER="$(command -v less)"
 
-# Begin Bold/Blink; Reset Bold/Blink
+# Colors
+LESS="-R"
 LESS_TERMCAP_mb=$'\E[1;31m'
 LESS_TERMCAP_md=$'\E[1;36m'
 LESS_TERMCAP_me=$'\E[0m'
-
-# Begin/Reset Reverse Video
 LESS_TERMCAP_so=$'\E[1;44;33m'
 LESS_TERMCAP_se=$'\E[0m'
-
-# Begin/Reset Underline
 LESS_TERMCAP_us=$'\E[1;32m'
 LESS_TERMCAP_ue=$'\E[0m'
 
 # ##----------------------------------------------------##
-# #| 			Exports 			|#
+# #| 			        Exports 	    		        |#
 # ##----------------------------------------------------##
 export PS1
 export PATH
 export EDITOR TERMINAL BROWSER READER FILE_MANAGER MAIL_CLIENT SUDO_ASKPASS
 export WINEPREFIX WINEARCH
 export MANPAGER
+export XDG_CONFIG_HOME XDG_CACHE_HOME XDG_DATA_HOME
 export HISTCONTROL HISTFILESIZE HISTSIZE
 export LESS LESS_TERMCAP_mb LESS_TERMCAP_md LESS_TERMCAP_me
 export LESS_TERMCAP_so LESS_TERMCAP_se LESS_TERMCAP_us LESS_TERMCAP_ue
 
 # ##----------------------------------------------------##
-# #| 			Bash Options 			|#
+# #| 			        Bash Options 			        |#
 # ##----------------------------------------------------##
 shopt -s checkwinsize
-#shopt -s expand_aliases
 shopt -s histappend
-#shopt -s autocd
 shopt -s cdspell
 shopt -s checkjobs
-#shopt -s extglob
-#shopt -s globstar
-#shopt -s gnu_errfmt
 shopt -s mailwarn
 shopt -s cmdhist
 
 # ##----------------------------------------------------##
-# #| 			Settings 			|#
+# #| 			        Settings 			            |#
 # ##----------------------------------------------------##
 set -o vi
-

@@ -1,8 +1,7 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 #
 # dmenu_run-xres.sh
 # Author:	Alex Paarfus <stewie410@gmail.com>
-# Date:		2020-04-12
 #
 # dmenu_run, but colors from wpg's Xresouces template
 # Requires:

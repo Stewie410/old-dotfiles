@@ -29,34 +29,14 @@ set $tbrowser           elinks
 set $gmail              thunderbird
 set $tmail              mutt
 set $scrot              ~/scripts/tools/autoscrot.sh
-#set $locker            i3lock-fancy -- scrot
-set $locker             ~/scripts/tools/lockSession.sh
 set $launch             ~/scripts/tools/dmenu_run-xres.sh
 set $pactl              ~/scripts/tools/pactl.sh
 
 # Gaps
 set $igap               4
 set $ogap               0
-set $chgap              4
 
 # Colorscheme
-set_from_resource $dblack       *.color0	#000000
-set_from_resource $black		*.color8	#000000
-set_from_resource $dred			*.color1	#000000
-set_from_resource $red			*.color9	#000000
-set_from_resource $dgreen		*.color2	#000000
-set_from_resource $green		*.color10	#000000
-set_from_resource $dyellow		*.color3	#000000
-set_from_resource $yellow		*.color11	#000000
-set_from_resource $dblue		*.color4	#000000
-set_from_resource $blue			*.color12	#000000
-set_from_resource $dmagenta		*.color5	#000000
-set_from_resource $magenta		*.color13	#000000
-set_from_resource $dcyan		*.color6	#000000
-set_from_resource $cyan			*.color14	#000000
-set_from_resource $dwhite		*.color7	#000000
-set_from_resource $white		*.color15	#000000
-
 set_from_resource $black        i3wm.color0     #292d3e
 set_from_resource $dgray        i3wm.color8     #434758
 set_from_resource $dred         i3wm.color1     #f07178
@@ -75,20 +55,11 @@ set_from_resource $gray         i3wm.color7     #d0d0d0
 set_from_resource $white        i3wm.color15    #ffffff
 set $trans	        		                    #00000000
 
-# Modes
-set $mode_gaps				    Gaps: (o)uter, (i)nner
-set $mode_gaps_outer			Outer: [jkd0] (local), Shift+[jkd0] (all)
-set $mode_gaps_inner			Inner: [jkd0] (local), Shift+[jkd0] (all)
-#set $mode_session			    Session: (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+S)hutdown
-set $mode_session			    Session: (l)ock, (e)xit, (s)uspend, (h)ibernate, (r)eboot, (Shift+S)hutdown
-set $mode_resize			    Resize
-set $mode_quiet 			    Quiet
-
 # ##----------------------------------------------------##
 # #| 			            Settings 			        |#
 # ##----------------------------------------------------##
 # Font
-font 					pango:monospace 8
+font 					pango:monospace 10
 
 # Floating Keybind
 floating_modifier 		$mod
@@ -172,17 +143,25 @@ bindsym $mod+Shift+j			move down
 bindsym $mod+Shift+k			move up
 bindsym $mod+Shift+l			move right
 
-# Splitting
-bindsym $mod+backslash			split v
-bindsym $mod+Shift+backslash	split h
+# Resive focused window
+bindsym $sup+h                  resize shrink width 4px
+bindsym $sup+j                  resize grow height 4px
+bindsym $sup+k                  resize shrink height 4px
+bindsym $sup+l                  resize grow width 4px
+bindsym $sup+Shift+h            resize shrink width 8px
+bindsym $sup+Shift+j            resize grow height 8px
+bindsym $sup+Shift+k            resize shrink height 8px
+bindsym $sup+Shift+l            resize grow width 8px
 
 # Fullscreen
 bindsym $mod+F11			    fullscreen toggle
 
+# Split Direction
+bindsym $mod+backslash          split toggle
+
 # Layouts
-#bindsym $mod+s				    layout stacking
-#bindsym $mod+t				    layout tabbed
-#bindsym $mod+n				    layout split
+bindsym $mod+Shift+s	        layout default
+bindsym $mod+Shift+t	        layout tabbed
 
 # Floating
 bindsym $mod+space			    focus mode_toggle
@@ -200,9 +179,6 @@ bindsym $mod+8				    workspace 8
 bindsym $mod+9				    workspace 9
 bindsym $mod+0				    workspace 10
 bindsym $mod+Tab			    workspace back_and_forth
-
-# i3-quiet Mode
-#bindsym $sup+q 				exec ~/scripts/i3-quiet/quiet-cmd.py switch
 
 # Move Window to Workspace
 bindsym $mod+Shift+1			move container to workspace 1
@@ -241,7 +217,7 @@ bindsym $mod+F3				    exec $term -e ranger ~/
 bindsym $mod+F8				    exec $gmail
 
 # Take Screenshot
-bindsym $mod+Shift+s			exec $scrot
+bindsym $mod+Shift+Print		exec $scrot
 
 # Media Keys
 bindsym XF86AudioMute 			exec pamixer --toggle-mute
@@ -259,103 +235,17 @@ bindsym XF86MonBrightnessUp 	exec ~/scripts/tools/xbrightness.sh --increase 5
 #bindsym XF86Search
 #bindsym XF86RFKill
 
-# Mode Selection
-bindsym $sup+Shift+r			mode "$mode_resize"
-bindsym $sup+Shift+s			mode "$mode_session"
-bindsym $sup+Shift+g			mode "$mode_gaps"
-#bindsym $sup+Shift+q 			mode "$mode_quiet"
-
-# ##----------------------------------------------------##
-# #| 			Mode Definitions 		|#
-# ##----------------------------------------------------##
-# Sessions
-mode "$mode_session" {
-	bindsym l 			mode "default", exec --no-startup-id $locker
-	bindsym s			mode "default", exec exec --no-startup-id systemctl suspend
-	#bindsym u 			exec --no-startup-id i3exit switch_user, mode "default"
-	bindsym e 			mode "default", exec i3-msg exit
-	bindsym h			mode "default", exec exec --no-startup-id systemctl hibernate
-	bindsym r 			mode "default", exec --no-startup-id reboot
-	bindsym Shift+s 	mode "default", exec --no-startup-id poweroff
-	bindsym Return		mode "default"
-	bindsym Escape		mode "default"
-}
-
-# Resize
-mode "$mode_resize" {
-	bindsym h			resize shrink width 4px or 4 ppt
-	bindsym j			resize grow height 4px or 4 ppt
-	bindsym k			resize shrink height 4px or 4 ppt
-	bindsym l			resize grow width 4px or 4 ppt
-	bindsym Shift+h		resize shrink width 8px or 8 ppt
-	bindsym Shift+j		resize grow height 8px or 8 ppt
-	bindsym Shift+k		resize shrink height 8px or 8 ppt
-	bindsym Shift+l		resize grow width 8px or 8 ppt
-	bindsym Return		mode "default"
-	bindsym Escape		mode "default"
-}
-
-# Resize Gaps
-mode "$mode_gaps" {
-	bindsym o			mode "$mode_gaps_outer"
-	bindsym i			mode "$mode_gaps_inner"
-	bindsym Return		mode "default"
-	bindsym Escape		mode "default"
-}
-
-# Resize Outer Gaps
-mode "$mode_gaps_outer" {
-	bindsym j			gaps outer current minus 5
-	bindsym k			gaps outer current plus 5
-	bindsym d			gaps outer current set $ogap
-	bindsym 0			gaps outer current set 0
-	bindsym Shift+j		gaps outer all minus 5
-	bindsym Shift+k		gaps outer all plus 5
-	bindsym Shift+d		gaps outer all set $ogap
-	bindsym Shift+0		gaps outer all set 0
-	bindsym Return		mode "default"
-	bindsym Escape		mode "default"
-}
-
-# Resize Inner Gaps
-mode "$mode_gaps_inner" {
-	bindsym j			gaps inner current minus 5
-	bindsym k			gaps inner current plus 5
-	bindsym d			gaps inner current set $igap
-	bindsym 0			gaps inner current set 0
-	bindsym Shift+j		gaps inner all minus 5
-	bindsym Shift+k		gaps inner all plus 5
-	bindsym Shift+d		gaps inner all set $igap
-	bindsym Shift+0		gaps inner all set 0
-	bindsym Return		mode "default"
-	bindsym Escape		mode "default"
-}
-
-# i3-quiet
-mode "$mode_quiet" {
-	bindsym q 			exec ~/scripts/i3-quiet/quiet-cmd.py toggle ; mode "default"
-	bindsym s 			exec ~/scripts/i3-quiet/quiet-cmd.py resize small
-	bindsym m 			exec ~/scripts/i3-quiet/quiet-cmd.py resize medium
-	bindsym l 			exec ~/scripts/i3-quiet/quiet-cmd.py resize largs
-	bindsym Esacpe 		mode "default"
-	bindsym Return 		mode "default"
-}
-
 # ##----------------------------------------------------##
 # #| 			            Autostart 		        	|#
 # ##----------------------------------------------------##
-#exec_always --no-startup-id source ~/.fehbg
-#exec_always --no-startup-id ~/.config/wpg/wp_init.sh
 exec --no-startup-id hsetroot -solid #000000
 exec --no-startup-id nitrogen --restore
 exec_always --no-startup-id ~/scripts/tools/compton-launch.sh
 exec_always --no-startup-id unclutter --jitter 50 &
 exec_always --no-startup-id ~/scripts/polybar/launchpb.sh
-#exec_always --no-startup-id ~/scripts/i3-quiet/quiet-toggle-bar.py --kill
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id xautolock -time 60 -detectsleep -locker $locker
 exec --no-startup-id dunst
-#exec --no-startup-id mpd
 exec --no-startup-id kdeconnectd
 exec --no-startup-id kdeconnect-indicator
 

@@ -1,8 +1,7 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 #
 # launchpb.sh
 # Author:	Alex Paarfus <stewie410@gmail.com>
-# Date:		2020-04-10
 #
 # Starts & Restarts Polybar
 
