@@ -23,7 +23,7 @@ set $ws9                9
 set $ws10               10
 
 # Applications
-set $term               urxvt
+set $term               alacritty
 set $browser            firefox
 set $tbrowser           elinks
 set $gmail              thunderbird
