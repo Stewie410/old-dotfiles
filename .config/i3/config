@@ -31,6 +31,7 @@ set $tmail              mutt
 set $scrot              ~/scripts/tools/autoscrot.sh
 set $launch             ~/scripts/tools/dmenu_run-xres.sh
 set $pactl              ~/scripts/tools/pactl.sh
+set $locker             ~/scripts/tools/lockSession.sh
 
 # Gaps
 set $igap               4
@@ -201,6 +202,9 @@ bindsym $mod+Shift+q			kill
 
 # Restart i3
 bindsym $mod+Shift+r			restart
+
+# Exit i3
+bindsym $sup+Shift+Escape       exec i3-msg exit
 
 # Launch Terminal
 bindsym $mod+d				    exec $launch
