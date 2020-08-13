@@ -23,4 +23,4 @@ sbg="$(awk '/^\*\.color8:/ {print $NF}' "${xres}")"
 sfg="$(awk '/^\*\.color11:/ {print $NF}' "${xres}")"
 
 # Run Dmenu
-dmenu -nb "${nbg}" -nf "${nfg}" -sb "${sbg}" -sf "${sfg}" "${@}"
+dmenu -nb "${nbg}" -nf "${nfg}" -sb "${sbg}" -sf "${sfg}" -fn "Fira Code Regular" "${@}"

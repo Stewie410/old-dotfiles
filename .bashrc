@@ -33,7 +33,7 @@ PATH="${PATH}:$(find "${HOME}/scripts" -mindepth 1 -type d | \
 
 # Define Applications
 EDITOR="$(command -v vim)"
-TERMINAL="$(command -v urxvt)"
+TERMINAL="$(command -v alacritty)"
 BROWSER="$(command -v firefox)"
 READER="$(command -v zathura)"
 FILE_MANAGER="$(command -v ranger)"
