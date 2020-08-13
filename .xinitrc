@@ -41,6 +41,7 @@ get_session(){
 		budgie) dbus_args+=(budgie-desktop) ;;
 		cinnamon) dbus_args+=(cinnamon-session) ;;
 		deepin) dbus_args+=(startdde) ;;
+        dwm) dbus_args+=(dwm) ;;
 		enlightenment) dbus_args+=(enlightenment_start) ;;
 		fluxbox) dbus_args+=(startfluxbox) ;;
 		gnome) dbus_args+=(gnome-session) ;;
@@ -65,7 +66,7 @@ get_session
 # ##----------------------------------------------------##
 # #| 			        Auto Start 			            |#
 # ##----------------------------------------------------##
-#if ! [[ "${SESSION,,}" =~ xfce ]]; then 
+#if ! [[ "${SESSION,,}" =~ xfce ]]; then
 #    # Set Wallpaper & Theme
 #    #~/.fehbg &
 #    #~/.config/wpg/wp_init.sh
