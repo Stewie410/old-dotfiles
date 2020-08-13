@@ -9,28 +9,12 @@
 declare dev prop state
 trap "unset dev prop state" EXIT
 
-# Check for required commands
-command -v xinput >/dev/null || exit 1
+# Device ID
+read -r dev <<< "$(xinput --list --short | awk '/Touchpad/ {print substr($6,4)}')"
 
-# Get device ID
-xinput --list --short | \
-    grep "Touchpad" | \
-    sed '/^.*=//' | \
-    cut --fields=1 | \
-    read -r dev || exit 1
-
-# Get Property ID
-xinput --list-props "${dev}" | \
-    sed --quiet '/tapping enabled (/Ip' | \
-    sed 's/^.*(//;s/).*$//' | \
-    read -r prop
-
-# Get State
-xinput --list-props "${dev}" | \
-    grep "${prop}" | \
-    awk '{print $NF}' | \
-    read -r state
-if ((state)); then state="0"; else state="1"; fi
+# Prop ID & State
+read -r prop state <<< "$(xinput --list-props | \
+    awk '/Tapping Enabled \(/ {print substr($4,2,3),$NF}')"
 
 # Toggle State
-xinput --set-prop "${dev}" "${prop}" "${state}"
+xinput --set-prop "${dev}" "${prop}" "$((1-state))"

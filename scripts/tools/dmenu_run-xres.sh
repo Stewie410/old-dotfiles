@@ -1,24 +1,13 @@
 #!/usr/bin/env bash
 #
 # dmenu_run-xres.sh
-# Author:	Alex Paarfus <stewie410@gmail.com>
 #
-# dmenu_run, but colors from wpg's Xresouces template
-# Requires:
-#	-dmenu
-
-# Clear Memory
-trap "unset xres nbg nfg sbg sfg" EXIT
-
-# Return if required commands not found
-command -v dmenu_run >/dev/null || exit 1
-
-# Get Colors
-xres="${HOME}/.Xresources"
-nbg="$(awk '/^\*\.color0:/ {print $NF}' "${xres}")"
-nfg="$(awk '/^\*\.color4:/ {print $NF}' "${xres}")"
-sbg="$(awk '/^\*\.color8:/ {print $NF}' "${xres}")"
-sfg="$(awk '/^\*\.color11:/ {print $NF}' "${xres}")"
+# dmenu_run, but with Xresources theme
 
 # Run Dmenu
-dmenu_run -nb "${nbg}" -nf "${nfg}" -sb "${sbg}" -sf "${sfg}" -fn "Fira Code Regular" "${@}"
+dmenu_run -fn "Fira Code Regular" \
+    -nb "$(awk '/^\*\.color0:/ {print $NF}' "${HOME}/.Xresources")" \
+    -nf "$(awk '/^\*\.color4:/ {print $NF}' "${HOME}/.Xresources")" \
+    -sb "$(awk '/^\*\.color8:/ {print $NF}' "${HOME}/.Xresources")" \
+    -sf "$(awk '/^\*\.color11:/ {print $NF}' "${HOME}/.Xresources")" \
+    "${@}"
