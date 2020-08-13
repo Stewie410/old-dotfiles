@@ -23,7 +23,8 @@
 # ##----------------------------------------------------##
 # Define Prompts
 #PS1='[\u@\h \W]\$ '
-PS1='\w $ '
+#PS1='\w $ '
+eval "$(starship init bash)"
 
 # Define Path
 PATH="${PATH}:/opt/wine-osu/bin"
