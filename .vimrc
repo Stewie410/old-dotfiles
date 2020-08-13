@@ -1,37 +1,31 @@
 " ~/.vimrc
-" Author:	Alex Paarfus <stewie410@me.com>
-" Date:		2020-04-12
 "
 " Vim Configuration
 
-" ##----------------------------------------------------##
-" #|			            Plugins				        |#
-" ##----------------------------------------------------##
+" --------------------------------------------------------
+" --			            Plugins				        --
+" --------------------------------------------------------
 call plug#begin('~/.vim/plugged')
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'vim-syntastic/syntastic'
 Plug 'mhinz/vim-signify'
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'junegunn/fzf', {'do': { -> fzf#install()}}
+Plug 'junegunn/fzf.vim'
 Plug 'lervag/vimtex'
-Plug 'deviantfero/wpgtk.vim'
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'lambdalisue/fern.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ryanoasis/vim-devicons'
 Plug 'prettier/vim-prettier', {'do': 'yarn install'}
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'dracula/vim', {'as': 'dracula'}
-Plug 'ycm-core/YouCompleteMe'
 Plug 'jremmen/vim-ripgrep'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-utils/vim-man'
 Plug 'mbbill/undotree'
+Plug 'sheerun/vim-polyglot'
 call plug#end()
 
-" ##----------------------------------------------------##
-" #|                        Options                     |#
-" ##----------------------------------------------------##
+" --------------------------------------------------------
+" --                        Options                     --
+" --------------------------------------------------------
 " Enable
 set number
 set ruler
@@ -51,10 +45,11 @@ set noerrorbells
 set nobackup
 set nowritebackup
 set noswapfile
+set noemoji
 
-" ##----------------------------------------------------##
-" #|			            Variables	               	|#
-" ##----------------------------------------------------##
+" --------------------------------------------------------
+" --			            Variables	               	--
+" --------------------------------------------------------
 " Globals
 let g:netrw_browse_split = 2
 let g:netrw_banner = 0
@@ -77,7 +72,7 @@ let g:airline_detect_crypt = 1
 let g:airline_detect_iminsert = 0
 let g:airline_inactive_collapse = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme = 'dracula'
+let g:airline_theme = 'term'
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = '|'
 let g:airline_right_sep = ''
@@ -89,10 +84,6 @@ let g:airline_branch = 'B'
 let g:airline_paste = 'P'
 let g:airline_notexists = 'E'
 "let g:airline_whitespace '_'
-let g:NERDTreeGitStatusWithFlags=1
-let g:NERDTreeIgnore = [
-	\ '^node_modules$'
-	\ ]
 let g:ctrlp_use_caching = 0
 let g:ctrlp_user_command = [
 	\ '.git/',
@@ -115,6 +106,7 @@ let g:coc_global_extensions = [
 "let g:prettier#quickfix_enabled = 0
 "let g:prettier#quickfix_auto_focus = 0
 "let g:prettier#autoformat = 0
+let g:tex_flavor = 'latex'
 
 " Local
 set mouse=r
@@ -148,19 +140,19 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " Additional
 colo ron
 syntax on
-hi Normal guibg=NONE ctermbg=NONE
-hi NonText ctermbg=NONE
+"hi Normal guibg=NONE ctermbg=NONE
+"hi NonText ctermbg=NONE
 filetype plugin indent on
-highlight ColorColumn ctermbg=0 guibg=green
+highlight ColorColumn ctermbg=8 guibg=lightgray
 
 " Conditionals
 if executable('rg')
     let g:rg_derive_root='true'
 endif
 
-" ##----------------------------------------------------##
-" #|		                Keymaps                     |#
-" ##----------------------------------------------------##
+" --------------------------------------------------------
+" --		                Keymaps                     --
+" --------------------------------------------------------
 " Leader Key
 let mapleader =" "
 
@@ -176,10 +168,8 @@ noremap <leader>p "*p
 noremap <leader>Y "+y
 noremap <leader>P "+p
 
-" NERDTree
-nmap <C-n> :NERDTreeToggle<CR>
-vmap ++ <Plug>NERDCommenterToggle
-nmap ++ <Plug>NERDCommenterToggle
+" fern
+nmap <C-n> :Fern . -drawer
 
 " MatchIT
 if !exists('f:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
@@ -192,22 +182,22 @@ if !exists('f:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
     endif
 endif
 
-" ##----------------------------------------------------##
-" #|		            Commands		                |#
-" ##----------------------------------------------------##
+" --------------------------------------------------------
+" --		            Commands		                --
+" --------------------------------------------------------
 " COC
 command! -nargs=0 Format :call CocAction('format')
 command! -nargs=? Fold :call CocAction('fold', <f-args>)
 command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.orgazineImport')
 
-" ##----------------------------------------------------##
-" #|		            Autocommands	    	        |#
-" ##----------------------------------------------------##
+" Tab Compatibility
+command! TC :set tabstop=8 softtabstop=8 shiftwidth=8
+
+" --------------------------------------------------------
+" --		            Autocommands	    	        --
+" --------------------------------------------------------
 " COC Highlight symbol under cusor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Highlight currently open buffer in NERDTree
-autocmd BufEnter * call SyncTree()
 
 " Highlighting for jsonc format
 autocmd FileType json syntax match Comment +\/\/.\+$+
@@ -215,9 +205,14 @@ autocmd FileType json syntax match Comment +\/\/.\+$+
 " Trim Whitespace
 autocmd BufWritePre * :call TrimWhitespace()
 
+" fern
+augroup fern-custom
+    autocmd! *
+    autocmd FileType fern call s:init_fern()
+augroup END
+
 " Use YCM & COC for different filetype
-autocmd FileType typescript :call GoYCM()
-autocmd FileType cpp,cxx,h,hpp,c,py,shell :call GoCOC()
+autocmd FileType cpp,cxx,h,hpp,c,py,shell,typescript :call GoCOC()
 
 " Filetypes
 augroup AutoFiletype
@@ -238,9 +233,15 @@ augroup AutoXrdb
 	autocmd BufWritePost ~/.Xresources,~/.Xdefaults !xrdb %
 augroup END
 
-" ##----------------------------------------------------##
-" #|		            Functions		                |#
-" ##----------------------------------------------------##
+" Update vim
+augroup AutoVimrc
+    autocmd!
+    autocmd BufWritePost source %
+augroup END
+
+" --------------------------------------------------------
+" --		            Functions		                --
+" --------------------------------------------------------
 " Trim Whitespace
 fun! TrimWhitespace()
     let l:save = winsaveview()
@@ -248,20 +249,9 @@ fun! TrimWhitespace()
     call winrestview(l:save)
 endfun
 
-" Sync open file with NERDTree
-function! IsNERDTreeOpen()
-	return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
-endfunction
-
-" Call NERDTreeFind if (all):
-" 	NERDTree is active
-" 	Current window contains a writable file
-" 	Not in a vimdiff
-function! SyncTree()
-	if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !diff
-		NERDTreeFind
-		wincmd p
-	endif
+" fern
+function! s:init_fern() abort
+    nmap <buffer> <Plug>(fern-action-open) <Plug>(fern-action-open:select)
 endfunction
 
 " COC Tab-navigation
@@ -368,6 +358,6 @@ fun! GoCOC()
     augroup end
 endfun
 
-" ##----------------------------------------------------##
-" #|		            Snippets		                |#
-" ##----------------------------------------------------##
+" --------------------------------------------------------
+" --		            Snippets		                --
+" --------------------------------------------------------
