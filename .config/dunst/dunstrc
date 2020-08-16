@@ -1,21 +1,15 @@
 # vim: ft=cfg
-#
 # dunstrc
-# Author:	Alex Paarfus <stewie410@me.com>
-# Date:		2020-04-11
 #
-# Based on the defaults, lukesmithxyz, and my preferences
+# Dunst Configuration
 
-# ##----------------------------------------------------##
-# #|		        Global Settings		                |#
-# ##----------------------------------------------------##
 [global]
     # Display Settings
 	monitor = 0
 	follow = none
 
     # Appearance
-	geometry = "300x5-30+20"	
+	geometry = "300x5-30+20"
 	indicate_hidden = yes
 	shrink = yes
 	transparency = 0
@@ -23,8 +17,8 @@
 	separator_height = 2
 	padding = 8
 	horizontal_padding = 8
-	frame_width = 3
-	frame_color = "#aaaaaa"
+	frame_width = 1
+	frame_color = "#434758"
 	separator_color = frame
 	sort = yes
 	idle_threshold = 120
@@ -32,7 +26,7 @@
 	class = Dunst
 
     # Text Settings
-	font = Monospace 10
+	font = Fira Code Regular 10
 	line_height = 0
 	markup = full
 	format = "<b>%s</b>\n%b"
@@ -61,44 +55,29 @@
 	startup_notification = false
 	force_xinerama = false
 
-# ##----------------------------------------------------##
-# #|		            Experimental		            |#
-# ##----------------------------------------------------##
 [experimental]
     per_monitor_dpi = false
 
-# ##----------------------------------------------------##
-# #|		                Shortcuts		            |#
-# ##----------------------------------------------------##
 [shortcuts]
     close = ctrl+space
     close_all = ctrl+shift+space
     history = ctrl+grave
     context = ctrl+shift+period
 
-# ##----------------------------------------------------##
-# #|		            Urgency Settings		        |#
-# ##----------------------------------------------------##
-# Low Urgency
 [urgency_low]
-    background = "#222222"
-    foreground = "#888888"
+    background = "#292d3e"
+    foreground = "#434758"
+    frame_color = "#434758"
     timeout = 10
 
-# Normal/Medium Urgency
 [urgency_normal]
-    background = "#285577"
+    background = "#292d3e"
     foreground = "#ffffff"
+    frame_color = "#434758"
     timeout = 10
 
-# Critical Urgency
 [urgency_critical]
-	background = "#900000"
-	foreground = "#ffffff"
-	frame_color = "#ff0000"
+	background = "#292d3e"
+	foreground = "#e1acff"
+	frame_color = "#ff8b92"
 	timeout = 0
-
-# ##----------------------------------------------------##
-# #|		                Overrides		            |#
-# ##----------------------------------------------------##
-# Examples can be found in /usr/share/dunst/dunstrc
