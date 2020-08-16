@@ -16,8 +16,11 @@ dunst --config "${HOME}/.config/dunst/dunstrc" &>/dev/null & disown
 kdeconnect &>/dev/null & disown
 
 # Tray Applications
-nm-applet &>/dev/null & disown
+#nm-applet &>/dev/null & disown
 #kdeconntect-indicator &>/dev/null & disown
 
-# Start DWM
+# Start dwmblocks
+dwmblocks &
+
+# Start dwm
 exec /usr/local/bin/dwm >/dev/null
