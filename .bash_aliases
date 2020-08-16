@@ -46,6 +46,7 @@ alias rm="rm --interactive"
 # ##----------------------------------------------------##
 # Common tools
 alias cprop='xprop | grep --ignore-case "class"'
+alias v='vim'
 
 # Handy Shortcuts
 alias xcp='xclip -selection "clipboard"'
@@ -53,8 +54,8 @@ alias fcfv='sudo fc-cache --force --verbose'
 alias lr='sudo $(history -p \!\!)'
 
 # "Pretty" tools
-alias nf='clear && neofetch'
-alias nfi='clear && neofetch --w3m --source "$(grep "file" "${HOME}/.config/nitrogen/bg-saved.cfg" | cut --fields="2-" --delimiter="=")"'
+alias nf='neofetch'
+#alias nfi="neofetch --w3m --source $(awk -F'=' '/^file=/{print $2}' "${HOME}/.config/nitrogen/bg-saved.cfg")"
 
 # Oneshot Curl Utils
 alias ipinfo='curl --silent --fail ipinfo.io/json'
@@ -91,7 +92,7 @@ alias session_exit='i3-msg exit'
 # ##----------------------------------------------------##
 alias rst='${HOME}/scripts/tools/redshift-toggle.sh'
 alias ttc='${HOME}/scripts/tools/ttc_toggle.sh --state 1'
-alias gds='${HOME}/scripts/cron/gdsync.sh'
+alias gds='${HOME}/scripts/tools/gdsync-min.sh'
 
 # ##----------------------------------------------------##
 # #|		                Git		                    |#
