@@ -29,7 +29,7 @@ set $tbrowser           elinks
 set $gmail              thunderbird
 set $tmail              mutt
 set $scrot              ~/scripts/tools/autoscrot.sh
-set $launch             ~/scripts/tools/dmenu_run-xres.sh
+set $launch             dmenu_run
 set $pactl              ~/scripts/tools/pactl.sh
 set $locker             ~/scripts/tools/lockSession.sh
 
@@ -242,16 +242,17 @@ bindsym XF86MonBrightnessUp 	exec ~/scripts/tools/xbrightness.sh --increase 5
 # ##----------------------------------------------------##
 # #| 			            Autostart 		        	|#
 # ##----------------------------------------------------##
-exec --no-startup-id hsetroot -solid #000000
-exec --no-startup-id nitrogen --restore
-exec_always --no-startup-id ~/scripts/tools/compton-launch.sh
-exec_always --no-startup-id unclutter --jitter 50 &
-exec_always --no-startup-id ~/scripts/polybar/launchpb.sh
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id xautolock -time 60 -detectsleep -locker $locker
-exec --no-startup-id dunst
-exec --no-startup-id kdeconnectd
-exec --no-startup-id kdeconnect-indicator
+exec --no-startup-id ~/scripts/tools/autostart.sh
+#exec --no-startup-id hsetroot -solid #000000
+#exec --no-startup-id nitrogen --restore
+#exec_always --no-startup-id ~/scripts/tools/compton-launch.sh
+#exec_always --no-startup-id unclutter --jitter 50 &
+#exec_always --no-startup-id ~/scripts/polybar/launchpb.sh
+#exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+#exec --no-startup-id xautolock -time 60 -detectsleep -locker $locker
+#exec --no-startup-id dunst
+#exec --no-startup-id kdeconnectd
+#exec --no-startup-id kdeconnect-indicator
 
 # ##----------------------------------------------------##
 # #| 			        i3Status Bar 			        |#
