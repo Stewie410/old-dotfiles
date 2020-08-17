@@ -9,7 +9,6 @@
 background_opacity: 1.0
 debug.render_timer: false
 dubug.persistent_logging: false
-dynamic_title: true
 live_config_reload: true
 
 # Window
@@ -25,6 +24,7 @@ window:
     x: 2
     y: 2
   dynamic_padding: false
+  dynamic_title: true
 
 # Scrolling
 scrolling:
@@ -82,7 +82,7 @@ colors:
   indexed_colors: []
 
 # Visual Bell
-visual_bell:
+bell:
   animation: EaseOutExpo
   color: '#ffe585'
   duration: 0
