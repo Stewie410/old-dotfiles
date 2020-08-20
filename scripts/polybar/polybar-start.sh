@@ -1,12 +1,8 @@
 #!/usr/bin/env bash
 #
-# launchpb.sh
-# Author:	Alex Paarfus <stewie410@gmail.com>
+# polybar-start.sh
 #
-# Starts & Restarts Polybar
-
-# Check for Polybar
-command -v polybar >/dev/null || { notify-send --urgency="critical" --icon="!!!" "Failed to Launch Polybar" 2>/dev/null; exit 1; }
+# (re)starts polybar
 
 # Kill polybar
 killall --quiet polybar

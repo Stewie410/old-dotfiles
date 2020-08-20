@@ -1,7 +1,6 @@
 #!/bin/env bash
 #
 # bash_aliases
-# Author:	Alex Paarfus <stewie410@gmail.com>
 #
 # Handy Aliases
 
@@ -31,8 +30,10 @@ alias lxta='exa --all --tree'
 # dir
 alias dir='dir --color=auto'
 
-# grep
+# greps
 alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
 
 # Confirm before overwriting file
 alias mv="mv --interactive"
@@ -41,17 +42,32 @@ alias cp="cp --interactive"
 # Confirm before removing file
 alias rm="rm --interactive"
 
+# Navigation
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ..3='cd ../../../'
+alias ..4='cd ../../../..'
+alias ..5='cd ../../../../..'
+
 # ##----------------------------------------------------##
 # #|		                Tools		                |#
 # ##----------------------------------------------------##
+# Sudo alternative
+alias doas='doas --'
+
 # Common tools
 alias cprop='xprop | grep --ignore-case "class"'
 alias v='vim'
 
+# Editors
+alias v='vim'
+#alias em="$(command -v emacs) -nw"
+#alias emacs="emacsclient -c -a 'emacs'"
+
 # Handy Shortcuts
 alias xcp='xclip -selection "clipboard"'
 alias fcfv='sudo fc-cache --force --verbose'
-alias lr='sudo $(history -p \!\!)'
+#alias lr='sudo $(history -p \!\!)'
 
 # "Pretty" tools
 alias nf='neofetch'
@@ -73,11 +89,34 @@ alias rclsync='rclone sync'
 alias rclcopy='rclone copy'
 
 # Termbin
-#alias tb='nc termbin.com 9999'
+alias tb='nc termbin.com 9999'
 
-# Suspend & Hibernate
-alias suspend='systemctl suspend'
-alias hibernate='systemctl hibernate'
+# Processes
+alias psmem='ps auxf | sort -nfk 4'
+alias pscpu='ps auxf | sort -nrk 3'
+alias psmem10='ps auxf | sort -nrk 4 | head -n 10'
+alias pscpu10='ps auxf | sort -nrk 3 | head -n 10'
+
+# GPG
+alias gpg-check='gpg2 --keyserver-options auto-key-retrieve --verify'
+alias gpg-retrieve='gpg2 --keyserver-options auto-key-retrieve --receive-keys'
+
+# Youtube-DL
+alias ytdl='youtube-dl'
+alias yta-aac='ytdl --extract-audio --audio-format aac'
+alias yta-best='ytdl --extract-audio --audio-format best'
+alias yta-flac='ytdl --extract-audio --audio-format flac'
+alias yta-m4a='ytdl --extract-audio --audio-format m4a'
+alias yta-mp3='ytdl --extract-audio --audio-format mp3'
+alias yta-opus='ytdl --extract-audio --audio-format opus'
+alias yta-vorb='ytdl --extract-audio --audio-format vorbis'
+alias yta-wav='ytdl --extract-audio --audio-format wav'
+alias ytv-best='ytdl --format bestvideo+bestaudio'
+
+# ##----------------------------------------------------##
+# #|                        SystemD                     |#
+# ##----------------------------------------------------##
+alias jctl='journalctl --priority=3 --catalog --boot'
 
 # ##----------------------------------------------------##
 # #|                        Session                     |#
@@ -86,6 +125,12 @@ alias suspend='systemctl suspend'
 alias hibernate='systemctl hibernate'
 alias lock_session="${HOME}/scripts/tools/lockSession.sh"
 alias session_exit='i3-msg exit'
+
+# ##----------------------------------------------------##
+# #|                        Shell                       |#
+# ##----------------------------------------------------##
+alias tobash="sudo chsh ${USER} --shell $(command -v bash) && echo 'Log Out...'"
+#alias tozsh="sudo chsh ${USER} --shell $(command -v zsh) && echo 'Log Out...'"
 
 # ##----------------------------------------------------##
 # #|		                Scripts		                |#
@@ -99,30 +144,37 @@ alias gds='${HOME}/scripts/tools/gdsync-min.sh'
 # ##----------------------------------------------------##
 # Regular git
 alias git='git --no-pager'
-alias ga='git add'
-alias gb='git branch --all --color'
-alias gc='git commit'
-alias gd='git diff --color'
-alias gi='git init'
-alias gl='git log --pretty=oneline'
-alias gs='git status'
-alias gcl='git clone'
-alias gco='git checkout'
-alias gmv='git mv'
-alias gps='git push'
-alias grm='git rm'
+alias gadd='git add'
+alias gaddup='git add --update'
+alias gbranch='git branch --all --color'
+alias gcommit='git commit -m'
+alias gchkout='git checkout'
+alias gdiff='git diff --color'
+alias ginit='git init'
+alias glog='git log --pretty=oneline'
+alias gstat='git status'
+alias gclone='git clone'
+alias gmove='git mv'
+alias gpush='git push origin'
+alias gpull='git pull origin'
+alias gremadd='git remote add'
+alias grm='git rm --cached'
+alias grmf='git rm'
 
 # Git Bare -- Dotfiles
 alias gdf='git --git-dir=${HOME}/dotfiles --work-tree=$HOME'
-alias gdfa='gdf add'
-alias gdfc='gdf commit'
-alias gdfd='gdf diff --color'
-alias gdfl='gdf log --pretty=oneline'
-alias gdfs='gdf status'
-alias gdfmv='gdf mv'
-alias gdfps='gdf push'
-alias gdfpl='gdf pull'
-alias gdfrm='gdf rm -r --cache'
+alias gdfadd='gdf add'
+alias gdfaddup='gdf add --update'
+alias gdfbranch='gdf branch --all --color'
+alias gdfcommit='gdf commit -m'
+alias gdfchkout='gdf checkout'
+alias gdfdiff='gdf diff --color'
+alias gdflog='gdf log --pretty=oneline'
+alias gdfstat='gdf status'
+alias gdfpush='gdf push origin'
+alias gdfremadd='gdf remote add'
+alias gdfrm='gdf rm --cached'
+alias gdfrmf='gdf rm'
 
 # ##----------------------------------------------------##
 # #|		                chmod		                |#

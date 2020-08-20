@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
 #
-# i3layout.sh
-# Author: 	Alex Paarfus <stewie410@gmail.com>
+# polybar-i3layout.sh
 #
 # Get i3wm layout icon
 
-# Get Icon for Layout Type
 i3-msg -t get_tree | \
     jq --raw-output \
         'recurse(.nodes[];.nodes!=null)|select(.nodes[].focused).layout' | \
