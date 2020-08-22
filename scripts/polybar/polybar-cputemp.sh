@@ -11,6 +11,6 @@ sensors --no-adapter | \
             sum += $3
         }
         END {
-            printf "🌡 %0.0f°C", sum/cnt
+            printf " %0.0f°C", sum/cnt
         }
     '
