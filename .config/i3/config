@@ -1,37 +1,27 @@
-# i3-gaps Configuration
-# Author:   Alex Paarfus <stewie410@me.com>
-#
-# i3-gaps configuration
-
 # ##----------------------------------------------------##
 # #|                        Variables                   |#
 # ##----------------------------------------------------##
 # Modifiers
-set $mod                Mod1
-set $sup                Mod4
+set $mod Mod1
+set $sup Mod4
 
 # Workspaces
-set $ws1                1
-set $ws2                2
-set $ws3                3
-set $ws4                4
-set $ws5                5
-set $ws6                6
-set $ws7                7
-set $ws8                8
-set $ws9                9
-set $ws10               10
+set $ws1   1
+set $ws2   2
+set $ws3   3
+set $ws4   4
+set $ws5   5
+set $ws6   6
+set $ws7   7
+set $ws8   8
+set $ws9   9
+set $ws10 10
 
 # Applications
-set $term               alacritty
-set $browser            firefox
-set $tbrowser           elinks
-set $gmail              thunderbird
-set $tmail              mutt
-set $scrot              ~/scripts/tools/autoscrot.sh
-set $launch             dmenu_run
-set $pactl              ~/scripts/tools/pactl.sh
-set $locker             ~/scripts/tools/lockSession.sh
+set $term     alacritty
+set $browser  firefox
+set $email    thunderbird
+set $launch   dmenu_run
 
 # Gaps
 set $igap               4
@@ -54,25 +44,16 @@ set_from_resource $dcyan        i3wm.color6     #89ddff
 set_from_resource $cyan         i3wm.color14    #a3f7ff
 set_from_resource $gray         i3wm.color7     #d0d0d0
 set_from_resource $white        i3wm.color15    #ffffff
-set $trans	        		                    #00000000
+set $trans	        		                    #292d3eff
 
 # ##----------------------------------------------------##
 # #| 			            Settings 			        |#
 # ##----------------------------------------------------##
-# Font
 font 					pango:monospace 10
-
-# Floating Keybind
 floating_modifier 		$mod
-
-# Focus
 focus_follows_mouse 	no
-
-# Borders
 new_window				1pixel
 hide_edge_borders		smart
-
-# Gaps
 gaps inner				$igap
 gaps outer				$ogap
 smart_gaps				on
@@ -80,206 +61,130 @@ smart_gaps				on
 # ##----------------------------------------------------##
 # #| 			        Colorscheme 		        	|#
 # ##----------------------------------------------------##
-#			            Border	BG	    FG		Indic.	Child Border
-client.focused          $cyan   $black  $white  $black  $cyan
-client.unfocused        $trans  $trans  $gray   $trans  $trans
-client.focused_inactive $trans  $trans  $gray   $trans  $trans
-client.urgent           $red    $red    $black  $dred   $red
+#			            Border	BG	    FG		Indicator	Child Border
+client.focused          $cyan   $black  $white  $black      $cyan
+client.unfocused        $trans  $trans  $gray   $trans      $trans
+client.focused_inactive $trans  $trans  $gray   $trans      $trans
+client.urgent           $red    $red    $black  $dred       $red
 client.background       $black
 
 # ##----------------------------------------------------##
-# #| 			            Always Float 			    |#
+# #|                        Rules                       |#
 # ##----------------------------------------------------##
-for_window [class="Gufw.py"]		floating enable;
-for_window [class="Clamtk"]		    floating enable;
-for_window [class="Keepassx2"]		floating enable;
-for_window [class="Pamac-manager"]	floating enable;
-for_window [class="Wpg"]		    floating enable;
-for_window [class="flameshot"]		floating enable;
+# Always float
+for_window [class="Gufw.py"]	   floating enable;
+for_window [class="Clamtk"]		   floating enable;
+for_window [class="Keepassx2"]	   floating enable;
+for_window [class="Pamac-manager"] floating enable;
+for_window [class="Wpg"]		   floating enable;
+for_window [class="flameshot"]	   floating enable;
 
-# ##----------------------------------------------------##
-# #| 			        Window Border 	        		|#
-# ##----------------------------------------------------##
-for_window [class=^.*]			    border pixel 1;
+# Border
+for_window [class=^.*] border pixel 1;
 
-# ##----------------------------------------------------##
-# #| 		    Windows to Specific Workspaces 		    |#
-# ##----------------------------------------------------##
-# 2 -- Full-Fat Web Browsers
-for_window [class="firefox"]		move to workspace 2
-for_window [class="brave-browser" ] move to workspace 2
-
-# 5 -- Development
-for_window [class="code-oss"]		move to workspace 5
-
-# 6 -- Security
-for_window [class="Keepassx2"]		move to workspace 6
-for_window [class="Clamtk"]		    move to workspace 6
-for_window [class="Gufw.py"]		move to workspace 6
-
-# 7 -- Communication
-for_window [class="Caprine"]		move to workspace 7
-for_window [class="Telegram"]		move to workspace 7
-for_window [class="discord"]		move to workspace 7
-for_window [class="Rocket.Chat"]	move to workspace 7
-
-# 8 -- Email
-for_window [class="Thunderbird"]	move to workspace 8
-
-# 10 -- Media
-for_window [class="Spotify"]		move to workspace 10
+# Workspaces
+for_window [class="firefox"]	 move to workspace 2
+for_window [class="code-oss"]	 move to workspace 5
+for_window [class="Keepassx2"]	 move to workspace 6
+for_window [class="Clamtk"]		 move to workspace 6
+for_window [class="Gufw.py"]	 move to workspace 6
+for_window [class="Caprine"]	 move to workspace 7
+for_window [class="Telegram"]	 move to workspace 7
+for_window [class="discord"]	 move to workspace 7
+for_window [class="Rocket.Chat"] move to workspace 7
+for_window [class="Thunderbird"] move to workspace 8
+for_window [class="Spotify"]	 move to workspace 10
 
 # ##----------------------------------------------------##
 # #| 			            Keybinds 			        |#
 # ##----------------------------------------------------##
-# Move Focus
-bindsym $mod+h				    focus left
-bindsym $mod+j				    focus down
-bindsym $mod+k				    focus up
-bindsym $mod+l				    focus right
+# Focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
-# Move Window in Workspace
-bindsym $mod+Shift+h			move left
-bindsym $mod+Shift+j			move down
-bindsym $mod+Shift+k			move up
-bindsym $mod+Shift+l			move right
+# Move
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
-# Resive focused window
-bindsym $sup+h                  resize shrink width 4px
-bindsym $sup+j                  resize grow height 4px
-bindsym $sup+k                  resize shrink height 4px
-bindsym $sup+l                  resize grow width 4px
-bindsym $sup+Shift+h            resize shrink width 8px
-bindsym $sup+Shift+j            resize grow height 8px
-bindsym $sup+Shift+k            resize shrink height 8px
-bindsym $sup+Shift+l            resize grow width 8px
+# Gaps
+bindsym $mod+$sup+h resize shrink width 4px
+bindsym $mod+$sup+j resize grow height 4px
+bindsym $mod+$sup+k resize shrink height 4px
+bindsym $mod+$sup+l resize grow width 4px
 
 # Fullscreen
-bindsym $mod+F11			    fullscreen toggle
-
-# Split Direction
-bindsym $mod+backslash          split toggle
+bindsym $mod+F11 fullscreen toggle
 
 # Layouts
-bindsym $mod+Shift+s	        layout default
-bindsym $mod+Shift+t	        layout tabbed
-
-# Floating
-bindsym $mod+space			    focus mode_toggle
-bindsym $mod+Shift+space		floating toggle
+bindsym $mod+backslash   split toggle
+bindsym $mod+Shift+s	 layout default
+bindsym $mod+Shift+t	 layout tabbed
+bindsym $mod+space		 focus mode_toggle
+bindsym $mod+Shift+space floating toggle
 
 # Display Workspace
-bindsym $mod+1				    workspace 1
-bindsym $mod+2				    workspace 2
-bindsym $mod+3				    workspace 3
-bindsym $mod+4				    workspace 4
-bindsym $mod+5				    workspace 5
-bindsym $mod+6				    workspace 6
-bindsym $mod+7				    workspace 7
-bindsym $mod+8				    workspace 8
-bindsym $mod+9				    workspace 9
-bindsym $mod+0				    workspace 10
-bindsym $mod+Tab			    workspace back_and_forth
+bindsym $mod+1   workspace 1
+bindsym $mod+2   workspace 2
+bindsym $mod+3   workspace 3
+bindsym $mod+4   workspace 4
+bindsym $mod+5   workspace 5
+bindsym $mod+6   workspace 6
+bindsym $mod+7   workspace 7
+bindsym $mod+8   workspace 8
+bindsym $mod+9   workspace 9
+bindsym $mod+0   workspace 10
+bindsym $mod+Tab workspace back_and_forth
 
 # Move Window to Workspace
-bindsym $mod+Shift+1			move container to workspace 1
-bindsym $mod+Shift+2			move container to workspace 2
-bindsym $mod+Shift+3			move container to workspace 3
-bindsym $mod+Shift+4			move container to workspace 4
-bindsym $mod+Shift+5			move container to workspace 5
-bindsym $mod+Shift+6			move container to workspace 6
-bindsym $mod+Shift+7			move container to workspace 7
-bindsym $mod+Shift+8			move container to workspace 8
-bindsym $mod+Shift+9			move container to workspace 9
-bindsym $mod+Shift+0			move container to workspace 10
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
 
 # Scratchpad
-bindsym $sup+Return			    scratchpad show
-bindsym $sup+Shift+Return		move scratchpad
+bindsym $sup+Return		  scratchpad show
+bindsym $sup+Shift+Return move scratchpad
 
-# Kill focused window
-bindsym $mod+Shift+q			kill
+# WM/Session Action
+bindsym $mod+Shift+r	  restart
+bindsym $sup+Shift+Escape exec i3-msg exit
 
-# Restart i3
-bindsym $mod+Shift+r			restart
+# Applications
+bindsym $mod+Shift+q	  kill
+bindsym $mod+d			  exec $launch
+bindsym $mod+Return		  exec $term
+bindsym $mod+Shift+Return exec $term -e tmux
+bindsym $mod+F2			  exec $browser
+bindsym $mod+F3			  exec $term -e ranger ~/
+bindsym $mod+F8			  exec $email
 
-# Exit i3
-bindsym $sup+Shift+Escape       exec i3-msg exit
-
-# Launch Terminal
-bindsym $mod+d				    exec $launch
-bindsym $mod+Return			    exec $term
-bindsym $mod+Shift+Return		exec $term -e tmux
-
-# Launch web browser
-bindsym $mod+F2				    exec $browser
-
-# Launch File Manager
-bindsym $mod+F3				    exec $term -e ranger ~/
-
-# Launch Email Client
-bindsym $mod+F8				    exec $gmail
-
-# Take Screenshot
-bindsym $mod+Shift+Print		exec $scrot
+# Scripts
+bindsym $mod+Shift+Print exec ~/scripts/tools/autoscrot.sh
 
 # Media Keys
-bindsym XF86AudioMute 			exec pamixer --toggle-mute
-bindsym XF86AudioLowerVolume	exec pamixer --decrease 1
-bindsym XF86AudioRaiseVolume 	exec pamixer --increase 1
-bindsym XF86AudioPrev			exec playerctl previous
-bindsym XF86AudioPlay			exec playerctl play-pause
-bindsym XF86AudioNext			exec playerctl next
+bindsym XF86AudioMute 		 exec pamixer --toggle-mute
+bindsym XF86AudioLowerVolume exec pamixer --decrease 1
+bindsym XF86AudioRaiseVolume exec pamixer --increase 1
+bindsym XF86AudioPrev		 exec playerctl previous
+bindsym XF86AudioPlay		 exec playerctl play-pause
+bindsym XF86AudioNext		 exec playerctl next
 
-# Brightness Control
-bindsym XF86MonBrightnessDown 	exec ~/scripts/tools/xbrightness.sh --decrease 5
-bindsym XF86MonBrightnessUp 	exec ~/scripts/tools/xbrightness.sh --increase 5
-
-# Unused FN keys
-#bindsym XF86Search
-#bindsym XF86RFKill
+# Display Brightness
+bindsym XF86MonBrightnessDown exec ~/scripts/tools/xbrightness.sh --decrease 5
+bindsym XF86MonBrightnessUp   exec ~/scripts/tools/xbrightness.sh --increase 5
 
 # ##----------------------------------------------------##
 # #| 			            Autostart 		        	|#
 # ##----------------------------------------------------##
-exec --no-startup-id ~/scripts/tools/autostart.sh
-#exec --no-startup-id hsetroot -solid #000000
-#exec --no-startup-id nitrogen --restore
-#exec_always --no-startup-id ~/scripts/tools/compton-launch.sh
-#exec_always --no-startup-id unclutter --jitter 50 &
-#exec_always --no-startup-id ~/scripts/polybar/launchpb.sh
-#exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-#exec --no-startup-id xautolock -time 60 -detectsleep -locker $locker
-#exec --no-startup-id dunst
-#exec --no-startup-id kdeconnectd
-#exec --no-startup-id kdeconnect-indicator
-
-# ##----------------------------------------------------##
-# #| 			        i3Status Bar 			        |#
-# ##----------------------------------------------------##
-# i3Status (default)
-#bar {
-#	status_command i3status
-#}
-
-# ##----------------------------------------------------##
-# #| 			        i3Blocks Bar 	        		|#
-# ##----------------------------------------------------##
-#bar {
-#	font	pango:mono 10
-#	colors {
-#		background		$dblack
-#		statusline		$dwhite
-#		separator		$white
-#
-#		#			Border	BG	FG
-#		focused_workspace	$black	$black	$white
-#		active_workspace	$black	$black	$white
-#		inactive_workspace	$dblack	$dblack	$dwhite
-#		urgent_workspace	$dred	$dred	$white
-#	}
-#	status_command i3blocks
-#	position bottom
-#	mode dock
-#	modifier None
-#}
+exec_always --no-startup-id ~/scripts/tools/autostart.sh
+exec_always --no-startup-id ~/scripts/polybar/polybar-start.sh
