@@ -14,11 +14,11 @@ cheat() { for i in "${@}"; do curl --silent --fail "cheat.sh/${i}"; done; }
 dict() { for i in "${@}"; do curl --silent --fail "dict://dict.org/d:${i}"; done; }
 
 # Github Cloning
-ghc() { git clone "https://github.com/${1}.git" "${2:-1${1##*\/}}"; }
+ghc() { git clone "https://github.com/${1}.git" "${2:-${1##*\/}}"; }
 ghcl() { for i in "${@}"; do git clone "https://github.com/${i}.git" "${i##*\/}"; done; }
 
 # Gitlab
-glc() { git clone "https://gitlab.com/${1}.git" "${2:-1${1##*\/}}"; }
+glc() { git clone "https://gitlab.com/${1}.git" "${2:-${1##*\/}}"; }
 glcl() { for i in "${@}"; do git clone "https://gitlab.com/${i}.git" "${i##*\/}"; done; }
 
 # Archive Extracting
