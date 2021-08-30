@@ -5,8 +5,8 @@
 # Click Events
 case "${BLOCK_BUTTON}" in
     1 )     pamixer --toggle-mute;;
-    3 )     sedsid --fork "${TERMINAL}" --command pamixer;;
+    3 )     setsid --fork "${TERMINAL}" --command pamixer;;
 esac
 
 # Get Volume
-pamixer --get-volume-human | awk '{print " ",$0}'
+awk '{print " " $0}' < <(pamixer --get-volume-human)

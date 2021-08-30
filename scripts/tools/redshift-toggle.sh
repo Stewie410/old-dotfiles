@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 #
-# redshift-toggle.sh
-#
 # Toggles Redshift
 
 # Kill Redshift if running

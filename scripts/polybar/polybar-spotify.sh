@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
 #
-# polybar-spotify.sh
-#
 # Pulls current Artist & Title from Spotify
 
-spotify-now -i "%artist - %title" -e "closed" -p "paused" | \
-    sed 's/^.*ad\(vert\)\?//;s/paused//;s/^/ /' | \
-    sed 's/^ closed$/d'
+awk '
+    {
+        info = " " gensub(/[^Aa]d( - [Aa]dvertisement)?$/, "", 1, $0)
+        info = gensub(/paused?/, "", "G", info)
+        if (match(info, "closed"))
+            info = ""
+        printf "%s", info
+    }
+' < <(spotify-now -i "%artist - %title" -e "closed" -p "paused")

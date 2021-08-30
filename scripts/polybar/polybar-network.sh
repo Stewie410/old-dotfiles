@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 #
-# polybar-network.sh
-#
 # Retrieve network/radio status & control bluetooth
 
 usage() {
@@ -16,31 +14,32 @@ Options:
 EOF
 }
 
-# Handle arguments
-trap "unset OPTS" EXIT
-OPTS="$(getopt --options hb --longoptions help,bluetooth --name "${0##*\/}" -- "${@}")"
-eval set -- "${OPTS}"
-while true; do
-    case "${1}" in
-        -h | --help )       usage; exit;;
-        -b | --bluetooth )
-            if systemctl is-active --quiet bluetooth; then
-                systemctl stop bluetooth
-            else
-                systemctl start bluetooth
-            fi
-            shift
-            ;;
-        -- )                shift; break;;
-        * )                 break;;
-    esac
-done
+getIcons() {
+    awk '
+        /scope/ {
+            if (match($0, "dev w"))
+                print ""
+            else if (match($0, "dev e"))
+                print ""
+            else if (match($0, "dev t"))
+                print ""
+        }
+    ' < <(ip route)
+    systemctl --quiet is-active bluetooth && printf '%s\n' ""
+}
 
-# Get Status
-{
-    ip route | \
-        tr '[:upper:]' '[:lower:]' | \
-        grep --ignore-case "scope" | \
-        awk '/dev w/{print ""}/dev e/{print ""}/dev t/{print ""}'
-    systemctl --quiet is-active bluetooth && echo ""
-} | paste --serial --delimiter=" "
+toggleBluetooth() {
+    local action
+    action="start"
+    systemctl --quiet is-active bluetooth && action="stop"
+    systemctl "${action}" bluetooth
+}
+
+# Handle arguments
+if [[ "${*,,}" =~ -(h|-help) ]]; then
+    show_help
+elif [[ "${*,,}" =~ -(b|-bluetooth) ]]; then
+    toggleBluetooth
+else
+    getIcons | paste --serial --delimiter=" " | tr --delete '\n'
+fi

@@ -1,13 +1,7 @@
 #!/usr/bin/env bash
 #
-# polybar-cpufreq.sh
-#
 # Reports the average CPU Frequency
 
 # Get frequency
-cpupower frequency-info --freq --human | \
-    awk '
-        /current/ {
-            print """,$4$5
-        }
-    '
+command -v "cpupower" >/dev/null || exit
+awk '/current/ {print "", $4 $5}' < <(cpupower frequency-info --freq --human)

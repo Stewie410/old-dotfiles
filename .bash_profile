@@ -1,9 +1,9 @@
-#!/bin/env bash
-#
-# bash_profile
-# Author:	Alex Paarfus <stewie410@gmail.com>
+#!/usr/bin/env bash
 #
 # Definition of this bash profile
 
-# Get Profile Data from bashrc
-[ -s "${HOME}/.bashrc" ] && source "${HOME}/.bashrc"
+if [ -s "${HOME}/.bashrc" ]; then
+    source "${HOME}/.bashrc"
+else
+    source "/etc/profile"
+fi

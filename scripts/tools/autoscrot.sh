@@ -1,15 +1,8 @@
 #!/usr/bin/env bash
 #
-# autoscrot.sh
-#
-# Take screenshot with scrot
+# Wrapper for scrot to auto-name output
 
-# Get filename
-out="${HOME}/Pictures/Screenshots"
-read -r count <<< \
-    "$(find "${out}" -mindepth 1 -maxdepth 1 -type f -name "*capture_*.png" | \
-        wc --lines)"
-trap "unset out count" EXIT
-
-# Take Screenshot
-scrot "${out}/capture_${count}.png"
+out="${HOME}/Pictures/Screenshots/$(date --iso-8601)/$(date --iso-8601="seconds").png"
+trap 'unset out' EXIT
+mkdir --parents "${out%/*}"
+scrot "${@}" -- "${out}"

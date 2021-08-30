@@ -1,50 +1,74 @@
 #!/usr/bin/env bash
 #
-# extract_archive.sh
-#
 # Extract various types of archive/compressed files
 
-# Show Usage
-usage() { printf '%s\n' "USAGE: ${0##*\/} [-h|--help] FILE1 [FILE2 [...]]"; }
+require() {
+    command -v "${*}" >/dev/null
+}
 
-# Check if application exists
-exist() { command -v "${1}" || { printMsg "app" "${1}"; return 1; }; }
+show_help() {
+    cat << EOF
+Extract various types of archive files to current directory
 
-# Print Message :: String type, String part
-printMsg() {
-    # Return if no args passed
-    [ -n "${2}" ] || return
+USAGE: ${0##*/} [OPTIONS] ARCHIVE
 
-    # Determine message & tag
-    local msg tag
-    case "${1,,}" in
-        exist )     tag="ERROR"; msg="File does not exist";;
-        unknown )   tag="ERROR"; msg="Unrecognize file format";;
-        app )       tag="ERROR"; msg="Cannot locate required package/application";;
-        * )         tag="EXCPT"; msg="An unexpected error occurred";;
-    esac
+OPTIONS:
+    -h, --help      Show this help message
 
-    # Print Message
-    printf '%s\n' "[$(date --iso-8601=sec)] [${tag^^}] ${msg}: ${2}"
+SUPPORTED FORMATS
+    tar | tar.xz
+    tgz | tar.gz
+    tbz | tbz2 | tar.bz | tar.bz2
+    tzs | tzst | tar.zst
+    bz2
+    gz
+    rar
+    zip
+    Z
+    7z
+    deb
+EOF
+}
+
+getFormat() {
+    awk '
+        {
+            format = gensub(/^[^.]+?\./, "", 1, $0)
+            switch (format) {
+                case /t(ar\.)?xz/: format = "tar"
+                case /t(ar\.)?gz/: format = "tgz"
+                case /t(ar\.)?bz2?/: format = "tbz2"
+                case /t(ar\.)?zst?/: format = "tzst"
+            }
+            print format
+        }
+    ' <<< "${*,,}"
 }
 
 # Handle Arguments
-[ -n "${1}" ] || { usage; exit 1; }
-grep --quiet --ignore-case --extended-regexp "-(h|-help)" <<< "${*}" && { usage; exit; }
-[ -s "${1}" ] || { printMsg "exist" "${1}"; exit 1; }
+OPTS="$(getopt --options h --longoptions help --name "${0##*/}" -- "${@}")"
+eval set -- "${OPTS}"
+while true; do
+    case "${1}" in
+        -h | --help )   show_help; exit 0;;
+        -- )            shift; break;;
+        * )             break;;
+    esac
+    shift
+done
 
-# Extract File
-case "${1#.*}" in
-    tar | tar.xz )      exist "tar" || exit 1; tar --extract --file="${1}";;
-    tar.gz | tgz )      ( exist "tar" && exist "gunzip" ) || exit 1; tar --extract --gzip --file="${1}";;
-    tar.bz2 | tbz2 )    ( exist "tar" && exist "bzip2" ) || exit 1; tar --extract --bzip2 --file="${1}";;
-    tar.zst | zst )     exist "unzstd" || exit 1; unzstd "${1}";;
-    bz2 )               exist "bunzip2" || exit 1; bunzip "${1}";;
-    gz )                exist "gunzip" || exit 1; gunzip "${1}";;
-    rar )               exist "unrar" || exit 1; unrar x "${1}";;
-    zip )               exist "unzip" || exit 1; unzip "${1}";;
-    Z )                 exist "uncompress" || exit 1; uncompress "${1}";;
-    7z )                exist "7z" || exit 1; 7z x "${1}";;
-    deb )               exist "ar" || exit 1; ar x "${1}";;
-    * )         printMsg "unknown" "${1}"; usage; exit 1;;
+# Extract Archive
+case "$(getFormat "${*}")" in
+    tar )   require "tar" && tar --extract --file="${*}";;
+    tgz )   require "tar" && require "gunzip" && tar --extract --gzip --file="${*}";;
+    tbz2 )  require "tar" && require "bunzip2" && tar --extract --bzip2 --file="${*}";;
+    tzst )  require "unzstd" && unzstd "${*}";;
+    bz2 )   require "bunzip2" && bunzip2 --keep "${*}";;
+    gz )    require "gunzip" && gunzip --keep "${*}";;
+    rar )   require "unrar" && unrar x "${*}";;
+    zip )   require "unzip" && unzip "${*}";;
+    z )     require "uncompress" && uncompress "${*}";;
+    7z )    require "7z" && 7z x "${*}";;
+    deb )   require "ar" && ar x "${*}";;
+    * )     printf '%s\n' "Unknown filetype: '${*}'"; exit 10;;
 esac

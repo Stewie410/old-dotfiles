@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 #
-# gdsync-min.sh
-#
 # Synchronize Google Drive if out of date, with minimal lines
 
 ping -c 1 8.8.8.8 |& grep --quiet --ignore-case "unreachable" && \

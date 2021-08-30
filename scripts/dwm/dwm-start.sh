@@ -10,8 +10,7 @@ nitrogen --restore >/dev/null 2>&1
 picom &>/dev/null & disown
 unclutter --jitter 50 &>/dev/null & disown
 polkit-gnome-authentication-agent-1 &>/dev/null & disown
-xautolock -time 60 -detectsleep \
-    -locker "${HOME}/scripts/tools/lockSession.sh" &>/dev/null & disown
+xautolock -time -detectsleep -locker "dm-tool lock" &>/dev/null & disown
 dunst --config "${HOME}/.config/dunst/dunstrc" &>/dev/null & disown
 kdeconnect &>/dev/null & disown
 

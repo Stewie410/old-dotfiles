@@ -1,20 +1,23 @@
 #!/usr/bin/env bash
 #
-# polybar-updates.sh
-#
 # Get the total number of available packages since last sync
 
+getCount() {
+    awk '
+        {
+            seen[$1]++
+            if (seen[$1] == 1)
+                count += 1
+        }
+
+        END {
+            printf "%s", count
+        }
+    '
+}
+
 # Print if pacman/yay currently running
-( pidof pacman || pidof yay ) >/dev/null && exit
+( pidof pacman || pidof paru ) >/dev/null && exit
 
 # Print Available Updates
-{ checkupdates | awk '{print $1}'; \
-    yay --query --upgrades --foreign --aur --quiet; } | \
-    sort | \
-    uniq | \
-    wc --lines | \
-	awk '$1 > 0 { print " " $1 }'
-{
-    checkupdates | awk '{print $1}'
-    yay --query --upgrades --foreign --aur --quiet
-} | sort | uniq | wc --lines | awk '{print "",$1}'
+printf ' %s | %s' "$(checkupdates | getCount)" "$(paru -Qu | getCount)"

@@ -99,7 +99,7 @@ mouse:
   double_click: { threshold: 300 }
   triple_click: { threshold: 300 }
   hide_when_typing: false
-  url:
+  hints:
     launcher:
       program: xdg-open
       args: []

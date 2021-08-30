@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 #
-# polybar-start.sh
-#
 # (re)starts polybar
 
 # Kill polybar

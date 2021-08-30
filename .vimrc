@@ -2,30 +2,32 @@
 "
 " Vim Configuration
 
-" --------------------------------------------------------
-" --			            Plugins				        --
-" --------------------------------------------------------
+"  --
+"  -- Plugins
+"  --
 call plug#begin('~/.vim/plugged')
-Plug 'PotatoesMaster/i3-vim-syntax'
-Plug 'vim-syntastic/syntastic'
-Plug 'mhinz/vim-signify'
-Plug 'junegunn/fzf', {'do': { -> fzf#install()}}
-Plug 'junegunn/fzf.vim'
-Plug 'lervag/vimtex'
-Plug 'lambdalisue/fern.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'ryanoasis/vim-devicons'
-Plug 'prettier/vim-prettier', {'do': 'yarn install'}
-Plug 'jremmen/vim-ripgrep'
-Plug 'tpope/vim-fugitive'
-Plug 'vim-utils/vim-man'
-Plug 'mbbill/undotree'
-Plug 'sheerun/vim-polyglot'
+    Plug 'PotatoesMaster/i3-vim-syntax'
+    Plug 'vim-syntastic/syntastic'
+    Plug 'mhinz/vim-signify'
+    Plug 'junegunn/fzf', {'do': { -> fzf#install()}}
+    Plug 'junegunn/fzf.vim'
+    Plug 'junegunn/vim-peekaboo'
+    Plug 'lervag/vimtex'
+    Plug 'lambdalisue/fern.vim'
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'ryanoasis/vim-devicons'
+    Plug 'prettier/vim-prettier', {'do': 'yarn install'}
+    Plug 'jremmen/vim-ripgrep'
+    Plug 'tpope/vim-fugitive'
+    Plug 'vim-utils/vim-man'
+    Plug 'mbbill/undotree'
+    Plug 'sheerun/vim-polyglot'
+    Plug 'dracula/vim', { 'as': 'dracula' }
 call plug#end()
 
-" --------------------------------------------------------
-" --                        Options                     --
-" --------------------------------------------------------
+"  --
+"  -- Options
+"  --
 " Enable
 set number
 set ruler
@@ -47,9 +49,9 @@ set nowritebackup
 set noswapfile
 set noemoji
 
-" --------------------------------------------------------
-" --			            Variables	               	--
-" --------------------------------------------------------
+"  --
+"  -- Variables
+"  --
 " Globals
 let g:netrw_browse_split = 2
 let g:netrw_banner = 0
@@ -138,7 +140,9 @@ set viminfo^=!
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Additional
+"set termguicolors
 colo ron
+let g:airline_theme = "dracula"
 syntax on
 "hi Normal guibg=NONE ctermbg=NONE
 "hi NonText ctermbg=NONE
@@ -150,9 +154,9 @@ if executable('rg')
     let g:rg_derive_root='true'
 endif
 
-" --------------------------------------------------------
-" --		                Keymaps                     --
-" --------------------------------------------------------
+"  --
+"  -- Keymaps
+"  --
 " Leader Key
 let mapleader =" "
 
@@ -182,9 +186,9 @@ if !exists('f:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
     endif
 endif
 
-" --------------------------------------------------------
-" --		            Commands		                --
-" --------------------------------------------------------
+"  --
+"  -- Commands
+"  --
 " COC
 command! -nargs=0 Format :call CocAction('format')
 command! -nargs=? Fold :call CocAction('fold', <f-args>)
@@ -193,9 +197,9 @@ command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.orgazineImport
 " Tab Compatibility
 command! TC :set tabstop=8 softtabstop=8 shiftwidth=8
 
-" --------------------------------------------------------
-" --		            Autocommands	    	        --
-" --------------------------------------------------------
+"  --
+"  -- Autocommands
+"  --
 " COC Highlight symbol under cusor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
@@ -239,9 +243,9 @@ augroup AutoVimrc
     autocmd BufWritePost source %
 augroup END
 
-" --------------------------------------------------------
-" --		            Functions		                --
-" --------------------------------------------------------
+"  --
+"  -- Functions
+"  --
 " Trim Whitespace
 fun! TrimWhitespace()
     let l:save = winsaveview()
@@ -358,6 +362,6 @@ fun! GoCOC()
     augroup end
 endfun
 
-" --------------------------------------------------------
-" --		            Snippets		                --
-" --------------------------------------------------------
+"  --
+"  -- Snippets
+"  --

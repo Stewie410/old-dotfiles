@@ -2,6 +2,12 @@
 #
 # Display Spotify Now-Playing
 
-spotify-now -i " %artist - %title" -e "closed" -p "paused" | \
-    sed 's/^.*ad\(vert\)?//I;s/paused//;s/^/ /' | \
-    sed "/^ closed$/d"
+awk '
+    {
+        info = " " gensub(/^[Aa]d( - [Aa]dvertisement)?$/, "", 1, $0)
+        info = gensub(/paused/, "", 1, info)
+        if (match(info, "closed"))
+            info = ""
+        printf "%s", info
+    }
+' < <(spotify-now -i "%artist - %title" -e "closed" -p "paused")
