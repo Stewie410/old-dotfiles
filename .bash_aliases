@@ -4,208 +4,127 @@
 #
 # Handy Aliases
 
-require() {
-    command -v "${*}" >/dev/null
-}
-
-# --
-# -- Navigation
-# --
 # ls
 alias l='ls'
 alias ls='ls --group-directories-first --color=auto --classify'
-alias la='ls --almost-all'
-alias ll='ls -l'
-alias lla='la -l'
-alias llh='ll --human-readable'
+alias la='ls --almost-all' \
+    ll='ls -l'
+alias lla='la -l' \
+    llh='ll --human-readable'
 alias llah='lla --human-readable'
 
-# ls + SELinux
-if command -v getenforce >/dev/null; then
+# ls -> SELinux
+if command -v getenforce &>/dev/null; then
     alias lz='ls --context'
-    alias lza='ls --context --almost-all'
-    alias lzah='ls --context --almost-all --human-readable'
+    alias lza='lz --almost-all'
+    alias lzah='lza --human-readable'
 fi
 
-# exa -- may replace ls eventually
-if command -v exa >/dev/null; then
-    alias lx='exa --color=automatic --group-directories-first --classify'
-    alias lxa='lx --all'
-    alias lxl='lx --long'
-    alias lxt='lx --tree'
-    alias lxla='lx --all --long'
-    alias lxta='lx --all --tree'
-fi
+# exa
+alias lx='exa --color=automatic --group-directories-first --classify'
+alias lxa='lx --all' \
+    lxl='lx --long' \
+    lxt='lx --tree'
+alias lxla='lxa --long' \
+    lxta='lxt --all'
 
 # dir
 alias dir='dir --color=auto'
 
 # grep
 alias grep='grep --color=auto'
-require "egrep" || alias egrep='grep --extended-regexp'
-require "fgrep" || alias fgrep='grep --fixed-strings'
+command -v egrep &>/dev/null || alias egrep='grep --extended-regexp'
+command -v fgrep &>/dev/null || alias fgrep='grep --fixed-strings'
 
-# Confirm before overwriting or removing file
-alias mv="mv --interactive"
-alias cp="cp --interactive"
-alias rm="rm --interactive"
+# confirm before you break something
+alias mv='mv --interactive' \
+    cp='cp --interactive' \
+    rm='rm --interactive'
 
 # cd up directory tree
-alias ..='cd ..'
-alias ...='cd ../..'
+alias ..='cd ..' \
+    ...='cd ../..'
 
 # Zoxide
 alias zq='zoxide'
 
-# --
-# -- Tools
-# --
-# Sudo alternative
+# doas
 #command -v doas >/dev/null && alias doas='doas --'
 
-# Common tools
-command -v xprop >/dev/null && alias cprop='xprop | grep --ignore-case "class"'
+# xprop
+alias cprop='xprop | grep --ignore-case class'
 
-# Handy Shortcuts
-command -v xclip >/dev/null && alias xcp='xclip -selection "clipboard"'
+# xclip
+alias xcp='xclip -selection clipboard'
+
+# fc-cache
 alias fcfv='sudo fc-cache --force --verbose'
 
-# Oneshot Curl Utils
-if command -v curl >/dev/null; then
-    alias ipinfo='curl --silent --fail ipinfo.io/json'
-    alias pubip='curl --silent --fail ifconfig.me; echo'
-fi
+# public ip
+alias pubip='curl --silent --fail ifconfig.me'
+alias ipinfo='curl --silent --fail ipinfo.io/json'
 
-# Radios
-command -v bluetoothctl >/dev/null && alias btctl='bluetoothctl'
-if command -v rfkill >/dev/null; then
-    alias ubbt='sudo rfkill unblock bluetooth'
-    alias ubwl='sudo rfkill unblock wifi'
-    alias ubww='sudo rfkill unblock wwan'
-fi
+# radio control
+alias btctl='bluetoothctl'
+alias ubbt='sudo rfkill unblock bluetooth'
+alias ubwl='sudo rfkill unblock wifi'
+alias ubww='sudo rfkill unblock wwan'
 
-# RClone
-if command -v rclone >/dev/null; then
-    alias rclcheck='rclone check'
-    alias rclsync='rclone sync'
-    alias rclcopy='rclone copy'
-fi
+# rclone
+alias rclcheck='rclone check'
+alias rclsync='rclone sync'
+alias rclcopy='rclone copy'
 
-# Termbin
-command -v nc >/dev/null && alias tb='nc termbin.com 9999'
+# termin
+alias tb='nc termbin.com 9999'
 
-# Processes
+# ps
 alias psmem='ps auxf | sort --numeric-sort --ignore-case --key=4'
 alias pscpu='ps auxf | sort --numeric-sort --ignore-case --key=3'
-alias psmem10='psmem | head --lines=10'
-alias pscpu10='pscpu | head --lines=10'
 
-# GPG
+# gpg
 alias gpg-check='gpg2 --keyserver-options auto-key-retrieve --verify'
 alias gpg-retrieve='gpg2 --keyserver-options auto-key-retrieve --receive-keys'
 
-# Youtube-DL
-if command -v youtube-dl >/dev/null; then
-    alias ytdl='youtube-dl'
-    #alias yta-aac='ytdl --extract-audio --audio-format aac'
-    alias yta-best='ytdl --extract-audio --audio-format best'
-    #alias yta-flac='ytdl --extract-audio --audio-format flac'
-    #alias yta-m4a='ytdl --extract-audio --audio-format m4a'
-    #alias yta-mp3='ytdl --extract-audio --audio-format mp3'
-    #alias yta-opus='ytdl --extract-audio --audio-format opus'
-    #alias yta-vorb='ytdl --extract-audio --audio-format vorbis'
-    #alias yta-wav='ytdl --extract-audio --audio-format wav'
-    alias ytv-best='ytdl --format bestvideo+bestaudio'
-fi
+# youtube-dl
+alias ytdl='youtube-dl'
+alias yta-best='ytdl --extract-audio --audio-format best'
+alias ytv-best='ytdl --format bestvideo+bestaudio'
 
-# Bat is better than cat
-command -v bat >/dev/null && alias cat='bat'
+# bat
+alias cat='bat'
 
-# --
-# -- systemd
-# --
+# journalctl
 alias jctl='journalctl --priority=3 --catalog --boot'
 
-# --
-# -- Session
-# --
+# session management
 alias lock='XDG_SEAT_PATH="/org/freedesktop/DisplayManager/Seat0" dm-tool lock'
 alias suspend='systemctl suspend'
 alias hibernate='systemctl hibernate'
 
-# --
-# -- Scripts
-# --
-[ -s "${HOME}/scripts/tools/ttc_toggle.sh" ] && alias ttc='${HOME}/scripts/tools/ttc_toggle.sh'
-[ -s "${HOME}/scripts/tools/gdsync-min.sh" ] && alias gds='${HOME}/scripts/tools/gdsync-min.sh'
+# git
+alias git='git --no-pager'
+alias grm='git rm --cached'
+alias grmf='git rm'
 
-# --
-# -- VPNs
-# --
-# OpenVPN
-if command -v openvpn >/dev/null; then
-    [ -s "${HOME}/.OpenVPN/wtcox-udp.ovpn" ] && alias wtcox-udp='sudo openvpn --config "${HOME}/.OpenVPN/wtcox-udp.ovpn"'
-fi
+# git -> dotfiles bare repo
+alias gdf='git --git-dir="${HOME}/dotfiles" --work-tree="${HOME}"'
+alias gdfrm='gdf rm --cached'
+alias gdfrmf='gdf rm'
 
-# --
-# -- Version Control
-# Git
-if command -v git >/dev/null; then
-    alias git='git --no-pager'
-    alias gaa='git add --all'
-    alias gau='git add --update'
-    alias gcm='git commit -m'
-    alias gd='git diff --color'
-    alias gl='git log --pretty=oneline'
-    alias gr='git rm --cached'
-    alias grf='git rm'
-
-    # Git Bare -- Dotfiles
-    alias gdf='git --git-dir="${HOME}/dotfiles" --work-tree="${HOME}"'
-    alias gdfaa='gdf add --all'
-    alias gdfau='gdf add --update'
-    alias gdfcm='gdf commit -m'
-    alias gdfd='gdf diff --color'
-    alias gdfl='gdf log --pretty=oneline'
-    alias gdfr='gdf rm --cached'
-    alias gdfrf='gdf rm'
-fi
-
-# ##----------------------------------------------------##
-# #|		            Package Management		        |#
-# ##----------------------------------------------------##
 # pacman
 alias pacman='sudo pacman'
-alias psyu='pacman -Syu'
-alias psyyu='pacman -Syyu'
-alias psy='pacman -Sy'
-alias psyy='pacman -Syy'
-alias pin='pacman -S'
-alias prm='pacman -R'
-alias pcl='pacman -Rsn'
-alias psr='pacman -Ss'
-alias pq='pacman --query'
-alias pfy='pacman -Fy'
-alias pfs='pacman -F'
 
-# paru (aur)
-if command -v paru >/dev/null; then
-    alias yay='paru'
-    alias ain='paru --sync'
-    alias arm='paru --remove'
-    alias acl='paru -Rsn'
-    alias asr='paru -Ss --sortby popularity'
-    alias aq='paru -Q'
-    alias afy='paru -Fy'
-    alias afs='paru -Fs'
+# aura
+alias aura='sudo aura'
 
-    # Combined
-    alias sy='paru -Sy'
-    alias syy='paru -Syy'
-    alias syu='paru -Syu'
-    alias syyu='paru -Syu'
-    alias syuu='paru -Syuu'
-    alias scc='paru -Scc'
-fi
+# toggle tap-to-click
+alias ttc='${HOME}/scripts/tools/ttc_toggle.sh'
 
-unset -f require
+# google-drive sync
+alias gds='${HOME}/scripts/tools/gdsync-min.sh'
+
+# git clone
+alias gcgh='${HOME}/scripts/tools/gitclone.sh -g'
+alias gcgl='${HOME}/scripts/tools/gitclone.sh -l'
+alias gcsl='${HOME}/scripts/tools/gitclone.sh -s'

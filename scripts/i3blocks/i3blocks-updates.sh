@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Get total number of available packages
+# Get total number of available updates
 
 getAUR() {
     aura -Au --dryrun | awk '
@@ -26,10 +26,15 @@ getSTD() {
     '
 }
 
-# Do not get new values if pacman or AUR helper(s) are running
+# Handle Mouse Events
+case "${BLOCK_BUTTON}" in
+	1 ) 	pamac-manager & disown; exit;;
+esac
+
+# Do not get new values if pacman or AUR helpers are running
 for i in "pacman" "yay" "paru" "aura"; do
     pidof "${i}" &>/dev/null && exit
 done
 
-# Print Available Updates
+# Print both standard & AUR updates available
 printf ' %s | %s' "$(getSTD)" "$(getAUR)"

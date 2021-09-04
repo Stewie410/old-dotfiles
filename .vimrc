@@ -141,7 +141,7 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Additional
 "set termguicolors
-colo ron
+colo slate
 let g:airline_theme = "dracula"
 syntax on
 "hi Normal guibg=NONE ctermbg=NONE
