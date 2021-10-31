@@ -3,6 +3,13 @@
 #
 # Bash configuration
 
+# Enable X11 forwarding
+export DISPLAY="$(${HOME}/scripts/tools/wsl/initWSLX11ForwardingWFWRule.sh)"
+export LIBGL_ALWAYS_INDIRECT="1"
+
+# Allow VPN + WSL Support
+wsl.exe -d wsl-vpnkit service wsl-vpnkit start
+
 # Skip configuration if not running interactively
 [[ "${-}" =~ i ]] || return
 
@@ -12,32 +19,33 @@
 command -v starship >/dev/null && eval "$(starship init bash)"
 
 # Update PATH
-export PATH="${PATH}:/opt/wine-osu/bin:$(find "${HOME}/scripts" -mindepth 1 -maxdepth 1 -type d | paste --serial --delimiter=":")"
+export PATH="${PATH}:$(find "${HOME}/scripts" -mindepth 1 -maxdepth 1 -type d | paste --serial --delimiter=":")"
+export PATH="${PATH}:${HOME}/.local/bin"
 
 # Define editor
 export EDITOR="vim"
 
 # Define terminal
-export TERMINAL="alacritty"
+#export TERMINAL="alacritty"
 
 # Define web browser
-export BROWSER="firefox"
+#export BROWSER="firefox"
 
 # Define document reader
-export READER="zathura"
+#export READER="zathura"
 
 # Define file manager
-export FILE_MANAGER="ranger"
+#export FILE_MANAGER="ranger"
 
 # Define email client
-export MAIL_CLIENT="thunderbird"
+#export MAIL_CLIENT="thunderbird"
 
 # Define the sudo-compliant of dmenu
-export SUDO_ASKPASS="${HOME}/scripts/tools/dmenupass"
+#export SUDO_ASKPASS="${HOME}/scripts/tools/dmenupass"
 
 # Wine
-export WINEPREFIX="${HOME}/.wine_osu"
-export WINEARCH="win32"
+#export WINEPREFIX="${HOME}/.wine_osu"
+#export WINEARCH="win32"
 
 # XDG
 export XDG_CONFIG_HOME="${HOME}/.config"
@@ -50,7 +58,8 @@ export HISTFILESIZE="1000000"
 export HISTSIZE="1000000"
 
 # Use bat as manpager if available
-command -v bat &>/dev/null && export MANPAGER="sh -c 'col --no-backspaces --spaces | bat --language man --plain'"
+#command -v bat &>/dev/null && export MANPAGER="sh -c 'col --no-backspaces --spaces | bat --language man --plain'"
+command -v bat &>/dev/null && export MANPAGER="sh -c 'col -bx | bat --language man --plain'"
 
 # Enable color support in less
 export LESS="--RAW-CONTROL-CHARS"

@@ -128,3 +128,6 @@ alias gds='${HOME}/scripts/tools/gdsync-min.sh'
 alias gcgh='${HOME}/scripts/tools/gitclone.sh -g'
 alias gcgl='${HOME}/scripts/tools/gitclone.sh -l'
 alias gcsl='${HOME}/scripts/tools/gitclone.sh -s'
+
+# sshman
+alias sshman='${HOME}/scripts/work/sshman/sshman.sh'
