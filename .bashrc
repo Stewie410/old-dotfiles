@@ -10,6 +10,12 @@ export LIBGL_ALWAYS_INDIRECT="1"
 # Allow VPN + WSL Support
 wsl.exe -d wsl-vpnkit service wsl-vpnkit start
 
+# Load SSH Keys into Keychain
+if command -v "keychain" &>/dev/null; then
+    keychain -q --no-gui "${HOME}/.ssh/id_rsa"
+    source "${HOME}/.keychain/${HOSTNAME}-sh"
+fi
+
 # Skip configuration if not running interactively
 [[ "${-}" =~ i ]] || return
 
