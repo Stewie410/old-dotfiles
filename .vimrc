@@ -331,6 +331,9 @@ command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport
 " Alias for 'filetype detect'
 command! FTD filetype detect
 
+" Alias for ToggleTabStop()
+command! TTS call ToggleTabStop()
+
 " Highligh symbold under cursor on CursorHold with coc.nvim
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
@@ -440,6 +443,15 @@ function TrimEndLines()
 	let l:save_cursor = getpos(".")
 	silent! keeppatterns %s#\($\n\s*\)\+\%$##
 	call setpos('.', l:save_cursor)
+endfunction
+
+" Toggle Tabs == 4 || 8
+function! ToggleTabStop()
+	if &tabstop == 4
+		silent! set tabstop=8 softtabstop=8 shiftwidth=8
+	else
+		silent! set tabstop=4 softtabstop=4 shiftwidth=4
+	endif
 endfunction
 
 " -----------------------------------------------------------------------------
