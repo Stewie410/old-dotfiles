@@ -32,10 +32,10 @@ eval "$(starship init bash)"
 
 # Load SSH Key(s) into Keychain
 eval "$(keychain --eval --agents ssh \
-    "${HOME}/.ssh/${HOSTNAME}/id_rsa" \
-	"${HOME}/.ssh/github/id_rsa" \
-	"${HOME}/.ssh/gitlab/id_rsa" \
-	"${HOME}/.ssh/linode/rocketchat/id_rsa")"
+	"${HOME}/.ssh/${HOSTNAME}/id_rsa" \
+	"${HOME}/.ssh/${HOSTNAME}/github/id_rsa" \
+	"${HOME}/.ssh/${HOSTNAME}/gitlab/id_rsa"\
+)"
 
 # Start wsl-vpnkit for DNS & Networking support with VPNs...
 # https://github.com/sakai135/wsl-vpnkit
