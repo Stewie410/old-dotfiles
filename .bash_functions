@@ -1,69 +1,101 @@
 #!/bin/env bash
-#
-# A collection of useful functions
 
-# Make a directory if it doesn't exist, then change to it :: String path
+# Find Processes :: String keyword
+pps() {
+    if command -v pgrep &>/dev/null; then
+        prgep "${*}"
+    else
+        ps aux | grep "${*}" | sed '/^grep/d'
+    fi
+}
+
+# Get a cheat-sheet :: String keyword
+cheat() { curl --silent --fail "cheat.sh/${*}"; }
+
+# Get a dictionary definition(s) :: String keyword
+dict() { curl --silent --fail "dict://dict.org/d:${*}"; }
+
+# Make and change to a directory :: String path
 mkcd() {
-    if [[ "${*,,}" =~ -(h|-help) ]]; then
-        cat << EOF
-Make a directory if necessary, then change to it
+    local date opts working help
+    working="${WORKING_DIR:-${HOME}/working}"
+    opts="$(getopt --options htyld: --longoptions help,today,yesterday,linux,date: --name "${FUNCNAME[0]}" -- "${@}")"
 
-USAGE: ${FUNCNAME[0]} [OPTIONS] PATH
+    read -r head << EOF
+Make and change directory
 
-OPTIONS:
-    -h, --help      Show this help message
-EOF
-        return
-    fi
-
-    # shellcheck disable=SC2164
-    mkdir --parents "${*}" && cd "${*}"
-}
-
-# Make today's working directory if it doesn't exist, then change to it
-mdot() {
-    mkcd "${HOME}/working/$(date --iso-8601)"
-}
-
-# Make yesterday's working directory if it doesn't exist, then change to it
-mdoy() {
-    mkcd "${HOME}/working/$(date --date="yesterday" --iso-8601)"
-}
-
-# Make DATE's working directory if it doesn't exist, then change to it
-mdod() {
-    if [[ "${*,,}" =~ -(h|-help) ]]; then
-        cat << EOF
-Make DATE's working directory if necessary, then change to it
-
-USAGE: ${FUNCNAME[0]} [OPTIONS] DATE
+USAGE: ${FUNCNAME[0]} [OPTIONS] [PATH]
 
 OPTIONS:
-    -h, --help      Show this help message
+    -h, --help          Show this help message
+    -t, --today         Today's working directory
+    -y, --yesterday     Yesterday's working directory
+    -l, --linux         Use the linux working path ('\${HOME}/working') instead of Windows ('\${WORKING_DIR}')
+    -d, --date DATE     DATE's working directory
+
+PATH:
+    PATH is ignored for working-directory options
+
+DATE:
+    DATE should follow 'date -d' formatting
 EOF
-        return
+
+    eval set -- "${opts}"
+    while true; do
+        case "${1}" in
+            -h | --help )       printf '%s\n' "${help}"; return 0;;
+            -t | --today )      date="today";;
+            -y | --yesterday )  date="yesterday";;
+            -l | --linux )      working="${HOME}/working";;
+            -d | --date )       date="${2}"; shift;;
+            -- )                shift; break;;
+            * )                 break;;
+        esac
+        shift
+    done
+
+    if [ -n "${date}" ]; then
+        if ! date --date="${date}" &>/dev/null; then
+            printf '%s\n' "Invalid date format: '${date}'" >&2
+            return 1
+        fi
+        working+="/$(date --date="${date}" --iso-8601)"
+        if ! mkdir --parents "${working}" &>/dev/null; then
+            printf '%s\n' "Failed to create working directory: '${working}'" &>2
+            return 1
+        fi
+        if ! cd "${working}" &>/dev/null; then
+            printf '%s\n' "Failed to navigate to working directory: '${working}'" >&2
+            return 1
+        fi
+    else
+        if ! mkdir --parents "${*}" &>/dev/null; then
+            printf '%s\n' "Failed to create directory: '${*}'" >&2
+            return 1
+        fi
+        if ! cd "${*}" &>/dev/null; then
+            printf '%s\n' "Failed to navigate to directory: '${*}'" >&2
+            return 1
+        fi
     fi
 
-    mkcd "${HOME}/working/$(date --date="${*}" --iso-8601)"
+    return 0
 }
 
-# Preview Github-Flavored Markdown file
-gfmp() {
-    if [[ "${*,,}" =~ -(h|-help) ]]; then
-        cat << EOF
-Preview a Github-Flavored Markdown (GFM) file as a PDF
+# Working-Directory creation
+mdot() { mkcd --today "${@}"; }
+mdoy() { mkcd --yesterday "${@}"; }
+mdod() { mkcd --date "${@}"; }
 
-USAGE: ${FUNCNAME[0]} [OPTIONS] FILE
-
-OPTIONS:
-    -h, --help      Show this help message
-EOF
-        return
-    fi
-
-    local pdf
-    pdf="$(mktemp)"
-    pandoc --from=gfm --to=pdf --output="${pdf}" "${*}"
-    "${VIEWER}" "${pdf}"
-    rm --force "${pdf}"
+# Convert GFM to DOCX :: String Markdown, [String docx]
+gfm2docx() {
+    pandoc \
+        --from="gfm" \
+        --to="docx" \
+        --referece-doc="${OneDrive:-${WINHOME:-${HOME}}}/.config/gfm2docx/reference.docx" \
+        --out="${2:-${1%.*}.docx}" \
+        "${*}"
 }
+
+# Compile LaTeX document
+cld() { latexmk -f -xelatex -synctex=1 -interaction=nonstopmode "${1%.*}" >/dev/null; }
