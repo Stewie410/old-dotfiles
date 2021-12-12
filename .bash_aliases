@@ -66,6 +66,7 @@ alias 755='chmod 755'
 alias dir='dir --color-auto'
 alias vdir='vdir --color-auto'
 alias explorer='explorer.exe'
+alias mkdirp='mkdir --parents'
 
 # doas
 if command -v doas &>/dev/null; then
@@ -101,6 +102,9 @@ fi
 # Windows Clip
 alias clip='clip.exe'
 
+# Windows Package Managers
+alias winget='${USERPROFILE}/AppData/Local/Microsoft/Windows/winget.exe'
+
 # Editors
 alias v='vim'
 alias vim-vanilla='vim -u NONE'
@@ -130,9 +134,6 @@ if command -v youtube-dl &>/dev/null; then
     alias yta-best='ytdl --extract-audio --audio-format best'
     alias ytv-best='ytdl --format bestvideo+bestaudio'
 fi
-
-# journalctl
-alias jctl='journalctl --priority=3 --catalog --boot'
 
 # session management
 alias lock='XDG_SEAT_PATH="/org/freedesktop/DisplayManager/Seat0" dm-tool lock'
