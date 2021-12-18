@@ -84,7 +84,6 @@ export XDG_CONFIG_HOME XDG_CACHE_HOME XDG_DATA_HOME
 [ -s "${HOME}/.bash_aliases" ] && source "${HOME}/.bash_aliases"
 [ -s "${HOME}/.bash_aliases_private" ] && source "${HOME}/.bash_aliases_private"
 [ -s "${HOME}/.bash_functions" ] && source "${HOME}/.bash_functions"
-[ -s "${HOME}/.bash_bookmarks" ] && source "${HOME}/.bash_bookmarks"
 [ -s "${HOME}/.bash_zoxide" ] && source "${HOME}/.bash_zoxide"
 
 # Generated for envman.  Do not edit
