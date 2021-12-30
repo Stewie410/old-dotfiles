@@ -101,6 +101,56 @@ gfm2docx() {
 # Compile LaTeX document
 cld() { latexmk -f -xelatex -synctex=1 -interaction=nonstopmode "${1%.*}" >/dev/null; }
 
+# Karenify a string
+karenify() {
+	local opts invert i
+	opts="$(getopt --options hi --longoptions help,invert --name "${FUNCNAME[0]}" -- "${@}")"
+
+	eval set -- "${opts}"
+	while true; do
+		case "${1}" in
+			-h | --help )
+				cat << EOF
+Karenify a string
+
+USAGE: ${FUNCNAME[0]} [OPTIONS] STRING
+
+OPTIONS:
+	-h, --help		Show this help message
+	-i, --invert	Use "AbC" casing format (default: "aBc")
+EOF
+				return 0
+				;;
+			-i | --invert )		invert="1";;
+			-- )				shift; break;;
+			* )					break;;
+		esac
+		shift
+	done
+
+	[ -n "${*}" ] || return
+
+	mapfile -t chars <<< "$(grep --only-matching . <<< "${*}")"
+
+	if [ -n "${invert}" ]; then
+		chars[0]="${chars[0]^^}"
+	else
+		chars[0]="${chars[0],,}"
+	fi
+
+	for ((i = 1; i < ${#chars[@]}; i++)); do
+		if [[ "${chars[${i}]}" =~ [a-zA-Z] ]]; then
+			if [[ "${chars[$((i - 1))]}" =~ [A-Z] ]]; then
+				chars[${i}]="${chars[${i}],,}"
+			else
+				chars[${i}]="${chars[${i}]^^}"
+			fi
+		fi
+	done
+
+	printf '%s\n' "${chars[@]}" | paste --serial --delimiter='\0'
+}
+
 # File/Path Bookmarks...and maybe some other stuff
 bm() {
 	local opts add delete list config update edit path
