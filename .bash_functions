@@ -113,11 +113,14 @@ karenify() {
 				cat << EOF
 Karenify a string
 
-USAGE: ${FUNCNAME[0]} [OPTIONS] STRING
+USAGE: ${FUNCNAME[0]} [OPTIONS] [STRING]
 
 OPTIONS:
 	-h, --help		Show this help message
 	-i, --invert	Use "AbC" casing format (default: "aBc")
+
+STRING:
+	If not text is supplied on the command line, read text from stdin
 EOF
 				return 0
 				;;
@@ -128,7 +131,7 @@ EOF
 		shift
 	done
 
-	[ -n "${*}" ] || return
+	set -- "${*:-$(</dev/stdin)}"
 
 	mapfile -t chars <<< "$(grep --only-matching . <<< "${*}")"
 
