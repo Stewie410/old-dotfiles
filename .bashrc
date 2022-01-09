@@ -26,10 +26,6 @@ command -v batcat &>/dev/null && export MANPAGER="sh -c 'col -bx | batcat --lang
 # Starship Prompt
 eval "$(starship init bash)"
 
-# Enable X11 forwarding
-#export DISPLAY="$(${HOME}/scripts/tools/wsl/initWSLX11ForwardingWFWRule.sh)"
-#export LIBGL_ALWAYS_INDIRECT="1"
-
 # Load SSH Key(s) into Keychain
 eval "$(keychain --eval --agents ssh \
 	"${HOME}/.ssh/${HOSTNAME}/id_rsa" \
