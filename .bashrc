@@ -17,18 +17,8 @@ command -v batcat &>/dev/null && export MANPAGER="sh -c 'col -bx | batcat --lang
 # Make LESS more friendly for non-text input files
 [ -x "/usr/bin/lesspipe" ] && eval "$(SHELL="/bin/sh" lesspipe)"
 
-# Default Ubuntu WSL Prompt
-#export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-
-# Default Ubuntu WSL Monochrome Prompt
-#export PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-
 # Starship Prompt
 eval "$(starship init bash)"
-
-# Enable X11 forwarding
-#export DISPLAY="$(${HOME}/scripts/tools/wsl/initWSLX11ForwardingWFWRule.sh)"
-#export LIBGL_ALWAYS_INDIRECT="1"
 
 # Load SSH Key(s) into Keychain
 eval "$(keychain --eval --agents ssh \
@@ -81,9 +71,10 @@ export XDG_CONFIG_HOME XDG_CACHE_HOME XDG_DATA_HOME
 [ -n "${URLSCAN_DATA_DIR}" ] && mkdir --parents "${URLSCAN_DATA_DIR}"
 
 # Include additional configuration
+[ -s "${HOME}/.bash_functions" ] && source "${HOME}/.bash_functions"
+[ -s "${HOME}/.bash_functions_private" ] && source "${HOME}/.bash_functions_private"
 [ -s "${HOME}/.bash_aliases" ] && source "${HOME}/.bash_aliases"
 [ -s "${HOME}/.bash_aliases_private" ] && source "${HOME}/.bash_aliases_private"
-[ -s "${HOME}/.bash_functions" ] && source "${HOME}/.bash_functions"
 
 # Generated for envman.  Do not edit
 [ -s "${HOME}/.config/envman/load.sh" ] && source "${HOME}/.config/envman/load.sh"
