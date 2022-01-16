@@ -11,5 +11,6 @@ if [ -d "${dir}" ]; then
 	source "${dir}/mkcd.sh"
 	source "${dir}/pem2crt.sh"
 	source "${dir}/pps.sh"
+	source "${dir}/karenify.sh"
 fi
 unset dir
