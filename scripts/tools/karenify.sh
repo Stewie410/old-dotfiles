@@ -49,28 +49,6 @@ recase() {
 	local i line new char last
 
 	while IFS='' read -r line; do
-#		if ! [[ "${line}" =~ [a-zA-Z] ]]; then
-#			printf '%s\n' "${line}"
-#			continue
-#		fi
-#
-#		for ((i = 0; i < ${#line}; i++)); do
-#			char="${line:$i:1}"
-#			if [[ "${char}" =~ [a-zA-Z] ]]; then
-#				if [[ -z "${last}" ]]; then
-#					char="${char,,}"
-#					[[ -n "${invert}" ]] && char="${char^^}"
-#				else
-#					char="${char,,}"
-#					[[ "${last}" =~ [a-z] ]] && char="${char^^}"
-#				fi
-#				last="${char}"
-#			fi
-#			printf '%s' "${char}"
-#		done
-#
-#		printf '\n'
-
 		if ! [[ "${line}" =~ [a-zA-Z] ]]; then
 			new="${line}"
 		else
