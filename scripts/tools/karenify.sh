@@ -9,16 +9,17 @@ Karenify a file
 USAGE: ${0##*/} [OPTIONS] FILE
 
 OPTIONS:
-    -h, --help      Show this help message
-    -i, --invert    Use "AbC" casing
-    -a, --awk       Use (g)awk to convert FILE
+    -h, --help          Show this help message
+    -i, --invert        Use "AbC" casing
+    -a, --awk           Use (g)awk to convert FILE
+    -N, --no-newline    Do not append a final '\\n'
 EOF
 }
 
 awk_recase() {
 	awk --assign "invert=${invert}" '
 		/[a-zA-Z]/ {
-			for (i = 1; i < length($0); i++) {
+			for (i = 1; i <= length($0); i++) {
 				char = substr($0, i, 1)
 				if (char ~ /[a-zA-Z]/) {
 					if (last == "") {
