@@ -2,14 +2,10 @@
 #
 # Description
 
-# Print message to terminal & logfile :: String type, String message
-printMsg() {
-	[ -n "${2}" ] || return
-	printf '[%s] [%s] %s\n' "$(date --iso-8601=sec)" "${1^^}" "${2}" | \
-		tee --append "${log}"
+log() {
+	printf '[%s] [%s] %s\n' "$(date --iso-8601=sec)" "${FUNCNAME[1]}" "${*}" | tee --append "${log:-/dev/null}"
 }
 
-# Show Help/Usage
 show_help() {
 	cat << EOF
 Description
@@ -17,7 +13,7 @@ Description
 USAGE: ${0##*/} [OPTIONS]
 
 OPTIONS:
-	-h, --help		Show this help message
+    -h, --help      Show this help message
 EOF
 }
 
