@@ -237,7 +237,7 @@ let g:tex_flavor = 'latex'
 " -----------------------------------------------------------------------------
 
 " User-Mapping leader key
-let mapleader = "\\"
+let mapleader = " "
 
 " Don't require <C-w> for navigating splits
 noremap <C-h> <C-w>h
