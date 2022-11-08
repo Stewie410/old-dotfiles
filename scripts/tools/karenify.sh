@@ -12,7 +12,6 @@ OPTIONS:
     -h, --help          Show this help message
     -i, --invert        Use "AbC" casing
     -a, --awk           Use (g)awk to convert FILE
-    -N, --no-newline    Do not append a final '\\n'
 EOF
 }
 
