@@ -12,41 +12,49 @@ USAGE: ${0##*/} [OPTIONS] PATTERN
 OPTIONS:
     -h, --help              Show this help message
     -i, --ignore-case       Ignore case distinctions in PATTERN
-    -E, --extended-regexp   Interpret PATTERN as an extended regular expression (ERE)
-    -F, --fixed-strings     Interpret PATTERN as a list of fixed strings
-    -G, --basic-regexp      Interpret PATTERN as a basic regular expression (BRE)
-    -P, --perl-regexp       Interpret PATTERN as a Perl-compatible regular expression (PCRE)
+    -f, --forest            Show processes with ASCII art process heirarchy
 EOF
 }
 
-# Variables
-declare -a grepArgs
-trap 'unset grepArgs OPTS' EXIT
+main() {
+	local -a args
+	local opts nocase forest
+	opts="$(getopt \
+		--options hif \
+		--longoptions help,ignore-case,forest \
+		--name "${0##*/}" \
+		-- "${@}" \
+	)"
 
-# Handle Arguments
-OPTS="$(getopt --options hiEFGP --longoptions help,ignore-case,extended-regexp,fixed-strings,basic-regexp,perl-regexp --name "${0##*/}" -- "${@}")"
-eval set -- "${OPTS}"
-while true; do
-	case "${1}" in
-		-h | --help ) 		        show_help; exit 0;;
-        -i | --ignore-case )        grepArgs+=("-i");;
-        -E | --extended-regexp )    grepArgs+=("-E");;
-        -F | --fixed-strings )      grepArgs+=("-F");;
-        -G | --basic-regexp )       grepArgs+=("-G");;
-        -P | --perl-regexp )        grepArgs+=("-P");;
-		-- ) 			            shift; break;;
-		* ) 			            break;;
-	esac
-    shift
-done
+	args=("a" "u" "x")
 
-if [ -z "${*}" ]; then
-    printf '%s\n' "ERROR: No pattern specified" >&2
-    exit 1
-fi
+	eval set -- "${opts}"
+	while true; do
+		case "${1}" in
+			-h | --help )				show_help; return 0;;
+			-i | --ignore-case )		nocase="1";;
+			-f | --forest )				forest="1";;
+			-- )						shift; break;;
+			* )							break;;
+		esac
+		shift
+	done
 
-# shellcheck disable=SC2009
-ps aux | \
-    grep "${grepArgs[@]}" "${*}" | \
-    grep --extended-regexp --invert-match "grep|${0##*/}"
-exit "${PIPESTATUS[1]}"
+	[[ -n "${forest}" ]] && args+=("f")
+
+	ps "${args[@]}" | awk --assign "filter=${*:-.*}" --assign "nocase=${nocase:-0}" '
+		BEGIN {
+			IGNORECASE = nocase
+		}
+
+		NR == 1 {
+			print
+		}
+
+		match($0, filter) && !match($0, "ps aux") {
+			print
+		}
+	'
+}
+
+main "${@}"

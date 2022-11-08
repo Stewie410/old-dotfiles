@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 #
-# Get a dictionary definition
+# Convert a PEM certificate to CRT
 
 show_help() {
 	cat << EOF
-Get a dictionary definition
+Convert a PEM certificate to CRT
 
-USAGE: ${0##*/} [OPTIONS]
+USAGE: ${0##*/} [OPTIONS] PEM [CRT]
 
 OPTIONS:
 	-h, --help		Show this help message
@@ -28,11 +28,14 @@ main() {
 	done
 
 	if [[ -z "${*}" ]]; then
-		printf '%s\n' "No word specified" >&2
+		printf '%s\n' "No file specified" >&2
 		return 1
+	elif ! [[ -s "${*}" ]]; then
+		printf '%s\n' "File does not exist or is empty" >&2
+		return 2
 	fi
 
-	curl --silent --fail "dict://dict.org/d:${*}"
+	openssl x509 -outform der -in "${1}" -out "${2:-${1%.*}.crt}"
 }
 
 main "${@}"

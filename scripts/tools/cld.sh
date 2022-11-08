@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 #
-# Get a dictionary definition
+# Compile a LaTeX document to PDF
 
 show_help() {
 	cat << EOF
-Get a dictionary definition
+Compile a LaTeX document to PDF
 
-USAGE: ${0##*/} [OPTIONS]
+USAGE: ${0##*/} [OPTIONS] LATEX
 
 OPTIONS:
 	-h, --help		Show this help message
@@ -28,11 +28,16 @@ main() {
 	done
 
 	if [[ -z "${*}" ]]; then
-		printf '%s\n' "No word specified" >&2
+		printf '%s\n' "No file specified" >&2
 		return 1
 	fi
 
-	curl --silent --fail "dict://dict.org/d:${*}"
+	latexmk \
+		-f \
+		-xelatex \
+		-synctex="1" \
+		-interaction="nonstopmode" \
+		"${1%.*}" >/dev/null
 }
 
 main "${@}"

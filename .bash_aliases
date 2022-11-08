@@ -1,42 +1,102 @@
 #!/usr/bin/env bash
-# shellcheck disable=SC1090
+# shellcheck disable=SC2139
 
-dir="${XDG_CONFIG_HOME:-${HOME}/.config}/bash/aliases"
-if [ -d "${dir}" ]; then
-	#source "${dir}/nslookup.exe"
-	#source "${dir}/exa.sh"
-	source "${dir}/grep.sh"
-	source "${dir}/ls.sh"
-	source "${dir}/navigation.sh"
-	#source "${dir}/which.sh"
-	#source "${dir}/zoxide.sh"
-	source "${dir}/interaction.sh"
-	source "${dir}/permissions.sh"
-	source "${dir}/file-management.sh"
-	source "${dir}/explorer.sh"
-	source "${dir}/mkdir.sh"
-	#source "${dir}/doas.sh"
-	source "${dir}/rc.sh"
-	source "${dir}/shellcheck.sh"
-	source "${dir}/bat.sh"
-	source "${dir}/caffeine.sh"
-	source "${dir}/urlscanio.sh"
-	source "${dir}/clip.sh"
-	source "${dir}/winget.sh"
-	source "${dir}/vim.sh"
-	source "${dir}/neovim.sh"
-	source "${dir}/code-insiders.sh"
-	source "${dir}/latex.sh"
-	source "${dir}/curl.sh"
-	source "${dir}/netcat.sh"
-	source "${dir}/ps.sh"
-	source "${dir}/youtube-dl.sh"
-	#source "${dir}/session.sh"
-	source "${dir}/git.sh"
-	#source "${dir}/subversion.sh"
-	source "${dir}/gitclone.sh"
-	source "${dir}/sshman.sh"
-	source "${dir}/mkcd.sh"
-	source "${dir}/fat-finger.sh"
+alias l='ls'
+alias ls='ls --group-directories-first --color=auto --classify'
+alias ll='ls -l'
+alias la='ls --almost-all'
+alias lla='la -l'
+alias llh='ll --human-readable'
+alias llah='lla --human-readable'
+
+alias lz='ls --context'
+alias lza='la --context'
+alias lzh='lh --context'
+alias lzah='lza --human-readable'
+
+alias dir='dir --color=auto'
+alias vdir='vdir --color=auto'
+
+alias ..='cd ..'
+alias ...='cd ../..'
+
+alias mv='mv --interactive'
+alias cp='cp --interactive'
+alias rm='rm --interactive'
+
+alias chmox='chmod +x'
+
+alias grep='grep --color=auto'
+alias egrep='grep --extended-regexp'
+alias fgrep='grep --fixed-strings'
+
+alias lock='XDG_SEAT_PATH="/org/freedesktop/DisplayManager/Seat0" dm-tool lock'
+alias suspend='systemctl suspend'
+alias hibernate='systemctl hibernate'
+
+alias pscpu='ps auxf | sort --numeric-sort --ignore-case --key=3'
+alias psmem='ps auxf | sort --numeric-sort --ignore-case --key=4'
+
+alias bat='batcat'
+
+alias wttr='curl --silent --fail wttr.in'
+alias pubip='curl --silent --fail ipinfo.io/ip'
+alias ipinfo='curl --silent --fail ipinfo.io/json'
+
+alias git='git --no-pager'
+alias grm='git rm --cached'
+alias grmf='git rm'
+
+alias gdf='git --git-dir="${HOME}/dotfiles" --work-tree="${HOME}"'
+alias gdfrm='gdf rm --cached'
+alias gdfrmf='gdf rm'
+
+alias gcl='${HOME}/scripts/tools/gitclone.sh'
+alias ghc='gcl --github'
+alias glc='gcl --gitlab'
+alias gcls='gcl --suckless'
+
+alias xelatexmk='latexmk -xelatex'
+
+alias ipscan='nmap -sn'
+alias hnscan='nmap -sU -p137 --script nbstat.nse'
+
+alias shellcheck='shellcheck --color=always'
+
+alias us='urlscanio'
+alias usi='us --investigate'
+alias uss='us --submit'
+alias usg='us --retrieve'
+
+alias v='vim'
+alias vv='v -u NONE'
+alias nv='neovim'
+
+alias ytdl='youtube-dl'
+alias yta='ytdl --extract-audio --audio-format best'
+alias ytv='ytdl --format bestvideo+bestaudio'
+
+alias sshman='${WINHOME}/Documents/Programming/Projects/sshman/sshman.sh'
+
+if uname --kernel-release | grep --quiet 'WSL.\?$'; then
+	alias explorer='explorer.exe'
+	alias clip='clip.exe'
+	#alias code='code-insiders'
+	alias nslookup='/mnt/c/Windows/System32/nslookup.exe'
+	alias winget='${USERPROFILE}/AppData/Local/Microsoft/WindowsApps/winget.exe'
+
+	path="/mnt/c/ProgramData/chocolatey/bin/caffeine32.exe"
+	if [[ -s "${path}" ]]; then
+		[[ -s "${path/32/64}" ]] && path="${path/32/64}"
+		alias pathfeine="${path}"
+		alias pathfeine-start="${path} -allowss -stes -onac"
+		alias pathfeine-toggle="${path} -apptoggle"
+		alias pathfeine-kill="${path} -appexit"
+	fi
+
+	alias svn='/mnt/c/Program\ Files/TortoiseSVN/bin/svn.exe'
+	alias svnrm='svn delete --keep-lock'
+	alias svnrmf='svn delete'
+
+	unset path
 fi
-unset dir

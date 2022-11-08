@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 # shellcheck source=/dev/null
-#
-# Bash configuration
 
 # Skip customizations if not running interactively
 [[ "${-}" != *i* ]] && return
@@ -15,7 +13,7 @@ shopt -s histappend cdspell checkwinsize checkjobs cmdhist globstar mailwarn no_
 command -v batcat &>/dev/null && export MANPAGER="sh -c 'col -bx | batcat --language man --plain'"
 
 # Make LESS more friendly for non-text input files
-[ -x "/usr/bin/lesspipe" ] && eval "$(SHELL="/bin/sh" lesspipe)"
+[[ -x "/usr/bin/lesspipe" ]] && eval "$(SHELL="/bin/sh" lesspipe)"
 
 # Starship Prompt
 eval "$(starship init bash)"
@@ -24,18 +22,16 @@ eval "$(starship init bash)"
 eval "$(keychain --eval --agents ssh \
 	"${HOME}/.ssh/${HOSTNAME}/id_rsa" \
 	"${HOME}/.ssh/${HOSTNAME}/github/id_rsa" \
-	"${HOME}/.ssh/${HOSTNAME}/gitlab/id_rsa"\
+	"${HOME}/.ssh/${HOSTNAME}/gitlab/id_rsa" \
 )"
 
 # Start wsl-vpnkit for DNS & Networking support with VPNs...
 # https://github.com/sakai135/wsl-vpnkit
 wsl.exe -d wsl-vpnkit service wsl-vpnkit start
 
-# Update PATH
+# PATH
 PATH+=":${HOME}/.cargo/bin"
 PATH+=":${HOME}/.local/bin"
-PATH+=":$(find "${HOME}/scripts" -mindepth 1 -maxdepth 1 -type d | paste --serial --delimiter=":")"
-PATH="$(tr ':' '\n' <<< "${PATH}" | awk '!seen[$0]++' | tr '\n' ':')"
 export PATH
 
 # History
@@ -48,7 +44,8 @@ export HISTSIZE HISTFILESIZE HISTCONTROL HISTIGNORE
 # Environment
 EDITOR="$(command -v vim)"
 FILE_MANAGER="$(command -v explorer.exe)"
-export EDITOR FILE_MANAGER
+JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
+export EDITOR FILE_MANAGER JAVA_HOME
 
 # LESS colors
 LESS="-R"
@@ -68,13 +65,15 @@ XDG_DATA_HOME="${HOME}/.local/share"
 export XDG_CONFIG_HOME XDG_CACHE_HOME XDG_DATA_HOME
 
 # urlscanio
-[ -n "${URLSCAN_DATA_DIR}" ] && mkdir --parents "${URLSCAN_DATA_DIR}"
+[[ -n "${URLSCAN_DATA_DIR}" && ! -d "${URLSCAN_DATA_DIR}" ]] && mkdir --parents "${URLSCAN_DATA_DIR}"
 
-# Include additional configuration
-[ -s "${HOME}/.bash_functions" ] && source "${HOME}/.bash_functions"
-[ -s "${HOME}/.bash_functions_private" ] && source "${HOME}/.bash_functions_private"
-[ -s "${HOME}/.bash_aliases" ] && source "${HOME}/.bash_aliases"
-[ -s "${HOME}/.bash_aliases_private" ] && source "${HOME}/.bash_aliases_private"
+# Include published configurations
+[[ -s "${HOME}/.bash_aliases" ]] && source "${HOME}/.bash_aliases"
+[[ -s "${HOME}/.bash_functions" ]] && source "${HOME}/.bash_functions"
+
+# Include private configurations
+[[ -s "${XDG_CONFIG_HOME}/bash/private/aliases" ]] && source "${XDG_CONFIG_HOME}/bash/private/aliases"
+[[ -s "${XDG_CONFIG_HOME}/bash/private/functions" ]] && source "${XDG_CONFIG_HOME}/bash/private/functions"
 
 # Generated for envman.  Do not edit
 [ -s "${HOME}/.config/envman/load.sh" ] && source "${HOME}/.config/envman/load.sh"
