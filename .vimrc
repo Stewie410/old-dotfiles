@@ -383,10 +383,10 @@ augroup TemplateFiles
 	autocmd BufNewFile *.sh 0r /home/alex/.vim/templates/skeleton.sh
 
 	" CMD/Batch Scripts
-	autocmd BufNewFile *.bat 0r /home/alex/.vim/templates/skeleton.bat
+	"autocmd BufNewFile *.bat 0r /home/alex/.vim/templates/skeleton.bat
 
 	" AutoHotKey
-	autocmd BufNewFile *.ahk 0r /home/alex/.vim/tempaltes/skeleton.ahk
+	"autocmd BufNewFile *.ahk 0r /home/alex/.vim/tempaltes/skeleton.ahk
 
 	" PowerShell
 	autocmd BufNewFile *.ps1 0r /home/alex/.vim/templates/skeleton.ps1
