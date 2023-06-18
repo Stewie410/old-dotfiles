@@ -1,0 +1,83 @@
+#!/usr/bin/env bash
+# shellcheck source=/dev/null disable=SC2155
+
+# Skip customizations if not running interactively
+[[ "${-}" != *i* ]] && return
+
+# Shell options
+set -o vi
+stty -ixon
+shopt -s histappend cdspell checkwinsize checkjobs cmdhist globstar mailwarn no_empty_cmd_completion
+
+# Manpage Pager
+command -v batcat &>/dev/null && export MANPAGER="sh -c 'col -bx | batcat --language man --plain'"
+
+# Make LESS more friendly for non-text input files
+[[ -x "/usr/bin/lesspipe" ]] && eval "$(SHELL="/bin/sh" lesspipe)"
+
+# Starship Prompt
+if command -v starship &>/dev/null; then
+	eval "$(starship init bash)"
+fi
+
+# Load SSH Key(s) into Keychain
+# TODO: simplify your life, man
+export SSH_HOME="${HOME}/.ssh/${HOSTNAME}"
+if command -v keychain &>/dev/null; then
+	eval "$(keychain --eval --agents ssh "${SSH_HOME}/id_rsa" "${SSH_HOME}/github/id_rsa" "${SSH_HOME}/gitlab/id_rsa")"
+fi
+
+# Start wsl-vpnkit for DNS & Networking support with VPNs...
+# https://github.com/sakai135/wsl-vpnkit
+if wsl.exe --list | grep --quiet 'wsl-vpnkit'; then
+	wsl.exe -d wsl-vpnkit service wsl-vpnkit start
+fi
+
+# PATH
+PATH+=":${HOME}/.cargo/bin"
+PATH+=":${HOME}/.local/bin"
+export PATH
+
+# History
+export HISTSIZE=""
+export HISTFILESIZE=""
+export HISTCONTROL="ignoreboth"
+export HISTIGNORE=$'[\t]*:&:[fb]g:exit'
+
+# Environment
+export EDITOR="$(command -v vim)"
+export FILE_MANAGER="$(command -v explorer.exe)"
+export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
+
+# LESS colors
+export LESS="-R"
+export LESS_TERMCAP_mb=$'\E[1;31m'
+export LESS_TERMCAP_md=$'\E[1;36m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[1;44;33m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[1;32m'
+export LESS_TERMCAP_ue=$'\E[0m'
+
+# XDG
+export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_CACHE_HOME="${HOME}/.cache"
+export XDG_DATA_HOME="${HOME}/.local/share"
+export XDG_STATE_HOME="${XDG_DATA_HOME%/*}/state"
+
+# urlscanio
+[[ -n "${URLSCAN_DATA_DIR}" ]] && mkdir --parents "${URLSCAN_DATA_DIR}"
+
+# Include published configurations
+[[ -s "${XDG_CONFIG_HOME}/bash/aliases" ]] && source "${XDG_CONFIG_HOME}/bash/aliases"
+[[ -s "${XDG_CONFIG_HOME}/bash/functions" ]] && source "${XDG_CONFIG_HOME}/bash/functions"
+
+# Include private configurations
+[[ -s "${XDG_CONFIG_HOME}/bash/private/aliases" ]] && source "${XDG_CONFIG_HOME}/bash/private/aliases"
+[[ -s "${XDG_CONFIG_HOME}/bash/private/functions" ]] && source "${XDG_CONFIG_HOME}/bash/private/functions"
+
+# Generated for envman.  Do not edit
+[[ -s "${XDG_CONFIG_HOME}/envman/load.sh" ]] && source "${XDG_CONFIG_HOME}/envman/load.sh"
+
+# clear $?
+true
