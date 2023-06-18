@@ -35,11 +35,11 @@ OPTIONS:
 EOF
 				return 0
 				;;
-			-a | --add )		settings[action]="add"; path="${2}"; shift;;
+			-a | --add )		settings[action]="add"; settings[path]="${2}"; shift;;
 			-d | --delete )		settings[action]="remove";;
 			-l | --list )		settings[action]="list";;
 			-c | --config )		settings[config]="${2}"; shift;;
-			-u | --update )		settings[action]="update"; path="${2}"; shift;;
+			-u | --update )		settings[action]="update"; settings[path]="${2}"; shift;;
 			-e | --edit )		settings[action]="edit";;
 			-- )				shift; break;;
 			* )					break;;
@@ -47,14 +47,19 @@ EOF
 		shift
 	done
 
-	[[ "${config%/*}" != "${config}" ]] && mkdir --parents "${config%/*}"
-	touch -a "${config}"
+	[[ "${settings[config]%/*}" != "${settings[config]}" ]] && mkdir --parents "${settings[config]%/*}"
+	touch -a "${settings[config]}"
 
-	if [[ "${settings[action]}" == "cd" && -z "${settings[path]}" ]]; then
-		printf '%s\n' "No action or bookmark specified" >&2
-		return 1
+	if [[ -n "${settings[path]}" ]]; then
+		if ! [[ -e "${settings[path]}" ]]; then
+			printf '%s\n' "Path does not exist" >&2
+			return 1
+		elif [[ -f "${settings[path]}" ]]; then
+			printf '%s\n' "Path cannot be a file" >&2
+			return 1
+		fi
+		settings[path]="$(realpath "${settings[path]}")"
 	fi
-	[[ -n "${path}" ]] && path="$(realpath "${path/~/${HOME}}")"
 
 	case "${settings[action]}" in
 		add )
@@ -87,9 +92,9 @@ EOF
 		cd )
 			cd "$(awk --assign "bm=${*}" '
 				$1 == bm {
-					print gensub(/^[^=]*?] /, "", 1, $0)
+					print gensub(/^[^=]*?\s*=\s*/, "", 1, $0)
 				}
-			')" || return 3
+			' "${settings[config]}")" || return 3
 			;;
 		* )
 			printf '%s\n' "Unimplemented function: '${settings[action]}'" >&2

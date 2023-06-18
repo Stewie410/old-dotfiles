@@ -30,10 +30,6 @@ alias grep='grep --color=auto'
 alias egrep='grep --extended-regexp'
 alias fgrep='grep --fixed-strings'
 
-alias lock='XDG_SEAT_PATH="/org/freedesktop/DisplayManager/Seat0" dm-tool lock'
-alias suspend='systemctl suspend'
-alias hibernate='systemctl hibernate'
-
 alias pscpu='ps auxf | sort --numeric-sort --ignore-case --key=3'
 alias psmem='ps auxf | sort --numeric-sort --ignore-case --key=4'
 
@@ -51,7 +47,7 @@ alias gdf='git --git-dir="${HOME}/dotfiles" --work-tree="${HOME}"'
 alias gdfrm='gdf rm --cached'
 alias gdfrmf='gdf rm'
 
-alias gcl='${HOME}/scripts/tools/gitclone.sh'
+alias gcl="${HOME}/scripts/tools/gitclone.sh"
 alias ghc='gcl --github'
 alias glc='gcl --gitlab'
 alias gcls='gcl --suckless'
@@ -70,33 +66,32 @@ alias usg='us --retrieve'
 
 alias v='vim'
 alias vv='v -u NONE'
-alias nv='neovim'
+alias nv='nvim'
 
-alias ytdl='youtube-dl'
-alias yta='ytdl --extract-audio --audio-format best'
-alias ytv='ytdl --format bestvideo+bestaudio'
+alias ytdl='yt-dlp'
+alias yta='ytdl --extract-audio'
+alias ytv='ytdl'
 
-alias sshman='${WINHOME}/Documents/Programming/Projects/sshman/sshman.sh'
+alias sshman="${WINHOME:-/mnt/c/$USERNAME}/Documents/Programming/Projects/sshman/sshman.sh"
 
-if uname --kernel-release | grep --quiet 'WSL.\?$'; then
-	alias explorer='explorer.exe'
-	alias clip='clip.exe'
-	#alias code='code-insiders'
-	alias nslookup='/mnt/c/Windows/System32/nslookup.exe'
-	alias winget='${USERPROFILE}/AppData/Local/Microsoft/WindowsApps/winget.exe'
+# WSL-specifics
+alias explorer='explorer.exe'
+alias clip='clip.exe'
+#alias code='code-insiders'
+alias nslookup='/mnt/c/Windows/System32/nslookup.exe'
+alias winget='${USERPROFILE}/AppData/Local/Microsoft/WindowsApps/winget.exe'
 
-	path="/mnt/c/ProgramData/chocolatey/bin/caffeine32.exe"
-	if [[ -s "${path}" ]]; then
-		[[ -s "${path/32/64}" ]] && path="${path/32/64}"
-		alias pathfeine="${path}"
-		alias pathfeine-start="${path} -allowss -stes -onac"
-		alias pathfeine-toggle="${path} -apptoggle"
-		alias pathfeine-kill="${path} -appexit"
-	fi
-
-	alias svn='/mnt/c/Program\ Files/TortoiseSVN/bin/svn.exe'
-	alias svnrm='svn delete --keep-lock'
-	alias svnrmf='svn delete'
-
-	unset path
+path="/mnt/c/ProgramData/chocolatey/bin/caffeine32.exe"
+if [[ -s "${path}" ]]; then
+	[[ -s "${path/32/64}" ]] && path="${path/32/64}"
+	alias pathfeine="${path}"
+	alias pathfeine-start="${path} -allowss -stes -onac"
+	alias pathfeine-toggle="${path} -apptoggle"
+	alias pathfeine-kill="${path} -appexit"
 fi
+
+alias svn='/mnt/c/Program\ Files/TortoiseSVN/bin/svn.exe'
+alias svnrm='svn delete --keep-lock'
+alias svnrmf='svn delete'
+
+unset path
