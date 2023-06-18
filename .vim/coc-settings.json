@@ -1,3 +1,8 @@
 {
-	"powershell.integratedConsole.showOnStartup": false
+  "powershell.integratedConsole.showOnStartup": false,
+  "cSpell.userWords": [
+    "dotfiles",
+    "gensub",
+    "mkdir"
+  ]
 }
