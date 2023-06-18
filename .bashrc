@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# shellcheck source=/dev/null
+# shellcheck source=/dev/null disable=SC2155
 
 # Skip customizations if not running interactively
 [[ "${-}" != *i* ]] && return
@@ -16,18 +16,22 @@ command -v batcat &>/dev/null && export MANPAGER="sh -c 'col -bx | batcat --lang
 [[ -x "/usr/bin/lesspipe" ]] && eval "$(SHELL="/bin/sh" lesspipe)"
 
 # Starship Prompt
-eval "$(starship init bash)"
+if command -v starship &>/dev/null; then
+	eval "$(starship init bash)"
+fi
 
 # Load SSH Key(s) into Keychain
-eval "$(keychain --eval --agents ssh \
-	"${HOME}/.ssh/${HOSTNAME}/id_rsa" \
-	"${HOME}/.ssh/${HOSTNAME}/github/id_rsa" \
-	"${HOME}/.ssh/${HOSTNAME}/gitlab/id_rsa" \
-)"
+# TODO: simplify your life, man
+export SSH_HOME="${HOME}/.ssh/${HOSTNAME}"
+if command -v keychain &>/dev/null; then
+	eval "$(keychain --eval --agents ssh "${SSH_HOME}/id_rsa" "${SSH_HOME}/github/id_rsa" "${SSH_HOME}/gitlab/id_rsa")"
+fi
 
 # Start wsl-vpnkit for DNS & Networking support with VPNs...
 # https://github.com/sakai135/wsl-vpnkit
-wsl.exe -d wsl-vpnkit service wsl-vpnkit start
+if wsl.exe --list | grep --quiet 'wsl-vpnkit'; then
+	wsl.exe -d wsl-vpnkit service wsl-vpnkit start
+fi
 
 # PATH
 PATH+=":${HOME}/.cargo/bin"
@@ -35,47 +39,44 @@ PATH+=":${HOME}/.local/bin"
 export PATH
 
 # History
-HISTSIZE=""
-HISTFILESIZE=""
-HISTCONTROL="ignoreboth"
-HISTIGNORE=$'[\t]*:&:[fb]g:exit'
-export HISTSIZE HISTFILESIZE HISTCONTROL HISTIGNORE
+export HISTSIZE=""
+export HISTFILESIZE=""
+export HISTCONTROL="ignoreboth"
+export HISTIGNORE=$'[\t]*:&:[fb]g:exit'
 
 # Environment
-EDITOR="$(command -v vim)"
-FILE_MANAGER="$(command -v explorer.exe)"
-JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
-export EDITOR FILE_MANAGER JAVA_HOME
+export EDITOR="$(command -v vim)"
+export FILE_MANAGER="$(command -v explorer.exe)"
+export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
 
 # LESS colors
-LESS="-R"
-LESS_TERMCAP_mb=$'\E[1;31m'
-LESS_TERMCAP_md=$'\E[1;36m'
-LESS_TERMCAP_me=$'\E[0m'
-LESS_TERMCAP_so=$'\E[1;44;33m'
-LESS_TERMCAP_se=$'\E[0m'
-LESS_TERMCAP_us=$'\E[1;32m'
-LESS_TERMCAP_ue=$'\E[0m'
-export LESS LESS_TERMCAP_mb LESS_TERMCAP_md LESS_TERMCAP_me LESS_TERMCAP_so LESS_TERMCAP_se LESS_TERMCAP_us LESS_TERMCAP_ue
+export LESS="-R"
+export LESS_TERMCAP_mb=$'\E[1;31m'
+export LESS_TERMCAP_md=$'\E[1;36m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[1;44;33m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[1;32m'
+export LESS_TERMCAP_ue=$'\E[0m'
 
 # XDG
-XDG_CONFIG_HOME="${HOME}/.config"
-XDG_CACHE_HOME="${HOME}/.cache"
-XDG_DATA_HOME="${HOME}/.local/share"
-export XDG_CONFIG_HOME XDG_CACHE_HOME XDG_DATA_HOME
+export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_CACHE_HOME="${HOME}/.cache"
+export XDG_DATA_HOME="${HOME}/.local/share"
 
 # urlscanio
-[[ -n "${URLSCAN_DATA_DIR}" && ! -d "${URLSCAN_DATA_DIR}" ]] && mkdir --parents "${URLSCAN_DATA_DIR}"
+[[ -n "${URLSCAN_DATA_DIR}" ]] && mkdir --parents "${URLSCAN_DATA_DIR}"
 
 # Include published configurations
-[[ -s "${HOME}/.bash_aliases" ]] && source "${HOME}/.bash_aliases"
-[[ -s "${HOME}/.bash_functions" ]] && source "${HOME}/.bash_functions"
+[[ -s "${XDG_CONFIG_HOME}/aliases" ]] && source "${XDG_CONFIG_HOME}/aliases"
+[[ -s "${XDG_CONFIG_HOME}/functions" ]] && source "${XDG_CONFIG_HOME}/functions"
 
 # Include private configurations
 [[ -s "${XDG_CONFIG_HOME}/bash/private/aliases" ]] && source "${XDG_CONFIG_HOME}/bash/private/aliases"
 [[ -s "${XDG_CONFIG_HOME}/bash/private/functions" ]] && source "${XDG_CONFIG_HOME}/bash/private/functions"
 
 # Generated for envman.  Do not edit
-[ -s "${HOME}/.config/envman/load.sh" ] && source "${HOME}/.config/envman/load.sh"
+[[ -s "${XDG_CONFIG_HOME}/envman/load.sh" ]] && source "${XDG_CONFIG_HOME}/envman/load.sh"
 
+# clear $?
 true
