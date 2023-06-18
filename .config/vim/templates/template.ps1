@@ -9,15 +9,14 @@ Show a traditional help message
 
 [CmdletBinding(DefaultParameterSetName = 'Default')]
 param (
-	[Parameter()][switch]$Help,
+	[Parameter()][switch]$Help
 )
 
 function Write-Help {
-	$me = Split-Path -Path $PSCommandPath -Leaf
 	Write-Host @"
 synopsis
 
-USAGE:  $me [OPTIONS]
+USAGE:  $(Split-Path -Path $PSCommandPath -Leaf) [OPTIONS]
 
 OPTIONS:
     -Help               Show this help message
@@ -64,11 +63,37 @@ function Write-Log {
 	}
 }
 
+function Send-Notification {
+	[CmdletBinding()]
+	param(
+		[Parameter(ValueFromPipeline, Mandatory)][string]$Message,
+		[Parameter()][string]$Subject = 'N/A'
+	)
+
+	[Windows.UI.Notifications.ToastNotificationsManager, Windows.UI.Notifications, ContentType = WindowsRunTime] | Out-Null
+	$template = [Windows.UI.Notifications.ToastNotificationManager]::GetTemplateContent(
+		[Windows.UI.Notifications.GetTemplateType]::ToastText02
+	)
+
+	$raw = [xml] $template.GetXml()
+	($raw.toast.visual.binding.text | Where-Object { $_.id -eq '1' }).AppendChild($raw.CreateTextNode($Subject)) | Out-Null
+	($raw.toast.visual.binding.text | Where-Object { $_.id -eq '2' }).AppendChild($raw.CreateTextNode($Message)) | Out-Null
+
+	$serial = [Windows.Data.Xml.Dom.XmlDocument]::new()
+	$serial.LoadXml($raw.OuterXml)
+
+	$toast = [Windows.UI.Notifications.ToastNotification]::new($serial)
+	$toast.Tag = 'Powershell'
+	$toast.Group = 'Powershell'
+	$toast.ExpirationTime = [DateTimeOffset]::Now.AddMinutes(1)
+
+	$notifier = [Windows.UI.Notifications.ToastNotificationManager]::CreateToastNotifier('Powershell')
+	$notifier.Show($toast)
+}
+
 function New-LogFile {
 	$params = @{
-		Path = Join-Path -Path $env:USERPROFILE -ChildPath '.log' |
-			Join-Path -Childpath 'scripts' |
-			Join-Path -ChildPath $env:USERNAME
+		Path = "$env:USERPROFILE\.log\scripts"
 		ItemType = 'File'
 		Name = "$(Split-Path -Path ($PSCommandPath -Replace '\.ps1$', '') -Leaf).log"
 		Force = $True
