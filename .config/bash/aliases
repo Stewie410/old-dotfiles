@@ -75,7 +75,7 @@ alias ytv='ytdl'
 #alias sshman="${WINHOME:-/mnt/c/$USERNAME}/Documents/Programming/Projects/sshman/sshman.sh"
 alias sshu='ssh'
 alias ssha='ssh -o "User=root"'
-alias sshw="ssh -f '${WINHOME/d/c}/.ssh/work/config'"
+alias sshw="ssh -F '${WINHOME/d/c}/.ssh/work/config'"
 alias sshwu='sshw'
 alias sshwa='sshw -O "User=root"'
 
