@@ -1,7 +1,7 @@
 <#
 .SYNOPSIS
 synopsis
-.Description
+.DESCRIPTIOn
 Description
 .PARAMETER Help
 Show a traditional help message
@@ -28,7 +28,7 @@ function Write-Log {
 	param(
 		[Parameter()][ValidateSet('info', 'warn', 'error', 'debug', 'verb')][string]$Level = 'info',
 		[Parameter(ValueFromPipeline, Mandatory)][ValidateNotNullOrEmpty()][string]$Message,
-		[Parameter()][switch]$AddToLogFile,
+		[Parameter()][switch]$AddToLogFile
 	)
 
 	$parts = @(
