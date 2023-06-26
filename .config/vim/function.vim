@@ -24,10 +24,10 @@ augroup END
 
 augroup TemplateFiles
 	autocmd!
-	autocmd BufNewFile *.sh  0r ~/.config/vim/templates/template.sh
-	autocmd BufNewFile *.bat 0r ~/.config/vim/templates/template.bat
-	autocmd BufNewFile *.ahk 0r ~/.config/vim/templates/template.ahk
-	autocmd BufNewFile *.ps1 0r ~/.config/vim/templates/template.ps1
+	autocmd BufNewFile *.sh  0r ~/.config/templates/template.sh
+	autocmd BufNewFile *.bat 0r ~/.config/templates/template.bat
+	autocmd BufNewFile *.ahk 0r ~/.config/templates/template.ahk
+	autocmd BufNewFile *.ps1 0r ~/.config/templates/template.ps1
 augroup END
 
 function! s:toggle_tab_stop()
