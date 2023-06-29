@@ -14,7 +14,7 @@ augroup FiletypeChanges
 	autocmd BufRead,BufNewFile *.ms,*.me,*.mom,*.man set filetype=groff
 	autocmd BufRead,BufNewFile *.tex set filetype=tex
 	autocmd BufRead,BufNewFile *.sh set filetype=sh
-	autocmd BufRead,BufNewFile *.ahk set filetype=ahk
+	autocmd BufRead,BufNewFile *.ahk set filetype=autohotkey
 augroup END
 
 augroup CommentSupport
