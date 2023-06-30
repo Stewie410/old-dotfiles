@@ -7,58 +7,60 @@ show_help() {
 	cat << EOF
 Wrapper to simplify cloning from common git repository providers
 
-USAGE: ${0##*/} [OPTIONS] SLUG
+USAGE: ${0##*/} [OPTIONS] SLUG [OUTDIR]
 
 OPTIONS:
-	-h, --help		Show this help message
-	-g, --github		Assume SLUG is hosted by github
-	-l, --gitlab		Assume SLUG is hosted by gitlab
-	-s, --suckless		Assume SLUG is hosted by suckless
-	-b, --base-url URL	Use URL as base url for SLUG
-	-d, --directory PATH	Output contents to PATH instead of './SLUG'
+    -h, --help              Show this help message
+    -g, --github            Pull from github (default)
+    -l, --gitlab            Pull from gitlab
+    -s, --suckless          Pull from suckless
+    -b, --base-url URL      Pull from URL
 
 SLUG:
-	Slug should follow the format 'owner/repo', for example:
-
-		stewie410/dotfiles
+	Slug should follow the format 'owner/repo'
 EOF
 }
 
 main() {
-	local opts url dir
-	opts="$(getopt --options hglsd:b: --longoptions help,github,gitlab,suckless,directory:,base-url: --name "${0##*/}" -- "${@}")"
+	local -A bases
+	local opts url
+
+	opts="$(getopt \
+		--options hglsb: \
+		--longoptions help,github,gitlab,suckless,base-url: \
+		--name "${0##*/}" \
+		-- "${@}" \
+	)"
+
+	bases['hub']="https://github.com"
+	bases['lab']="https://gitlab.com"
+	bases['suc']="https://git.suckless.org"
 
 	eval set -- "${opts}"
 	while true; do
 		case "${1}" in
 			-h | --help )		show_help; return 0;;
-			-g | --github )		url="https://github.com";;
-			-l | --gitlab )		url="https://gitlab.com";;
-			-s | --suckless )	url="git://git.suckless.org";;
+			-g | --github )		url="${bases['hub']}";;
+			-l | --gitlab )		url="${bases['lab']}";;
+			-s | --suckless )	url="${bases['suc']}";;
 			-b | --base-url )	url="${2}"; shift;;
-			-d | --directory )	dir="${2}"; shift;;
 			-- )				shift; break;;
 			* )					break;;
 		esac
 		shift
 	done
 
-	if [ -z "${*}" ]; then
-		printf '%s\n' "No slug specified" >&2
+	if [[ -z "${1}" ]]; then
+		printf '%s\n' "No SLUG specified" >&2
+		show_help
+		return 1
+	elif [[ "${1}" != */* ]]; then
+		printf '%s\n' "Invalid SLUG format" >&2
+		show_help
 		return 1
 	fi
 
-	if ! [[ "${*}" = */* ]]; then
-		printf '%s\n' "Invalid slug format: '${*}'" >&2
-		return 1
-	fi
-
-	if [ -z "${url}" ]; then
-		printf '%s\n' "No base url specified for slugi: '${*}'" >&2
-		return 1
-	fi
-
-	git clone "${url}/${*}" "${dir:-${*##*/}}"
+	git clone "${url:-${bases['hub']}}/${1}.git" "${outdir:-${PWD}/${1##*/}}"
 }
 
 main "${@}"
