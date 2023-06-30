@@ -55,5 +55,8 @@ set updatetime=50
 " Always show the sign Column
 set signcolumn=yes
 
+" Always show the color column
+set colorcolumn=80
+
 " Leader Key
 let mapleader = "\<Space>"
