@@ -66,7 +66,9 @@ alias usg='us --retrieve'
 
 alias v='vim'
 alias vv='v -u NONE'
+alias nvim="${HOME}/.local/bin/nvim.appimage"
 alias nv='nvim'
+alias nvv='nvim -u NONE'
 
 alias ytdl='yt-dlp'
 alias yta='ytdl --extract-audio'
