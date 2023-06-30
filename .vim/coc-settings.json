@@ -1,8 +1,18 @@
 {
   "powershell.integratedConsole.showOnStartup": false,
   "cSpell.userWords": [
+    "confs",
     "dotfiles",
     "gensub",
-    "mkdir"
+    "jdaddy",
+    "junegunn",
+    "lervag",
+    "mhinz",
+    "mkdir",
+    "neoclide",
+    "pprovost",
+    "sheerun",
+    "tpope",
+    "vcscommand"
   ]
 }
