@@ -5,22 +5,6 @@ local ag = vim.api.nvim_create_augroup
 -- alias 'filetype detect'
 cmd("FTD", "filetype detect", {})
 
--- toggle tabstop between 2/4/8 spaces (legacy)
-cmd("TTS", function()
-    local ts = vim.opt.tabstop
-    if ts == 2 then
-        ts = 4
-    elseif ts == 4 then
-        ts = 8
-    elseif ts == 8 then
-        ts = 2
-    end
-
-    vim.opt.tabstop = ts
-    vim.opt.softtabstop = ts
-    vim.opt.shiftwidth = ts
-end, { silent = true })
-
 -- trim trailing whitespace on write
 local group = ag("FormatOnSave", { clear = true })
 au("BufWritePre", {
@@ -82,7 +66,7 @@ au({ "FileType" }, {
 })
 
 -- Native templates
-local group = ag("TemplateFiles")
+local group = ag("TemplateFiles", { clear = true })
 local template = "~/.config/templates/template"
 au({ "BufNewFile" }, {
     pattern = { "*.sh", "*.bash" },
