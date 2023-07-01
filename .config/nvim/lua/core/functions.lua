@@ -11,19 +11,8 @@ au("BufWritePre", {
     pattern = { "*" },
     group = group,
     callback = function()
-        local view = vim.fn.winsaveview()
-        vim.cmd([[keeppatterns %s/\s\+$//e]])
-        vim.fn.winrestview(view)
-    end,
-})
-
--- trim trailing newlines on write
-au("BufWritePre", {
-    pattern = { "*" },
-    group = group,
-    callback = function()
         local pos = vim.fn.getpos(".")
-        vim.cmd([[keeppatterns %s#\($\n\s*\)\+\%$##]])
+        vim.cmd([[%s/\s\+$//e]])
         vim.fn.setpos(".", pos)
     end,
 })
