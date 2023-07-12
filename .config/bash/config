@@ -20,11 +20,32 @@ if command -v starship &>/dev/null; then
 	eval "$(starship init bash)"
 fi
 
-# Load SSH Key(s) into Keychain
-# TODO: simplify your life, man
-export SSH_HOME="${HOME}/.ssh/${HOSTNAME}"
-if command -v keychain &>/dev/null; then
-	eval "$(keychain --eval --agents ssh "${SSH_HOME}/id_rsa" "${SSH_HOME}/github/id_rsa" "${SSH_HOME}/gitlab/id_rsa")"
+# Attempt to forward SSH authentication requests to Windows ssh-agent
+if (command -v socat && command -v npiperelay.exe) &>/dev/null; then
+    export SSH_AUTH_SOCK="${HOME}/.ssh/agent.sock"
+    if ! pgrep --full 'npiperelay\.exe.*openssh-ssh-agent' &>/dev/null; then
+        [[ -S "${SSH_AUTH_SOCK}" ]] && rm --force "${SSH_AUTH_SOCK}"
+        listen="UNIX-LISTEN:${SSH_AUTH_SOCK},fork"
+        relay="EXEC:'npiperelay.exe -ei -s //./pipe/openssh-ssh-agent',nofork"
+        (setsid socat "${listen}" "${relay}" & disown) &>/dev/null
+        unset listen relay
+    fi
+
+# Else, fallback to keychain, if exists
+elif command -v keychain &>/dev/null; then
+    export SSH_HOME="${HOME}/.ssh/${HOSTNAME}"
+    eval "$(keychain --eval --agents 'ssh' \
+        "${SSH_HOME}/id_rsa" \
+        "${SSH_HOME}/github/id_rsa" \
+        "${SSH_HOME}/gitlab/id_rsa" \
+    )"
+
+# Warn user
+else
+    red="$(tput setf 1)"
+    normal="$(tput sgr0)"
+    printf '%s\n' "${red}Failed to configure ssh-agent!${normal}" >&2
+    unset red normal
 fi
 
 # Start wsl-vpnkit for DNS & Networking support with VPNs...
