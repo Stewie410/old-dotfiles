@@ -1,15 +1,9 @@
 return {
     -- icons
-    {
-        "nvim-tree/nvim-web-devicons",
-        lazy = true,
-    },
+    { "nvim-tree/nvim-web-devicons", lazy = true },
 
     -- ui components
-    {
-        "MunifTanjim/nui.nvim",
-        lazy = true,
-    },
+    { "MunifTanjim/nui.nvim",        lazy = true },
 
     -- colorschemes
     {
@@ -21,25 +15,6 @@ return {
             require("ayu").setup({
                 mirage = false,
                 overrides = { Comment = { fg = colors.comment } },
-            })
-        end,
-    },
-    {
-        "arturgoms/moonbow.nvim",
-    },
-    {
-        "folke/tokyonight.nvim",
-        config = function()
-            require("tokyonight").setup({
-                style = "night",
-                light_style = "day",
-                transparent = false,
-                terminal_colors = true,
-                styles = {
-                    comments = { italic = false },
-                    keywords = { italic = false },
-                },
-                dim_inactive = true,
             })
         end,
     },
