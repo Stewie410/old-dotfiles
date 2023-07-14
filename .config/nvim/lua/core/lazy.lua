@@ -14,23 +14,4 @@ require("lazy").setup("plugins", {
     },
     checker = { enabled = true },
     install = { colorscheme = { "ayu" } },
-    performance = {
-        cache = { enabled = true },
-        rtp = {
-            "gzip",
-            "zip",
-            "zipPlugin",
-            "tar",
-            "tarPlugin",
-            "getscript",
-            "getscriptPlugin",
-            "vimball",
-            "vimballPlugin",
-            "2html_plugin",
-            "logipat",
-            "rrhelper",
-            "spellfile_plugin",
-            "matchit",
-        },
-    },
 })
