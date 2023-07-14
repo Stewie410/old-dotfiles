@@ -8,14 +8,12 @@ return {
         "lewis6991/gitsigns.nvim",
         event = { "BufReadPre", "BufNewFile" },
         opts = {
-            on_attached = function(buffer)
+            on_attach = function(bufnr)
                 local gs = package.loaded.gitsigns
 
                 local function map(mode, lhs, rhs, desc)
-                    vim.keymap.set(mode, lhs, rhs, {
-                        buffer = buffer,
-                        desc = desc,
-                    })
+                    local opts = { buffer = bufnr, desc = desc }
+                    vim.keymap.set(mode, lhs, rhs, opts)
                 end
 
                 -- stylua: ignore start
