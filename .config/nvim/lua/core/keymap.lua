@@ -7,18 +7,18 @@ local function map(mode, mapping, action, opts)
 end
 
 -- Do not require <C-w> for split movement
-map("n", "<C-h>", "<C-w>h")
-map("n", "<C-j>", "<C-w>j")
-map("n", "<C-k>", "<C-w>k")
-map("n", "<C-l>", "<C-w>l")
+map("n", "<C-h>", "<C-w>h", { desc = "Nav left" })
+map("n", "<C-j>", "<C-w>j", { desc = "Nav down " })
+map("n", "<C-k>", "<C-w>k", { desc = "Nav up" })
+map("n", "<C-l>", "<C-w>l", { desc = "Nav right" })
 
 -- Do not require <C-w> to reset split size
-map("n", "<C-=>", "<C-w>=")
+map("n", "<C-=>", "<C-w>=", { desc = "Reset split size" })
 
 -- Copy/Paste with primary register
-map("n", "<leader>py", '"*y')
-map("n", "<leader>pp", '"*p')
+map("n", "<leader>py", '"*y', { desc = "Yank to primary register" })
+map("n", "<leader>pp", '"*p', { desc = "Paste from primary register" })
 
 -- Copy/Paste with system clipboard
-map("n", "<leader>sy", '"+y')
-map("n", "<leader>sp", '"+p')
+map("n", "<leader>sy", '"+y', { desc = "Yank to system clipboard" })
+map("n", "<leader>sp", '"+p', { desc = "Paste to system clipboard" })
