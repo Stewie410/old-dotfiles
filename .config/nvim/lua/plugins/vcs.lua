@@ -36,4 +36,28 @@ return {
             end,
         },
     },
+
+    -- non-git
+    {
+        "vim-scripts/vcscommand.vim",
+        cmd = {
+            "VCSAdd",
+            "VCSAnnotate",
+            "VCSAnnotate",
+            "VCSBlame",
+            "VCSCommit",
+            "VCSDelete",
+            "VCSDiff",
+            "VCSGotoOriginal",
+            "VCSInfo",
+            "VCSLock",
+            "VCSLog",
+            "VCSRemove",
+            "VCSRevert",
+            "VCSReview",
+            "VCSStatus",
+            "VCSUpdate",
+            "VCSVimDiff",
+        }
+    },
 }
