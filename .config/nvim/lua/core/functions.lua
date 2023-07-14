@@ -57,6 +57,27 @@ au({ "FileType" }, {
     desc = "Add comment support to JSON",
 })
 
+-- Terminal adjustments
+au({ "TermOpen" }, {
+    pattern = "term://*",
+    group = ag("CleanTerminal", { clear = true }),
+    command = "setlocal nonumber norelativenumber nospell | setfiletype terminal",
+    desc = "Clean terminal overrides",
+})
+
+-- Highlight on yank
+au({ "TextYankPost" }, {
+    pattern = { "*" },
+    group = ag("YankHighlight", { clear = true }),
+    callback = function()
+        vim.highlight.on_yank({
+            higroup = "IncSearch",
+            timeout = "150",
+        })
+    end,
+    desc = "Highlight text on yank",
+})
+
 -- Native templates
 group = ag("TemplateFiles", { clear = true })
 local templates = {
