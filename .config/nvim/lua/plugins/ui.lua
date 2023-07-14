@@ -22,13 +22,25 @@ return {
     -- better notifications
     {
         "rcarriga/nvim-notify",
+        keys = {
+            {
+                "<leader>un",
+                function()
+                    require("notify").dismiss({ silent = true, pending = true })
+                end,
+                desc = "Dismiss all notifications",
+            },
+        },
         opts = {
             fps = 30,
             render = "default",
             stages = "fade",
             timeout = 3000,
+            max_height = function() return math.floor(vim.o.lines * 0.75) end,
+            max_width = function() return math.floor(vim.o.columns * 0.75) end,
         },
         init = function()
+            ---@diagnostic disable-next-line: duplicate-set-field
             vim.notify = require("notify")
         end,
     },
@@ -36,8 +48,20 @@ return {
     -- better ui
     {
         "stevearc/dressing.nvim",
-        lazy = false,
-        opts = {},
+        lazy = true,
+        init = function()
+            ---@diagnostic disable-next-line: duplicate-set-field
+            vim.ui.select = function(...)
+                require("lazy").load({ plugins = { "dressing.nvim" } })
+                return vim.ui.select(...)
+            end
+
+            ---@diagnostic disable-next-line: duplicate-set-field
+            vim.ui.input = function(...)
+                require("lazy").load({ plugins = { "dressing.nvim" } })
+                return vim.ui.input(...)
+            end
+        end,
     },
 
     -- statusline
