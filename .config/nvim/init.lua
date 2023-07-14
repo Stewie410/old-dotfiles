@@ -3,4 +3,4 @@ require("core.lazy")
 
 require("core.colorscheme")
 require("core.functions")
-require("core.keymap")
+require("core.mappings")
