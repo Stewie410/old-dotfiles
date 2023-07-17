@@ -39,28 +39,5 @@ return {
     },
 
     -- navigation
-    {
-        "christoomey/vim-tmux/navigator",
-        keys = function()
-            local keys = {}
-            local nav = {
-                ["<C-h>"] = "Left",
-                ["<C-j>"] = "Down",
-                ["<C-k>"] = "Up",
-                ["<C-l>"] = "Right",
-                ["<C-\\>"] = "Previous",
-            }
-
-            for k, v in pairs(nav) do
-                table.insert(keys, {
-                    { "n",                         "v", "s", "o", "t" },
-                    k,
-                    ":<C-U>TmuxNavigate" .. v .. "<CR>",
-                    { desc = "Tmux Navigate " .. v },
-                })
-            end
-
-            return keys
-        end,
-    },
+    { "christoomey/vim-tmux-navigator", lazy = false },
 }
