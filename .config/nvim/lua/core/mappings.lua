@@ -15,17 +15,6 @@ nnoremap("<leader>t", ":vsp<CR>:term<CR>:startinsert<CR>", {
     desc = "Quickly open a terminal",
 })
 
--- navigation
-nnoremap("<C-h>", ":wincmd h<CR>", { desc = "Navigate Left" })
-nnoremap("<C-j>", ":wincmd j<CR>", { desc = "Navigate Down" })
-nnoremap("<C-k>", ":wincmd k<CR>", { desc = "Navigate Up" })
-nnoremap("<C-l>", ":wincmd l<CR>", { desc = "Navigate Right" })
-
-tnoremap("<C-h>", "<C-\\><C-n><C-w>h", { desc = "Navigate Left" })
-tnoremap("<C-j>", "<C-\\><C-n><C-w>j", { desc = "Navigate Down" })
-tnoremap("<C-k>", "<C-\\><C-n><C-w>k", { desc = "Navigate Up" })
-tnoremap("<C-l>", "<C-\\><C-n><C-w>l", { desc = "Navigate Right" })
-
 nnoremap("<leader><Tab>", ":bn<CR>", { desc = "Next Buffer" })
 nnoremap("<leader><S-Tab>", ":bp<CR>", { desc = "Previous Buffer" })
 
