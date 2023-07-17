@@ -60,7 +60,7 @@ main() {
 		return 1
 	fi
 
-	git clone "${url:-${bases['hub']}}/${1}.git" "${outdir:-${PWD}/${1##*/}}"
+	git clone "${url:-${bases['hub']}}/${1}.git" "${2:-${PWD}/${1##*/}}"
 }
 
 main "${@}"
