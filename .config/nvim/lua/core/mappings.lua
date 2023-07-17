@@ -10,7 +10,7 @@ local nmap = Remap.nmap
 vim.g.mapleader = " "
 
 -- open a terminal
-nnoremap("<leader>t", ":vsp<CR>:term<CR>:startinsert<CR>", {
+nnoremap("<leader><leader>", ":vsp<CR>:term<CR>:startinsert<CR>", {
     silent = true,
     desc = "Quickly open a terminal",
 })
