@@ -120,13 +120,6 @@ return {
         },
     },
 
-    -- terminal
-    {
-        "akinsho/toggleterm.nvim",
-        version = "*",
-        opts = {},
-    },
-
     -- keymap display
     -- TODO register keybinds...
     {
