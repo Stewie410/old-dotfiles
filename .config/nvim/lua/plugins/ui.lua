@@ -1,10 +1,4 @@
 return {
-    -- icons
-    { "nvim-tree/nvim-web-devicons", lazy = true },
-
-    -- ui components
-    { "MunifTanjim/nui.nvim",        lazy = true },
-
     -- colorschemes
     {
         "Shatur/neovim-ayu",
@@ -36,8 +30,12 @@ return {
             render = "default",
             stages = "fade",
             timeout = 3000,
-            max_height = function() return math.floor(vim.o.lines * 0.75) end,
-            max_width = function() return math.floor(vim.o.columns * 0.75) end,
+            max_height = function()
+                return math.floor(vim.o.lines * 0.75)
+            end,
+            max_width = function()
+                return math.floor(vim.o.columns * 0.75)
+            end,
         },
         init = function()
             ---@diagnostic disable-next-line: duplicate-set-field
@@ -123,6 +121,11 @@ return {
     },
 
     -- terminal
+    {
+        "akinsho/toggleterm.nvim",
+        version = "*",
+        opts = {},
+    },
 
     -- keymap display
     -- TODO register keybinds...

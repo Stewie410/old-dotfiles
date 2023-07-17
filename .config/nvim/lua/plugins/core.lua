@@ -1,10 +1,4 @@
 return {
-    -- lib
-    {
-        "nvim-lua/plenary.nvim",
-        lazy = true,
-    },
-
     -- list ux
     {
         "folke/trouble.nvim",
@@ -41,6 +35,32 @@ return {
         config = function()
             vim.g.undotree_WindowLayout = true
             vim.g.undotree_SetFocusWhenToggle = true
+        end,
+    },
+
+    -- navigation
+    {
+        "christoomey/vim-tmux/navigator",
+        keys = function()
+            local keys = {}
+            local nav = {
+                ["<C-h>"] = "Left",
+                ["<C-j>"] = "Down",
+                ["<C-k>"] = "Up",
+                ["<C-l>"] = "Right",
+                ["<C-\\>"] = "Previous",
+            }
+
+            for k, v in pairs(nav) do
+                table.insert(keys, {
+                    { "n",                         "v", "s", "o", "t" },
+                    k,
+                    ":<C-U>TmuxNavigate" .. v .. "<CR>",
+                    { desc = "Tmux Navigate " .. v },
+                })
+            end
+
+            return keys
         end,
     },
 }
