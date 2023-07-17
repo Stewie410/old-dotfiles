@@ -21,17 +21,24 @@ return {
             {
                 "<leader>tb",
                 function() require("telescope.builtin").buffers() end,
-                desc = "Find buffers",
+                desc = "Switch buffers",
             },
             {
-                "<leader>th",
-                function() require("telescope.builtin").help_tags() end,
-                desc = "Find help tags",
+                "<leader>t/",
+                function() require("telescope.builtin").live_grep() end,
+                desc = "Live grep files in current directory",
+            },
+            {
+                "<leader>th:",
+                function() require("telescope.builtin").command_history() end,
+                desc = "Command history",
+            },
+            {
+                "<leader>th/",
+                function() require("telescope.builtin").search_history() end,
+                desc = "Search history",
             },
         },
-        config = function()
-            require("which-key").register({ ["<leader>t"] = "+telescope" })
-        end,
     },
 
     -- harpoon
