@@ -20,7 +20,7 @@ if command -v starship &>/dev/null; then
 	eval "$(starship init bash)"
 fi
 
-# Attempt to forward SSH authentication requests to Windows ssh-agent
+# Forward ssh-agent requests to windows; use keychain; or warn user
 if (command -v socat && command -v npiperelay.exe) &>/dev/null; then
     export SSH_AUTH_SOCK="${HOME}/.ssh/agent.sock"
     if ! pgrep --full 'npiperelay\.exe.*openssh-ssh-agent' &>/dev/null; then
@@ -30,8 +30,6 @@ if (command -v socat && command -v npiperelay.exe) &>/dev/null; then
         (setsid socat "${listen}" "${relay}" & disown) &>/dev/null
         unset listen relay
     fi
-
-# Else, fallback to keychain, if exists
 elif command -v keychain &>/dev/null; then
     export SSH_HOME="${HOME}/.ssh/${HOSTNAME}"
     eval "$(keychain --eval --agents 'ssh' \
@@ -39,13 +37,8 @@ elif command -v keychain &>/dev/null; then
         "${SSH_HOME}/github/id_rsa" \
         "${SSH_HOME}/gitlab/id_rsa" \
     )"
-
-# Warn user
 else
-    red="$(tput setf 1)"
-    normal="$(tput sgr0)"
-    printf '%s\n' "${red}Failed to configure ssh-agent!${normal}" >&2
-    unset red normal
+    printf '%s\n' "Failed to configure ssh-agent" >&2
 fi
 
 # Start wsl-vpnkit for DNS & Networking support with VPNs...
@@ -66,7 +59,7 @@ export HISTCONTROL="ignoreboth"
 export HISTIGNORE=$'[\t]*:&:[fb]g:exit'
 
 # Environment
-export EDITOR="$(command -v vim)"
+export EDITOR="$(command -v nvim)"
 export FILE_MANAGER="$(command -v explorer.exe)"
 export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
 

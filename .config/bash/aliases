@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# shellcheck disable=SC2139
 
 alias l='ls'
 alias ls='ls --group-directories-first --color=auto --classify'
@@ -24,14 +23,7 @@ alias mv='mv --interactive'
 alias cp='cp --interactive'
 alias rm='rm --interactive'
 
-alias chmox='chmod +x'
-
 alias grep='grep --color=auto'
-alias egrep='grep --extended-regexp'
-alias fgrep='grep --fixed-strings'
-
-alias pscpu='ps auxf | sort --numeric-sort --ignore-case --key=3'
-alias psmem='ps auxf | sort --numeric-sort --ignore-case --key=4'
 
 alias bat='batcat'
 
@@ -40,17 +32,9 @@ alias pubip='curl --silent --fail ipinfo.io/ip'
 alias ipinfo='curl --silent --fail ipinfo.io/json'
 
 alias git='git --no-pager'
-alias grm='git rm --cached'
-alias grmf='git rm'
-
-alias gdf='git --git-dir="${HOME}/dotfiles" --work-tree="${HOME}"'
-alias gdfrm='gdf rm --cached'
-alias gdfrmf='gdf rm'
+alias gdf="git --git-dir='${HOME}/dotfiles' --work-tree='${HOME}'"
 
 alias gcl="${HOME}/scripts/tools/gitclone.sh"
-alias ghc='gcl --github'
-alias glc='gcl --gitlab'
-alias gcls='gcl --suckless'
 
 alias xelatexmk='latexmk -xelatex'
 
@@ -64,41 +48,23 @@ alias usi='us --investigate'
 alias uss='us --submit'
 alias usg='us --retrieve'
 
-alias v='vim'
-alias vv='v -u NONE'
-alias nvim="${HOME}/.local/bin/nvim.appimage"
-alias nv='nvim'
-alias nvv='nvim -u NONE'
+alias vv='vim -u NONE'
+alias vn='nvim -u NONE'
 
 alias ytdl='yt-dlp'
 alias yta='ytdl --extract-audio'
 alias ytv='ytdl'
 
-#alias sshman="${WINHOME:-/mnt/c/$USERNAME}/Documents/Programming/Projects/sshman/sshman.sh"
+alias xml='xmlstarlet'
+
 alias sshu='ssh'
 alias ssha='ssh -o "User=root"'
 alias sshw="ssh -F '${WINHOME/d/c}/.ssh/work/config'"
 alias sshwu='sshw'
 alias sshwa='sshw -O "User=root"'
 
-# WSL-specifics
 alias explorer='explorer.exe'
 alias clip='clip.exe'
-#alias code='code-insiders'
 alias nslookup='/mnt/c/Windows/System32/nslookup.exe'
-alias winget='${USERPROFILE}/AppData/Local/Microsoft/WindowsApps/winget.exe'
-
-path="/mnt/c/ProgramData/chocolatey/bin/caffeine32.exe"
-if [[ -s "${path}" ]]; then
-	[[ -s "${path/32/64}" ]] && path="${path/32/64}"
-	alias pathfeine="${path}"
-	alias pathfeine-start="${path} -allowss -stes -onac"
-	alias pathfeine-toggle="${path} -apptoggle"
-	alias pathfeine-kill="${path} -appexit"
-fi
 
 alias svn='/mnt/c/Program\ Files/TortoiseSVN/bin/svn.exe'
-alias svnrm='svn delete --keep-lock'
-alias svnrmf='svn delete'
-
-unset path
