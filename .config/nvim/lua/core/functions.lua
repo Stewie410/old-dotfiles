@@ -33,28 +33,16 @@ for _, action in pairs(fmt_actions) do
 end
 
 -- Force-set filetype
-group = ag("FileTypeAdjustments", { clear = true })
-local filetypes = {
-    ["groff"] = { "*.ms", "*.me", "*.mom", "*.man" },
-    ["tex"] = { "*.tex" },
-    ["sh"] = { "*.sh", "*.bash" },
-}
-
-for ft, pattern in pairs(filetypes) do
-    au({ "BufRead", "BufNewFile" }, {
-        pattern = pattern,
-        group = group,
-        command = "set filetype=" .. ft,
-        desc = "Set filetype to '" .. ft .. "'",
-    })
-end
-
--- Support comments in json
-au({ "FileType" }, {
-    pattern = { "json" },
-    group = ag("CustomCommentSupport", { clear = true }),
-    command = [[syntax match Comment +\/\/.\+$++]],
-    desc = "Add comment support to JSON",
+vim.filetype.add({
+    extension = {
+        ms = 'groff',
+        me = 'groff',
+        mom = 'groff',
+        man = 'groff',
+        tex = 'tex',
+        sh = 'sh',
+        bash = 'sh',
+    },
 })
 
 -- Terminal adjustments
