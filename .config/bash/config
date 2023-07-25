@@ -52,6 +52,16 @@ PATH+=":${HOME}/.cargo/bin"
 PATH+=":${HOME}/.local/bin"
 export PATH
 
+# XDG
+export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_CACHE_HOME="${HOME}/.cache"
+export XDG_DATA_HOME="${HOME}/.local/share"
+export XDG_STATE_HOME="${XDG_DATA_HOME%/*}/state"
+
+# SSH
+export SSH_HOME="${HOME}/.ssh/${HOSTNAME}"
+export SSH_AUTH_SOCK="${SSH_HOME%/*}"
+
 # History
 export HISTSIZE=""
 export HISTFILESIZE=""
@@ -62,6 +72,8 @@ export HISTIGNORE=$'[\t]*:&:[fb]g:exit'
 export EDITOR="$(command -v nvim)"
 export FILE_MANAGER="$(command -v explorer.exe)"
 export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
+export TERM="${TERM:-xterm-256color}"
+export COLORTERM="truecolor"
 
 # LESS colors
 export LESS="--RAW-CONTROL-CHARS --ignore-case"
@@ -73,22 +85,16 @@ export LESS_TERMCAP_se="$(tput rmso)"
 export LESS_TERMCAP_us="$(tput smul)"
 export LESS_TERMCAP_ue="$(tput rmul)"
 
-# XDG
-export XDG_CONFIG_HOME="${HOME}/.config"
-export XDG_CACHE_HOME="${HOME}/.cache"
-export XDG_DATA_HOME="${HOME}/.local/share"
-export XDG_STATE_HOME="${XDG_DATA_HOME%/*}/state"
-
 # urlscanio
 [[ -n "${URLSCAN_DATA_DIR}" ]] && mkdir --parents "${URLSCAN_DATA_DIR}"
 
 # Include published configurations
-[[ -s "${XDG_CONFIG_HOME}/bash/aliases" ]] && source "${XDG_CONFIG_HOME}/bash/aliases"
-[[ -s "${XDG_CONFIG_HOME}/bash/functions" ]] && source "${XDG_CONFIG_HOME}/bash/functions"
+source "${XDG_CONFIG_HOME}/bash/aliases"
+source "${XDG_CONFIG_HOME}/bash/functions"
 
 # Include private configurations
-[[ -s "${XDG_CONFIG_HOME}/bash/private/aliases" ]] && source "${XDG_CONFIG_HOME}/bash/private/aliases"
-[[ -s "${XDG_CONFIG_HOME}/bash/private/functions" ]] && source "${XDG_CONFIG_HOME}/bash/private/functions"
+source "${XDG_CONFIG_HOME}/bash/private/aliases"
+source "${XDG_CONFIG_HOME}/bash/private/functions"
 
 # clear $?
 true
