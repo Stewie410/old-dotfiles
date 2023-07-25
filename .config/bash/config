@@ -65,13 +65,13 @@ export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
 
 # LESS colors
 export LESS="--RAW-CONTROL-CHARS --ignore-case"
-export LESS_TERMCAP_mb=$'\E[1;31m'
-export LESS_TERMCAP_md=$'\E[1;36m'
-export LESS_TERMCAP_me=$'\E[0m'
-export LESS_TERMCAP_so=$'\E[1;44;33m'
-export LESS_TERMCAP_se=$'\E[0m'
-export LESS_TERMCAP_us=$'\E[1;32m'
-export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_mb="$(tput blink)"
+export LESS_TERMCAP_md="$(tput bold)"
+export LESS_TERMCAP_me="$(tput sgr0)"
+export LESS_TERMCAP_so="$(tput smso)"
+export LESS_TERMCAP_se="$(tput rmso)"
+export LESS_TERMCAP_us="$(tput smul)"
+export LESS_TERMCAP_ue="$(tput rmul)"
 
 # XDG
 export XDG_CONFIG_HOME="${HOME}/.config"
