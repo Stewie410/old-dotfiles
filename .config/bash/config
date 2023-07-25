@@ -28,7 +28,7 @@ export XDG_STATE_HOME="${XDG_DATA_HOME%/*}/state"
 
 # SSH
 export SSH_HOME="${HOME}/.ssh/${HOSTNAME}"
-export SSH_AUTH_SOCK="${SSH_HOME%/*}"
+export SSH_AUTH_SOCK="${SSH_HOME%/*}/agent.sock"
 
 # History
 export HISTSIZE=""
