@@ -55,7 +55,7 @@ export PATH
 # History
 export HISTSIZE=""
 export HISTFILESIZE=""
-export HISTCONTROL="ignoreboth"
+export HISTCONTROL="ignoreboth,erasedups"
 export HISTIGNORE=$'[\t]*:&:[fb]g:exit'
 
 # Environment
