@@ -90,8 +90,5 @@ export XDG_STATE_HOME="${XDG_DATA_HOME%/*}/state"
 [[ -s "${XDG_CONFIG_HOME}/bash/private/aliases" ]] && source "${XDG_CONFIG_HOME}/bash/private/aliases"
 [[ -s "${XDG_CONFIG_HOME}/bash/private/functions" ]] && source "${XDG_CONFIG_HOME}/bash/private/functions"
 
-# Generated for envman.  Do not edit
-[[ -s "${XDG_CONFIG_HOME}/envman/load.sh" ]] && source "${XDG_CONFIG_HOME}/envman/load.sh"
-
 # clear $?
 true
