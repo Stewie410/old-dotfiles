@@ -17,7 +17,7 @@ command -v batcat &>/dev/null && export MANPAGER="sh -c 'col -bx | batcat --lang
 
 # Starship Prompt
 if command -v starship &>/dev/null; then
-	eval "$(starship init bash)"
+    eval "$(starship init bash)"
 fi
 
 # Forward ssh-agent requests to windows; use keychain; or warn user
@@ -44,7 +44,7 @@ fi
 # Start wsl-vpnkit for DNS & Networking support with VPNs...
 # https://github.com/sakai135/wsl-vpnkit
 if wsl.exe --list | grep --quiet 'wsl-vpnkit'; then
-	wsl.exe -d wsl-vpnkit service wsl-vpnkit start
+    wsl.exe -d wsl-vpnkit service wsl-vpnkit start
 fi
 
 # PATH
@@ -91,10 +91,6 @@ export LESS_TERMCAP_ue="$(tput rmul)"
 # Include published configurations
 source "${XDG_CONFIG_HOME}/bash/aliases"
 source "${XDG_CONFIG_HOME}/bash/functions"
-
-# Include private configurations
-source "${XDG_CONFIG_HOME}/bash/private/aliases"
-source "${XDG_CONFIG_HOME}/bash/private/functions"
 
 # clear $?
 true
