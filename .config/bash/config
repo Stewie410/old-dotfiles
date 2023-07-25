@@ -15,11 +15,6 @@ command -v batcat &>/dev/null && export MANPAGER="sh -c 'col -bx | batcat --lang
 # Make LESS more friendly for non-text input files
 [[ -x "/usr/bin/lesspipe" ]] && eval "$(SHELL="/bin/sh" lesspipe)"
 
-# Starship Prompt
-if command -v starship &>/dev/null; then
-    eval "$(starship init bash)"
-fi
-
 # Forward ssh-agent requests to windows; use keychain; or warn user
 if (command -v socat && command -v npiperelay.exe) &>/dev/null; then
     export SSH_AUTH_SOCK="${HOME}/.ssh/agent.sock"
@@ -92,5 +87,5 @@ export LESS_TERMCAP_ue="$(tput rmul)"
 source "${XDG_CONFIG_HOME}/bash/aliases"
 source "${XDG_CONFIG_HOME}/bash/functions"
 
-# clear $?
-true
+# Starship Prompt
+eval "$(starship init bash)"
