@@ -32,9 +32,9 @@ alias pubip='curl --silent --fail ipinfo.io/ip'
 alias ipinfo='curl --silent --fail ipinfo.io/json'
 
 alias git='git --no-pager'
-alias gdf="git --git-dir='${HOME}/dotfiles' --work-tree='${HOME}'"
+alias gdf='git --git-dir="${HOME}/dotfiles" --work-tree="${HOME}"'
 
-alias gcl="${HOME}/scripts/tools/gitclone.sh"
+alias gcl='${HOME}/scripts/tools/gitclone.sh'
 
 alias xelatexmk='latexmk -xelatex'
 
@@ -59,7 +59,7 @@ alias xml='xmlstarlet'
 
 alias sshu='ssh'
 alias ssha='ssh -o "User=root"'
-alias sshw="ssh -F '${WINHOME/d/c}/.ssh/work/config'"
+alias sshw='ssh -F "${WINHOME/d/c}/.ssh/work/config"'
 alias sshwu='sshw'
 alias sshwa='sshw -O "User=root"'
 
@@ -68,3 +68,5 @@ alias clip='clip.exe'
 alias nslookup='/mnt/c/Windows/System32/nslookup.exe'
 
 alias svn='/mnt/c/Program\ Files/TortoiseSVN/bin/svn.exe'
+
+alias user_installed='apt-mark showmanual'
