@@ -22,7 +22,7 @@ download() {
 
     mkdir --parents "${1%/*}"
 
-    curl --silent --fail --location "${uri}" > "${1}" && return 0
+    curl --silent --fail --location --output "${1}" "${uri}" && return 0
 
     printf '%s\n' "Failed to download AppImage to cache: '${1}'" >&2
     return 1
