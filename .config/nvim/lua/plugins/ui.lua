@@ -131,4 +131,16 @@ return {
         end,
         opts = {},
     },
+
+    -- colorize
+    {
+        "norcalli/nvim-colorizer.lua",
+        event = "FileType",
+        opts = {
+            ['*'] = {
+                css = true,
+                css_fn = true,
+            }
+        },
+    },
 }
