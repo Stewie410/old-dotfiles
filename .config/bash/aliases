@@ -65,8 +65,5 @@ alias sshwa='sshw -O "User=root"'
 
 alias explorer='explorer.exe'
 alias clip='clip.exe'
-alias nslookup='/mnt/c/Windows/System32/nslookup.exe'
-
-alias svn='/mnt/c/Program\ Files/TortoiseSVN/bin/svn.exe'
 
 alias user_installed='apt-mark showmanual'
