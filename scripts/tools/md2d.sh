@@ -47,7 +47,7 @@ main() {
 		-- "${@}" \
 	)"
 
-	defaults[reference]="${WINHOME:-/mnt/c/Users/${USER}}/OneDrive - WT Cox/.config/gfm2docx/reference.docx"
+    defaults[reference]="${WINHOME:-${HOME}}/.config/gfm2docx/reference.docx"
 	defaults[from]="gfm"
 	defaults[to]="docx"
 
