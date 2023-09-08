@@ -24,43 +24,106 @@ OPTIONS:
 }
 
 function Write-Log {
-    [CmdletBinding()]
+    [CmdletBinding(DefaultParameterSetName = 'Options')]
     param(
         [Parameter()][ValidateSet('info', 'warn', 'error', 'debug', 'verb')][string]$Level = 'info',
         [Parameter(ValueFromPipeline, Mandatory)][ValidateNotNullOrEmpty()][string]$Message,
         [Parameter()][switch]$AddToLogFile
+
+        [Parameter(Mandatory = $True, ParameterSetName = "Info")]
+        [switch]
+        $Info,
+
+        [Parameter(Mandatory = $True, ParameterSetName = "Warn")]
+        [switch]
+        $Warn,
+
+        [Parameter(Mandatory = $True, ParameterSetName = "Error")]
+        [switch]
+        $Error,
+
+        [Parameter(Mandatory = $False, ParameterSetName = "Error")]
+        [switch]
+        $Throw,
+
+        [Parameter(Mandatory = $True, ParameterSetName = "Debug")]
+        [switch]
+        $Debug,
+
+        [Parameter(Mandatory = $True, ParameterSetName = "Verb")]
+        [switch]
+        $Verbose,
+
+        [Parameter(Mandatory = $True, ValueFromPipeline = $True, Position = 0)]
+        [string]
+        $Message,
+
+        [Parameter(Mandatory = $False)]
+        [switch]
+        $Append
     )
 
-    $parts = @(
-        (Get-Date -UFormat '+%Y-%m-%dT%T%Z'),
-        $Level.ToUpper(),
-        (
-            if ((Get-PSCallStack)[1].Command -match 'ScriptBlock') {
-                Split-Path -Path $PSCommandPath -Leaf
-            } else {
-                (Get-PSCallStack)[1].Command
+    BEGIN {
+        $parts = @{
+            Time = Get-Date -UFormat '+%FT%T%Z'
+            Level = (
+                if ($Info) {
+                    'info'
+                } elseif ($Warn) {
+                    'warn'
+                } elseif ($Error) {
+                    'error'
+                } elseif ($Debug) {
+                    'debug'
+                } elseif ($Verbose) {
+                    'verbose'
+                } else {
+                    ""
+                }
+            )
+            Caller = (Get-PSCallStack[1])
+        }
+
+        if ($parts.Caller -match 'ScriptBlock') {
+            $parts.Caller = Split-Path -Path $PSCommandPath -Leaf
+        }
+
+        if (!(Get-Variable -Name 'LogFile' -ErrorAction SilentlyContinue)) {
+            $LogFile = $null
+        }
+    }
+
+    PROCESS {
+        $full = ($parts.Values -join '|') + '|' + $Message
+        $short = ($full -split '|' | Select-Object -Last 3) -join '|'
+
+        if ($Append) {
+            Add-Content -Path $LogFile -Value $full
+        }
+
+        switch ($parts.Level) {
+            'info' {
+                Write-Host $short
             }
-        ),
-        $Message
-    )
-    $full = $parts -join '|'
-    $short = ($parts | Select-Object -Last 2) -join '|'
-
-    if ($True -eq $AddToLogFile) {
-        Add-Content -Path $LogFile -Value $full
+            'warn' {
+                Write-Warning -Message $short
+            }
+            'error' {
+                Write-Error -Message $short -ErrorAction Continue
+                if ($Throw) {
+                    throw $short
+                }
+            }
+            'debug' {
+                Write-Debug -Message $short
+            }
+            'verbose' {
+                Write-Verbose -Message $short
+            }
+        }
     }
 
-    if (-not (Get-Variable -Name LogFile -ErrorAction SilentlyContinue)) {
-        $LogFile = $null
-    }
-
-    switch ($Level) {
-        'info' { Write-Host $short }
-        'warn' { Write-Warning -Message $short }
-        'error' { Write-Error -Message $short }
-        'debug' { Write-Debug -Message $short }
-        'verbose' { Write-Verbose -Message $short }
-    }
+    END {}
 }
 
 function Send-Notification {
@@ -92,13 +155,17 @@ function Send-Notification {
 }
 
 function New-LogFile {
+    $root = Join-Path -Path $HOME -ChildPath '.log'
+    $basename = (Split-Path -Path $PSCommandPath -Leaf) -Replace '\.ps1$', ''
+
     $params = @{
-        Path = "$env:USERPROFILE\.log\scripts"
+        Path = Join-Path -Path $root -ChildPath 'scripts'
         ItemType = 'File'
-        Name = "$(Split-Path -Path ($PSCommandPath -Replace '\.ps1$', '') -Leaf).log"
+        Name = "$basename.log"
         Force = $True
         ErrorAction = 'Ignore'
     }
+
     New-Item @params
 }
 
