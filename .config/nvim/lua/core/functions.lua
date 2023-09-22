@@ -42,6 +42,7 @@ vim.filetype.add({
         tex = 'tex',
         sh = 'sh',
         bash = 'sh',
+        json = 'jsonc'
     },
 })
 
