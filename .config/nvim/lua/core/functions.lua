@@ -74,6 +74,7 @@ local templates = {
     ["bat"] = { "*.bat", "*.cmd" },
     ["ahk"] = { "*.ahk" },
     ["ps1"] = { "*.ps1", "*.psm1" },
+    ["groovy"] = { "*.groovy", "*.gvy", "*.gy", "*.gsh" },
 }
 for ext, pattern in pairs(templates) do
     au({ "BufNewFile" }, {
