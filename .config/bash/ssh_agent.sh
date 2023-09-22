@@ -12,11 +12,7 @@ if (command -v socat && command -v npiperelay.exe) &>/dev/null; then
         unset listen relay
     fi
 elif command -v keychain &>/dev/null; then
-    eval "$(keychain --eval --agents 'ssh' \
-        "${SSH_HOME}/id_rsa" \
-        "${SSH_HOME}/github/id_rsa" \
-        "${SSH_HOME}/gitlab/id_rsa" \
-    )"
+    eval "$(keychain --eval --agents 'ssh' "${SSH_HOME}/id_rsa")"
 else
     printf '%s\n' "Failed to configure ssh-agent" >&2
 fi
