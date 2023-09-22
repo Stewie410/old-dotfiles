@@ -73,5 +73,8 @@ source "${XDG_CONFIG_HOME}/bash/functions"
 source "${XDG_CONFIG_HOME}/bash/ssh_agent.sh"
 source "${XDG_CONFIG_HOME}/bash/wsl.sh"
 
+# rustup
+source "${HOME}/.cargo/env"
+
 # Starship Prompt
 eval "$(starship init bash)"
