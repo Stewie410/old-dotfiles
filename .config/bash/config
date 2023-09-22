@@ -9,6 +9,17 @@ set -o vi
 stty -ixon
 shopt -s histappend cdspell checkwinsize checkjobs cmdhist globstar mailwarn no_empty_cmd_completion
 
+# Readline bindings
+bind Space:magic-space
+bind 'set completion-ignore-case on'
+bind 'set completion-map-case on'
+bind 'set show-all-if-ambiguous on'
+bind 'set mark-symlinked-directories on'
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'
+bind '"\e[C": forward-char'
+bind '"\e[D": backward-char'
+
 # Manpage Pager
 command -v batcat &>/dev/null && export MANPAGER="sh -c 'col -bx | batcat --language man --plain'"
 
