@@ -62,7 +62,7 @@ return {
                 vim.keymap.set("n", "<leader>r", function() vim.lsp.buf.references() end, opts)
                 vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
                 vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
-                vim.keymap.set("n", "bf", function() vim.lsp.buf.format({ async = false }) end, opts)
+                vim.keymap.set("n", "<leader>bf", function() vim.lsp.buf.format({ async = false }) end, opts)
             end)
 
             lsp.set_server_config({
