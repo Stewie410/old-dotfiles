@@ -25,12 +25,20 @@ return {
                 "diagnosticls",
                 "docker_compose_language_service",
                 "dockerls",
+                "groovyls",
+                "jdtls",
+                "jsonls",
+                "lemminx",
                 "lua_ls",
                 "ltex",
                 "powershell_es",
                 "pyright",
+                "sqlls",
+                "terraformls",
                 "texlab",
+                "tsserver",
                 "vimls",
+                "yamlls",
             })
 
             local cmp = require("cmp")
