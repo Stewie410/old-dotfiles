@@ -26,6 +26,7 @@ return {
                 "docker_compose_language_service",
                 "dockerls",
                 "groovyls",
+                "html",
                 "jdtls",
                 "jsonls",
                 "lemminx",
