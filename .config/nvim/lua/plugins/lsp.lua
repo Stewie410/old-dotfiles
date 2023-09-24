@@ -18,7 +18,6 @@ return {
             local lsp = require("lsp-zero")
 
             lsp.preset("recommended")
-
             lsp.ensure_installed({
                 "awk_ls",
                 "bashls",
@@ -32,7 +31,6 @@ return {
                 "lemminx",
                 "lua_ls",
                 "ltex",
-                "powershell_es",
                 "pyright",
                 "sqlls",
                 "terraformls",
@@ -53,10 +51,10 @@ return {
             lsp.setup_nvim_cmp({ mapping = cmp_mappings })
 
             lsp.set_sign_icons({
-                error = "\u{ea87}",
-                warn = "\u{ea6c}",
-                hint = "\u{ea61}",
-                info = "\u{ea74}",
+                error = "\u{ea87}", -- 
+                warn = "\u{ea6c}",  -- 
+                hint = "\u{ea61}",  -- 
+                info = "\u{ea74}",  -- 
             })
 
             lsp.on_attach(function(_, bufnr)
@@ -81,11 +79,6 @@ return {
             })
 
             require("lspconfig").lua_ls.setup(lsp.nvim_lua_ls())
-
-            require("lspconfig").powershell_es.setup({
-                bundle_path = "~/.local/lsp/powershell_es",
-                shell = "pwsh.exe",
-            })
 
             lsp.setup()
         end,
