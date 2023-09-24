@@ -4,7 +4,11 @@ return {
 
     -- comments
     { "folke/todo-comments.nvim", opts = {} },
-    { "numToStr/Comment.nvim",    opts = {} },
+    {
+        "numToStr/Comment.nvim",
+        opts = {},
+        lazy = false,
+    },
 
     -- undo
     {
