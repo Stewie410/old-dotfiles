@@ -12,6 +12,5 @@ require("lazy").setup("plugins", {
         lazy = true,
         version = false,
     },
-    checker = { enabled = true },
     install = { colorscheme = { "ayu" } },
 })
