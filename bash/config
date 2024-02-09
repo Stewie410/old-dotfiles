@@ -1,0 +1,72 @@
+#!/usr/bin/env bash
+# shellcheck source=/dev/null
+
+# Skip customizations in non-interactive sessions
+[[ "$-" != *i* ]] && return
+
+# Java
+JAVA_HOME="$(readlink --canonicalize '/usr/bin/java')"
+export JAVA_HOME="${JAVA_HOME%/bin/java}"
+
+# Pyenv
+export PYENV_ROOT="${HOME}/.pyenv"
+
+# PATH
+PATH+=":${HOME}/.cargo/bin"
+PATH+=":${HOME}/.local/bin"
+PATH+=":${PYENV_ROOT}/bin"
+export PATH
+
+# Manpager
+command -v batcat &>/dev/null && \
+    export MANPAGER="sh -c 'col -bx | batcat --language man --plain'"
+
+# XDG
+export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_CACHE_HOME="${HOME}/.cache"
+export XDG_DATA_HOME="${HOME}/.local/share"
+export XDG_STATE_HOME="${XDG_DATA_HOME%/*}/state"
+
+# Config Roots
+export BASH_CONFIG_HOME="${XDG_CONFIG_HOME}/bash"
+export NVIM_CONFIG_HOME="${XDG_CONFIG_HOME}/nvim"
+export SSH_HOME="${HOME}/.ssh/${HOSTNAME}"
+export SSH_WORK_HOME="${SSH_HOME%/*}/work"
+
+# Scripting environment
+export BASH_LIB="${HOME}/scripts/bashlib"
+
+# npiperelay
+export SSH_AUTH_SOCK="${SSH_HOME%/*}/agent.sock"
+
+# History
+export HISTSIZE=""
+export HISTFILESIZE=""
+export HISTCONTROL='ignoreboth,erasedups'
+export HISTIGNORE=$'[\t]*:&:[fb]g:exit'
+
+# Environment
+export EDITOR="$(command -v nvim)"
+export FILE_MANAGER="$(command -v explorer.exe)"
+export TERM="${TERM:-xtern-256color}"
+export COLORTERM='truecolor'
+
+# Less Termcap
+export LESS="--RAW-CONTROL-CHARS --ignore-case"
+export LESS_TERMCAP_mb=$'\e[1;31m'
+export LESS_TERMCAP_md=$'\e[1;36m'
+export LESS_TERMCAP_me=$'\e[0m'
+export LESS_TERMCAP_so=$'\e[1;44;33m'
+export LESS_TERMCAP_se="${LESS_TERMCAP_me}"
+export LESS_TERMCAP_us=$'\e[1;32m'
+export LESS_TERMCAP_ue="${LESS_TERMCAP_me}"
+
+# Imports
+for i in 'functions' 'modules' 'aliases'; do
+    while read -r REPLY; do
+        source "${REPLY}"
+    done < <(find "${BASH_CONFIG_HOME}/${i}" -type f -iname '*.sh')
+done
+
+# PS1
+eval "$(starship init bash)"

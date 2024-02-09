@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# shellcheck source=/dev/null
+
+if [[ -s "${HOME}/.config/bash/config" ]]; then
+    source "${HOME}/.config/bash/config"
+elif [[ -s "${HOME}/.bashrc" ]]; then
+    source "${HOME}/.bashrc"
+else
+    source "/etc/profile"
+fi
