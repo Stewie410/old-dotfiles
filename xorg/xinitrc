@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# shellcheck source=/dev/null
+
+xorg_merge() {
+    local i d
+    d="/etc/X11/xinit"
+
+    for i in "${d}" "${HOME}"; do
+        [[ -s "${i}/.Xresources" ]] && xrdb -merge "${i}/.Xresources"
+        [[ -s "${i}/.Xmodmap" ]] && xmodmap "${i}/.Xmodmap"
+    done
+
+    d+="/xinitrc.d"
+    if [[ -d "${d}" ]]; then
+        while read -r i; do
+            source "${i}"
+        done < <(find "${d}" -type f -name '*.sh' 2>/dev/null)
+    fi
+}
+
+main() {
+    [[ -z "${1}" ]] && set -- xfce4
+    xorg_merge
+    "${HOME}/scripts/dwm/dwm-start.sh"
+}

@@ -1,0 +1,6 @@
+LABEL=cloudimg-rootfs	/	 ext4	defaults	0 1
+C: 		/mnt/c	drvfs	rw,noatime,uid=1000,gid=1000,umask=22,fmask=11	0 0
+D: 		/mnt/d	drvfs	rw,noatime,uid=1000,gid=1000,umask=22,fmask=11	0 0
+E: 		/mnt/e	drvfs	rw,noatime,uid=1000,gid=1000,umask=22,fmask=11	0 0
+F: 		/mnt/f	drvfs	rw,noatime,uid=1000,gid=1000,umask=22,fmask=11	0 0
+H: 		/mnt/h	drvfs	rw,noatime,uid=1000,gid=1000,umask=22,fmask=11	0 0

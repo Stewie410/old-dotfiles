@@ -1,0 +1,56 @@
+#if __has_include(".extend.Xresources")
+#include ".extend.Xresources"
+#endif
+
+*.font:                 xft:monospace:pixelsize=10
+Xft.dpi:                96
+Xft.antialias:          true
+Xft.autohint:           1
+Xft.hinting:            1
+Xft.hintstyle:          hintslight
+Xft.lcdfilter:          lcdlight
+Xft.rgba:               rgb
+
+URxvt*background:       #292d3e
+URxvt*borderColor:      #292d3e
+URxvt*foreground:       #ffffff
+URxvt*cursorColor:      #bbc5ff
+
+XTerm*background:       [90]#292d3e
+XTerm*borderColor:      [90]#292d3e
+XTerm*foreground:       #ffffff
+XTerm*cursorColor:      #bbc5ff
+
+i3wm.color0:            #292d3e
+
+*.color0:               #292d3e
+*.color8:               #434758
+*.color1:               #f07178
+*.color9:               #ff8b92
+*.color2:               #c3e88d
+*.color10:              #ddffa7
+*.color3:               #ffcb6b
+*.color11:              #ffe585
+*.color4:               #82aaff
+*.color12:              #9cc4ff
+*.color5:               #c792ea
+*.color13:              #e1acff
+*.color6:               #89ddff
+*.color14:              #a3f7ff
+*.color7:               #d0d0d0
+*.color15:              #ffffff
+
+URxvt*termName:         rxvt-unicode
+URxvt.depth:            32
+URxvt.scrollBar:        false
+URxvt.cursorBlink:      false
+URxvt.internalBorder:   1
+URxvt.font:             xft:FiraCode:pixelsize=14,\
+                        xft:monospace:pixelsize=16,\
+                        xft:FontAwesome:pixelsize=10:antialias=true,\
+                        xft:siji:pixelsize=10:antialias=true
+
+st.alpha:               1.0
+st.font:                Monospace-11;
+st.termname:            st-256color
+st.borderpx:            2
